@@ -1,0 +1,1 @@
+READ_FROM_FOLDER = "~/obsidianTestFolder"
