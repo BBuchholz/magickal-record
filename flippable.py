@@ -1,8 +1,8 @@
 import os
-from constants import READ_FROM_FOLDER
+from constants import OBSIDIAN_TEST_FOLDER
 
 msg = "flippable feature audit"
 print(msg)
-path = os.path.expanduser(READ_FROM_FOLDER)
+path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
 msg = "checking " + path + " for feature list"
 print(msg)
