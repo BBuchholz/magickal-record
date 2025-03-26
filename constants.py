@@ -10,9 +10,15 @@ CONFIG_FOLDER = "~/obsidianConfig"
 NONEXISTANT_FILE = "THISFILEDOESNOTEXIST.md"
 # To Test Existing files
 EXISTANT_FILE = "BasicFile.md"
+# BasicFile with full path
+BASIC_MYR_FILE_TEST_PATH = "~/nwd/test/BasicMyrFile.md"
 # Folder that doesn't exist
 NONEXISTANT_FOLDER = "~/doesNotExist"
 # Test Folder
 TEST_FOLDER = "~/nwd/test"
 # DSV Test Folder
 DSV_TEST_FOLDER = "~/nwd/test-dsv"
+# Cartographer Folder
+CARTOGRAPHER_FOLDER = "~/nwd/cartographer"
+# Cets File
+CETS_FILE = "~/nwd/cartographer/Cets.md"

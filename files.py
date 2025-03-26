@@ -5,6 +5,10 @@ def folder_exists(folder_path):
   dir_path = os.path.expanduser(folder_path)
   return os.path.exists(dir_path)
 
+def path_exists(file_or_folder_path):
+  full_path = os.path.expanduser(file_or_folder_path)
+  return os.path.exists(full_path)
+
 def get_path(file_name):
   """
   gets the path for given file_name from the
@@ -21,10 +25,29 @@ def get_lines_array(file_name):
   file_name in the folder specified in the
   constants file as READ_FROM_FOLDER
 
-  does not currently check for the .md suffix
+  does not check for the .md suffix
   """
   lines = []
   file_path = get_path(file_name)
+  if os.path.exists(file_path):
+    with open(file_path, 'r') as file:
+      line = file.readline()
+      while line:
+        lines.append(line.strip())
+        line = file.readline()
+  else:
+    print(f"File '{file_path}' does not exists")
+  return lines
+
+def get_lines_from(file_path):
+  """
+  gets the arrary of lines from the specified 
+  file_path
+
+  does not check for the .md suffix
+  """
+  lines = []
+  file_path = os.path.expanduser(file_path)
   if os.path.exists(file_path):
     with open(file_path, 'r') as file:
       line = file.readline()
