@@ -4,6 +4,7 @@ from files import (
   get_lines_array,
   print_lines_array,
   folder_exists,
+  get_xslx_files,
 )
 
 from constants import (
@@ -23,6 +24,11 @@ class TestFiles(unittest.TestCase):
   def test_folder_exists(self):
     self.assertFalse(folder_exists(NONEXISTANT_FOLDER))
     self.assertTrue(folder_exists(TEST_FOLDER))
+  
+  def test_should_get_xslx_files(self):
+    files_found = get_xslx_files(TEST_FOLDER)
+    self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", files_found)
+   
 
 if __name__ == '__main__':
   unittest.main()

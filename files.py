@@ -9,6 +9,20 @@ def path_exists(file_or_folder_path):
   full_path = os.path.expanduser(file_or_folder_path)
   return os.path.exists(full_path)
 
+def get_xslx_files(folder_path):
+  # expand user if needed
+  folder_path = os.path.expanduser(folder_path)
+  file_list = []
+  if not folder_exists(folder_path):
+    print(f"folder path not found: {folder_path}")
+    return file_list
+  
+  for file_name in os.listdir(folder_path):
+    if file_name.endswith(".xlsx"):
+      file_list.append(file_name)
+  
+  return file_list
+
 def get_path(file_name):
   """
   gets the path for given file_name from the

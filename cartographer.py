@@ -5,6 +5,7 @@ from constants import (
 from files import (
   path_exists,
   get_lines_from,
+  get_xslx_files,
 )
 
 class Cartographer:
@@ -16,6 +17,10 @@ class Cartographer:
 
   def verify_cets_file(self):
     return path_exists(CETS_FILE)
+
+  def get_cart_files(self):
+    cart_files = get_xslx_files(CARTOGRAPHER_FOLDER)
+    return cart_files
 
   def get_release_file_names(self):
     cets_file_lines = get_lines_from(CETS_FILE)

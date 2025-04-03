@@ -18,6 +18,10 @@ class TestCartographer(unittest.TestCase):
     cg = Cartographer()
     self.assertIn("LMS24A", cg.get_release_file_names())
 
+  def test_should_get_cart_files(self):
+    cg = Cartographer()
+    self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", cg.get_cart_files())
+    
   def test_should_get_release_name_from_line(self):
     cg = Cartographer()
     name = cg.get_release_file_name_from_line("- [ ] [[LMS24A]]")

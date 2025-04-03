@@ -1,26 +1,10 @@
 from cartographer import Cartographer
 from menus import (
-  LineOption,
-  Menu,
+  # LineOption,
+  # Menu,
   SubMenu,
 )
-
-  
-class ListCartFilesOp(LineOption):
-  def __init__(self, cart):
-    self.cart = cart
-  def key(self):
-    return "list"
-  def desc(self):
-    msg = "list valid cartographer files in "
-    msg += "cartographer folder"
-    return msg
-  def run(self):
-    print("these are the files found:")
-    if len(self.cart.get_cart_files()) > 0:
-      print("list files here")
-    else:
-      print("no files found")
+from op_list_cart_files import ListCartFilesOp
 
 class CartMenu(SubMenu):
   def __init__(self):
