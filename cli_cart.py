@@ -5,6 +5,8 @@ from menus import (
   SubMenu,
 )
 from op_list_cart_files import ListCartFilesOp
+from op_list_myrkis import ListMyrkisOp
+from cli_select_cart_file import SelectCartFileMenu
 
 class CartMenu(SubMenu):
   def __init__(self):
@@ -16,6 +18,8 @@ class CartMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(ListCartFilesOp(self.cart))
+    ops.append(ListMyrkisOp(self.cart))
+    ops.append(SelectCartFileMenu(self.cart))
     return ops
 
 if __name__ == "__main__":

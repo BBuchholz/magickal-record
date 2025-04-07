@@ -5,6 +5,8 @@ from files import (
   print_lines_array,
   folder_exists,
   get_xslx_files,
+  get_path_in_folder,
+  path_exists,
 )
 
 from constants import (
@@ -12,6 +14,8 @@ from constants import (
   NONEXISTANT_FILE,
   TEST_FOLDER,
   NONEXISTANT_FOLDER,
+  CARTOGRAPHER_FOLDER,
+  CART_TEST_FILE_NO_CARDS,
 )
 
 class TestFiles(unittest.TestCase):
@@ -28,6 +32,10 @@ class TestFiles(unittest.TestCase):
   def test_should_get_xslx_files(self):
     files_found = get_xslx_files(TEST_FOLDER)
     self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", files_found)
+
+  def test_get_path_in_folder(self):
+    file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, CART_TEST_FILE_NO_CARDS)
+    self.assertTrue(path_exists(file_path))
    
 
 if __name__ == '__main__':

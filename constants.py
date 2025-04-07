@@ -22,3 +22,7 @@ DSV_TEST_FOLDER = "~/nwd/test-dsv"
 CARTOGRAPHER_FOLDER = "~/nwd/cartographer"
 # Cets File
 CETS_FILE = "~/nwd/cartographer/Cets.md"
+# Cartographer test file without any cards
+CART_TEST_FILE_NO_CARDS = "TEST_DONOTMODIFY_NoCards.xlsx"
+# Cartographer test file with some cards
+CART_TEST_FILE_SOME_CARDS = "TEST_DONOTMODIFY_SomeCards.xlsx"

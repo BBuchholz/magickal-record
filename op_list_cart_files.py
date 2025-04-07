@@ -1,21 +1,21 @@
 from cartographer import Cartographer
 from menus import (
   LineOption,
-  # Menu,
-  # SubMenu,
 )
 
-  
 class ListCartFilesOp(LineOption):
   def __init__(self, cart):
     self.cart = cart
+
   def key(self):
-    return "list"
+    return "files"
+
   def desc(self):
     msg = "list cartographer "
     msg += "spreadsheet files in "
     msg += "cartographer folder"
     return msg
+
   def run(self):
     print("")
     print("these are the files found:")

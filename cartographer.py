@@ -1,3 +1,5 @@
+import pandas as pd
+
 from constants import (
   CARTOGRAPHER_FOLDER,
   CETS_FILE,
@@ -6,11 +8,12 @@ from files import (
   path_exists,
   get_lines_from,
   get_xslx_files,
+  get_path_in_folder,
 )
 
 class Cartographer:
   def __init__(self):
-    pass
+    self.selected_file = None
 
   def verify_folder(self):
     return path_exists(CARTOGRAPHER_FOLDER)
@@ -46,3 +49,30 @@ class Cartographer:
     line = line.replace("]]", "")
     return line
 
+  def get_myrkis(self):
+    myrkis = []
+    if self.selected_file is not None:
+      file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
+      df = pd.read_excel(file_path, sheet_name='Cards')
+      df_dict = df.to_dict()
+      ### LEAVE THIS HERE FOR DEBUGGING
+      # print(df_dict)
+      # print(df_dict['MYRKI'].values())
+      for myrki in df_dict['MYRKI'].values():
+        myrkis.append(myrki.strip())
+    return myrkis
+
+
+  def get_related_myrkis(self):
+    myrkis = []
+    if self.selected_file is not None:
+      file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
+      df = pd.read_excel(file_path, sheet_name='Cards')
+      df_dict = df.to_dict()
+      ### LEAVE THIS HERE FOR DEBUGGING
+      # print(df_dict)
+      # print(df_dict['Related MYRKIS'].values())
+      for myrki in df_dict['Related MYRKIS'].values():
+        if str(myrki) != 'nan':
+          myrkis.append(myrki.strip())
+    return myrkis

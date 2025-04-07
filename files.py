@@ -31,6 +31,10 @@ def get_path(file_name):
   """
   dir_path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
   return os.path.join(dir_path, file_name)
+
+def get_path_in_folder(folder_path, file_name):
+  dir_path = os.path.expanduser(folder_path)
+  return os.path.join(dir_path, file_name)
   
 # TODO: make this account for a missing .md suffix
 def get_lines_array(file_name):
