@@ -9,6 +9,9 @@ class SelectCartFileMenu(SubMenu):
   
   def key(self):
     return "select"
+  
+  def exit_after_selection(self):
+    return True
 
   def desc(self):
     return "Select Cartographer File"

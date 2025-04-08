@@ -4,11 +4,11 @@ from menus import LineOption
 class SelectFileOp(LineOption):
   def __init__(self, cart, key, file_name):
     self.cart = cart
-    self.key = key
+    self.key_value = key
     self.file_name = file_name
 
   def key(self):
-    return self.key
+    return self.key_value
 
   def desc(self):
     return self.file_name

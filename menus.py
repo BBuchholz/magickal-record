@@ -18,24 +18,31 @@ class Menu(ABC):
   def get_ops(self):
     pass
 
+  def exit_after_selection(self):
+    return False
+
   def print_options(self):
     for op in self.get_ops():
       print(f"{op.key()} : {op.desc()}")
 
   def show_menu(self):
-    while True:
+    self.op_found = None
+    self.run_again = True
+    while self.run_again:
       self.print_options()
       user_input = input("Enter option (type 'exit' to quit): ")
       if user_input.lower() == 'exit':
+          self.run_again = False
           break  # Exit the loop if the user types 'exit'
       else:
           # Process the user input
-          op_found = None
           for op in self.get_ops():
-            if user_input.lower() == op.key():
-              op_found = op
-          if op_found is not None:
-            op_found.run()
+            if str(user_input.lower()) == str(op.key()):
+              self.op_found = op
+          if self.op_found is not None:
+            self.op_found.run()
+            if self.exit_after_selection():
+              self.run_again = False
           else:
             print(f"unrecognized input: {user_input}")
 
