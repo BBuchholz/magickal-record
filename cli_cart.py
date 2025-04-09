@@ -7,6 +7,7 @@ from menus import (
 from op_list_cart_files import ListCartFilesOp
 from op_list_myrkis import ListMyrkisOp
 from cli_select_cart_file import SelectCartFileMenu
+from op_list_related_myrkis import ListRelatedMyrkisOp
 
 class CartMenu(SubMenu):
   def __init__(self):
@@ -19,6 +20,7 @@ class CartMenu(SubMenu):
     ops = []
     ops.append(ListCartFilesOp(self.cart))
     ops.append(ListMyrkisOp(self.cart))
+    ops.append(ListRelatedMyrkisOp(self.cart))
     ops.append(SelectCartFileMenu(self.cart))
     return ops
 

@@ -72,7 +72,9 @@ class Cartographer:
       ### LEAVE THIS HERE FOR DEBUGGING
       # print(df_dict)
       # print(df_dict['Related MYRKIS'].values())
-      for myrki in df_dict['Related MYRKIS'].values():
-        if str(myrki) != 'nan':
-          myrkis.append(myrki.strip())
+      for myrki_lst_str in df_dict['Related MYRKIS'].values():
+        if str(myrki_lst_str) != 'nan':
+          myrkis_split = myrki_lst_str.split(",")
+          for myrki in myrkis_split:
+            myrkis.append(myrki.strip())
     return myrkis
