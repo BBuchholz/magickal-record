@@ -45,4 +45,12 @@ class TestCartographer(unittest.TestCase):
     cg = Cartographer()
     cg.selected_file = CART_TEST_FILE_SOME_CARDS
     myrkis = cg.get_unconnected_myrkis()
+    
+    # NB: ALL MYRKIS SHOULD BE IN BOTH COLUMNS 
+    # AT LEAST ONCE, so testing from both sides
+
+    # test for "related myrki" not in "myrki" column
     self.assertIn("UNICORN", myrkis)
+    
+    # test for "myrki" not in "related myrkis" column
+    self.assertIn("SERPENT", myrkis)
