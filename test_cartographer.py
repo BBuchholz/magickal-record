@@ -41,4 +41,8 @@ class TestCartographer(unittest.TestCase):
     myrkis = cg.get_related_myrkis()
     self.assertIn("DIMENSION", myrkis)
 
-  
+  def test_should_get_unconnected_myrkis(self):
+    cg = Cartographer()
+    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    myrkis = cg.get_unconnected_myrkis()
+    self.assertIn("UNICORN", myrkis)

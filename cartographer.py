@@ -78,3 +78,12 @@ class Cartographer:
           for myrki in myrkis_split:
             myrkis.append(myrki.strip())
     return myrkis
+  
+  def get_unconnected_myrkis(self):
+    missing_myrkis = []
+    # TODO: shoud test both ways ie. every myrki 
+    # in related column should also be in the 
+    # myrki column and every myrki should be 
+    # related to at least one other so should 
+    # appear in the related column as well
+    return missing_myrkis
