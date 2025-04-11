@@ -59,7 +59,9 @@ class Cartographer:
       # print(df_dict)
       # print(df_dict['MYRKI'].values())
       for myrki in df_dict['MYRKI'].values():
-        myrkis.append(myrki.strip())
+        myrki = myrki.strip()
+        if myrki not in myrkis:
+          myrkis.append(myrki)
     return myrkis
 
 
@@ -76,14 +78,26 @@ class Cartographer:
         if str(myrki_lst_str) != 'nan':
           myrkis_split = myrki_lst_str.split(",")
           for myrki in myrkis_split:
-            myrkis.append(myrki.strip())
+            myrki = myrki.strip()
+            if myrki not in myrkis:
+              myrkis.append(myrki)
     return myrkis
   
   def get_unconnected_myrkis(self):
     missing_myrkis = []
-    # TODO: shoud test both ways ie. every myrki 
+    # shoud test both ways ie. every myrki 
     # in related column should also be in the 
     # myrki column and every myrki should be 
     # related to at least one other so should 
     # appear in the related column as well
+    myrkis = self.get_myrkis()
+    related = self.get_related_myrkis()
+    for myrki in related:
+      if myrki not in myrkis:
+        if myrki not in missing_myrkis:
+          missing_myrkis.append(myrki)
+    for myrki in myrkis:
+      if myrki not in related:
+        if myrki not in missing_myrkis:
+          missing_myrkis.append(myrki)
     return missing_myrkis
