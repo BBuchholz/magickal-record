@@ -69,7 +69,7 @@ class TestCartographer(unittest.TestCase):
 
     self.assertEqual(star_card, star_card_values)
 
-  def test_should_load_cards_when_file_selected(self):
+  def test_should_select_file(self):
     cg = Cartographer()
     # lists should be empty
     self.assertEqual(len(cg.get_myrkis()), 0)
