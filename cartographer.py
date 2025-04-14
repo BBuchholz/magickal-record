@@ -101,3 +101,6 @@ class Cartographer:
         if myrki not in missing_myrkis:
           missing_myrkis.append(myrki)
     return missing_myrkis
+  
+  def get_card(self, myrki):
+    return {}

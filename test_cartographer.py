@@ -54,3 +54,30 @@ class TestCartographer(unittest.TestCase):
     
     # test for "myrki" not in "related myrkis" column
     self.assertIn("SERPENT", myrkis)
+
+  def test_should_get_card(self):
+    cg = Cartographer()
+    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    star_card = cg.get_card("STAR")
+
+    star_card_values = {
+      "MYRKI" : "STAR",
+      "Card Text" : "tha SILVER STAR inTha",
+      "Related MYRKIS" : ""
+    }
+
+
+    self.assertEqual(star_card, star_card_values)
+
+  def test_should_load_cards_when_file_selected(self):
+    cg = Cartographer()
+    # lists should be empty
+    self.assertEqual(len(cg.get_myrkis()), 0)
+    self.assertEqual(len(cg.get_related_myrkis()), 0)
+
+    # file should load here
+    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+
+    # lists should be populated
+    self.assertEqual(len(cg.get_myrkis()), 0)
+    self.assertEqual(len(cg.get_related_myrkis()), 0)

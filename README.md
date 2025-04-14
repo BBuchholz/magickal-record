@@ -23,3 +23,13 @@ but I'm open to collaboration for anyone interested
 in general usage so feel free to reach out to me
 if so inclined. (Interested individuals or groups 
 can message me through GitHub)
+
+# External Planning Documents
+
+### Cartographer Planning
+
+[Link to Cartographer Notion Page](https://www.notion.so/Cartographer-1d5222f451ee814aa844cb5a858fb4c9?pvs=4)
+
+### Chronomancer Planning
+
+[Link to Chronomancer Notion Page](https://www.notion.so/Chronomancer-1d5222f451ee8181a7a3ea0e5b09f23c?pvs=4)
