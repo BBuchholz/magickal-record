@@ -14,6 +14,10 @@ from files import (
 class Cartographer:
   def __init__(self):
     self.selected_file = None
+    self.myrkis = []
+    self.myrkis_loaded = False
+    self.related_myrkis = []
+    self.related_myrkis_loaded = False
 
   def verify_folder(self):
     return path_exists(CARTOGRAPHER_FOLDER)
@@ -49,9 +53,15 @@ class Cartographer:
     line = line.replace("]]", "")
     return line
 
-  def get_myrkis(self):
-    myrkis = []
-    if self.selected_file is not None:
+  def select_file(self, file_name):
+    self.selected_file = file_name
+    self.load_myrkis()
+    self.load_related_myrkis()
+
+  def load_myrkis(self):
+    if self.myrkis_loaded:
+      return
+    elif self.selected_file is not None:
       file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
       df = pd.read_excel(file_path, sheet_name='Cards')
       df_dict = df.to_dict()
@@ -60,13 +70,13 @@ class Cartographer:
       # print(df_dict['MYRKI'].values())
       for myrki in df_dict['MYRKI'].values():
         myrki = myrki.strip()
-        if myrki not in myrkis:
-          myrkis.append(myrki)
-    return myrkis
+        if myrki not in self.myrkis:
+          self.myrkis.append(myrki)
+      self.myrkis_loaded = True
 
-
-  def get_related_myrkis(self):
-    myrkis = []
+  def load_related_myrkis(self):
+    if self.related_myrkis_loaded:
+      return
     if self.selected_file is not None:
       file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
       df = pd.read_excel(file_path, sheet_name='Cards')
@@ -79,10 +89,18 @@ class Cartographer:
           myrkis_split = myrki_lst_str.split(",")
           for myrki in myrkis_split:
             myrki = myrki.strip()
-            if myrki not in myrkis:
-              myrkis.append(myrki)
-    return myrkis
-  
+            if myrki not in self.related_myrkis:
+              self.related_myrkis.append(myrki)
+      self.related_myrkis_loaded = True
+
+  def get_myrkis(self):
+    self.load_myrkis() # idempotent
+    return self.myrkis
+
+  def get_related_myrkis(self):
+    self.load_related_myrkis() # idempotent
+    return self.related_myrkis
+
   def get_unconnected_myrkis(self):
     missing_myrkis = []
     # shoud test both ways ie. every myrki 

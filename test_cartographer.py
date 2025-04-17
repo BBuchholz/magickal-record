@@ -79,5 +79,5 @@ class TestCartographer(unittest.TestCase):
     cg.select_file(CART_TEST_FILE_SOME_CARDS)
 
     # lists should be populated
-    self.assertEqual(len(cg.get_myrkis()), 0)
-    self.assertEqual(len(cg.get_related_myrkis()), 0)
+    self.assertNotEqual(len(cg.get_myrkis()), 0)
+    self.assertNotEqual(len(cg.get_related_myrkis()), 0)
