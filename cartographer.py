@@ -14,10 +14,11 @@ from files import (
 class Cartographer:
   def __init__(self):
     self.selected_file = None
-    self.myrkis = []
-    self.myrkis_loaded = False
-    self.related_myrkis = []
-    self.related_myrkis_loaded = False
+    self.cards = {}
+    # self.myrkis = []
+    # self.myrkis_loaded = False
+    # self.related_myrkis = []
+    # self.related_myrkis_loaded = False
 
   def verify_folder(self):
     return path_exists(CARTOGRAPHER_FOLDER)
@@ -55,51 +56,88 @@ class Cartographer:
 
   def select_file(self, file_name):
     self.selected_file = file_name
-    self.load_myrkis()
-    self.load_related_myrkis()
-
-  def load_myrkis(self):
-    if self.myrkis_loaded:
-      return
-    elif self.selected_file is not None:
-      file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
-      df = pd.read_excel(file_path, sheet_name='Cards')
-      df_dict = df.to_dict()
-      ### LEAVE THIS HERE FOR DEBUGGING
-      # print(df_dict)
-      # print(df_dict['MYRKI'].values())
-      for myrki in df_dict['MYRKI'].values():
-        myrki = myrki.strip()
-        if myrki not in self.myrkis:
-          self.myrkis.append(myrki)
-      self.myrkis_loaded = True
-
-  def load_related_myrkis(self):
-    if self.related_myrkis_loaded:
-      return
+    # self.load_myrkis()
+    # self.load_related_myrkis()
     if self.selected_file is not None:
       file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
       df = pd.read_excel(file_path, sheet_name='Cards')
       df_dict = df.to_dict()
-      ### LEAVE THIS HERE FOR DEBUGGING
       # print(df_dict)
-      # print(df_dict['Related MYRKIS'].values())
-      for myrki_lst_str in df_dict['Related MYRKIS'].values():
-        if str(myrki_lst_str) != 'nan':
+      temp_dict = {}
+      for key, value in df_dict.items():
+        # print(f"Key: {key}")
+        for k, v in value.items():
+          # print(f"K: {k} V: {v}")
+          if k not in temp_dict:
+            temp_dict[k] = {}
+          if str(v) == "nan":
+            temp_dict[k][key] = ''
+          else:
+            temp_dict[k][key] = v.strip()
+      # print(temp_dict)
+      for card in temp_dict.values():
+        # print(card["MYRKI"])
+        # print(card)
+        self.cards[card["MYRKI"]] = card
+      
+
+  # def load_myrkis(self):
+  #   if self.myrkis_loaded:
+  #     return
+  #   elif self.selected_file is not None:
+  #     file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
+  #     df = pd.read_excel(file_path, sheet_name='Cards')
+  #     df_dict = df.to_dict()
+  #     ### LEAVE THIS HERE FOR DEBUGGING
+  #     # print(df_dict)
+  #     # print(df_dict['MYRKI'].values())
+  #     for myrki in df_dict['MYRKI'].values():
+  #       myrki = myrki.strip()
+  #       if myrki not in self.myrkis:
+  #         self.myrkis.append(myrki)
+  #     self.myrkis_loaded = True
+
+  # def load_related_myrkis(self):
+  #   if self.related_myrkis_loaded:
+  #     return
+  #   if self.selected_file is not None:
+  #     file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, self.selected_file)
+  #     df = pd.read_excel(file_path, sheet_name='Cards')
+  #     df_dict = df.to_dict()
+  #     ### LEAVE THIS HERE FOR DEBUGGING
+  #     # print(df_dict)
+  #     # print(df_dict['Related MYRKIS'].values())
+  #     for myrki_lst_str in df_dict['Related MYRKIS'].values():
+  #       if str(myrki_lst_str) != 'nan':
+  #         myrkis_split = myrki_lst_str.split(",")
+  #         for myrki in myrkis_split:
+  #           myrki = myrki.strip()
+  #           if myrki not in self.related_myrkis:
+  #             self.related_myrkis.append(myrki)
+  #     self.related_myrkis_loaded = True
+
+  def get_myrkis(self):
+    # self.load_myrkis() # idempotent
+    myrkis = []
+    for card in self.cards.values():
+      myrki = card["MYRKI"]
+      if myrki not in myrkis:
+        myrkis.append(myrki)
+    return myrkis
+
+  def get_related_myrkis(self):
+    # self.load_related_myrkis() # idempotent
+    related_myrkis = []
+    for card in self.cards.values():
+        myrki_lst_str = card["Related MYRKIS"]
+        # print(myrki_lst_str)
+        if myrki_lst_str.strip() != '':
           myrkis_split = myrki_lst_str.split(",")
           for myrki in myrkis_split:
             myrki = myrki.strip()
-            if myrki not in self.related_myrkis:
-              self.related_myrkis.append(myrki)
-      self.related_myrkis_loaded = True
-
-  def get_myrkis(self):
-    self.load_myrkis() # idempotent
-    return self.myrkis
-
-  def get_related_myrkis(self):
-    self.load_related_myrkis() # idempotent
-    return self.related_myrkis
+            if myrki not in related_myrkis:
+              related_myrkis.append(myrki)
+    return related_myrkis
 
   def get_unconnected_myrkis(self):
     missing_myrkis = []
@@ -121,4 +159,4 @@ class Cartographer:
     return missing_myrkis
   
   def get_card(self, myrki):
-    return {}
+    return self.cards[myrki]

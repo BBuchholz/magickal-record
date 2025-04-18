@@ -31,19 +31,19 @@ class TestCartographer(unittest.TestCase):
 
   def test_should_get_myrkis(self):
     cg = Cartographer()
-    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    cg.select_file(CART_TEST_FILE_SOME_CARDS)
     myrkis = cg.get_myrkis()
     self.assertIn("SERPENT", myrkis)
 
   def test_should_get_related_myrkis(self):
     cg = Cartographer()
-    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    cg.select_file(CART_TEST_FILE_SOME_CARDS)
     myrkis = cg.get_related_myrkis()
     self.assertIn("DIMENSION", myrkis)
 
   def test_should_get_unconnected_myrkis(self):
     cg = Cartographer()
-    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    cg.select_file(CART_TEST_FILE_SOME_CARDS)
     myrkis = cg.get_unconnected_myrkis()
     
     # NB: ALL MYRKIS SHOULD BE IN BOTH COLUMNS 
@@ -81,3 +81,7 @@ class TestCartographer(unittest.TestCase):
     # lists should be populated
     self.assertNotEqual(len(cg.get_myrkis()), 0)
     self.assertNotEqual(len(cg.get_related_myrkis()), 0)
+
+    # should have cards loaded to dict keyed to myrki
+    star_card = cg.get_card("STAR")
+    self.assertEqual(star_card["MYRKI"], "STAR")
