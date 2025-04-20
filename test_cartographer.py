@@ -57,13 +57,15 @@ class TestCartographer(unittest.TestCase):
 
   def test_should_get_card(self):
     cg = Cartographer()
-    cg.selected_file = CART_TEST_FILE_SOME_CARDS
+    cg.select_file(CART_TEST_FILE_SOME_CARDS)
     star_card = cg.get_card("STAR")
 
     star_card_values = {
       "MYRKI" : "STAR",
-      "Card Text" : "tha SILVER STAR inTha",
-      "Related MYRKIS" : ""
+      "Card Text" : "tha SILVER STAR inTha MIRROR ovTha DEPTHS",
+      "Related MYRKIS" : "SILVER, MIRROR, DEPTH",
+      "Card Id": "",
+      "Canva Link": ""
     }
 
 

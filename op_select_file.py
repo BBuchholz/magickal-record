@@ -15,7 +15,7 @@ class SelectFileOp(LineOption):
 
   def run(self):
     print("")
-    self.cart.selected_file = self.file_name
+    self.cart.select_file(self.file_name)
     print(f"selecting file: {self.file_name}")
     print("")
 

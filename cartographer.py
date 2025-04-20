@@ -32,13 +32,13 @@ class Cartographer:
 
   def get_release_file_names(self):
     cets_file_lines = get_lines_from(CETS_FILE)
-    print(f"cets file lines: {len(cets_file_lines)}")
+    # print(f"cets file lines: {len(cets_file_lines)}")
     release_file_names = []
     releases_found = False
     index = 0
     while index < len(cets_file_lines):
       line = cets_file_lines[index]
-      print(f"line is {line}")
+      # print(f"line is {line}")
       if line.startswith("# Releases"):
         releases_found = True
       elif releases_found and line.startswith("# "):

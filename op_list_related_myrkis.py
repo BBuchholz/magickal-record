@@ -36,6 +36,6 @@ class ListRelatedMyrkisOp(LineOption):
 
 if __name__ == "__main__":
   cart = Cartographer()
-  cart.selected_file = CART_TEST_FILE_SOME_CARDS
+  cart.select_file(CART_TEST_FILE_SOME_CARDS)
   main = ListRelatedMyrkisOp(cart)
   main.run()
