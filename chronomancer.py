@@ -9,10 +9,16 @@ from constants_sabbats import (
   IMB_ALIASES,
   OST_ALIASES,
 )
+from datetime import datetime
 
 class Chronomancer:
   def __init__(self):
     pass
+
+  def get_timestamp(self):
+    now = datetime.now()
+    timestamp_string = now.strftime("%Y%m%d%H%M%S")
+    return timestamp_string
 
   def get_sabbat(self, letter_code):
     match letter_code:
