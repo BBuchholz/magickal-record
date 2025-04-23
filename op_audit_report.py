@@ -4,15 +4,15 @@
 # the ability to display different parts of 
 # the report after it has been generated
 
-from cartographer import Cartographer
+from cartio import Cartographer
 from menus import SubMenu
 
 from op_gen_aud_rep import GenerateAuditReportOp
 from op_disp_aud_sum import DisplayAuditSummaryOp
 
 class AudRepMenu(SubMenu):
-  def __init__(self):
-    super().__init__()
+  def __init__(self, cart):
+    self.cart = cart
   
   def key(self):
     return "rep"

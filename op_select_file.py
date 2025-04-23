@@ -1,4 +1,4 @@
-from cartographer import Cartographer
+from cartio import Cartographer
 from menus import LineOption
 
 class SelectFileOp(LineOption):

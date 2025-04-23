@@ -1,4 +1,4 @@
-from cartographer import Cartographer
+from cartio import Cartographer
 from menus import SubMenu
 
 from op_select_file import SelectFileOp

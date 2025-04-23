@@ -1,4 +1,4 @@
-from cartographer import Cartographer
+from cartio import Cartographer
 from constants import CART_TEST_FILE_SOME_CARDS
 from menus import (
   LineOption,

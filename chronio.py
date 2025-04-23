@@ -11,9 +11,19 @@ from constants_sabbats import (
 )
 from datetime import datetime
 
-class Chronomancer:
+class ChronIO:
   def __init__(self):
     pass
+
+  def get_suffix(self, current_sfx=""):
+    sfx = "25"
+    # TODO: year
+    # TODO: year, month
+    # TODO: year, month, day
+    # TODO: year, month, day, hour
+    # TODO: year, month, day, hour, minute
+    # TODO: year, month, day, hour, minute, second
+    return sfx
 
   def get_timestamp(self):
     now = datetime.now()

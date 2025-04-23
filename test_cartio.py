@@ -1,6 +1,6 @@
 import unittest
 
-from cartographer import Cartographer
+from cartio import Cartographer
 from constants import (
   CARTOGRAPHER_FOLDER,
   CART_TEST_FILE_NO_CARDS,

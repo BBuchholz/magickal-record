@@ -1,14 +1,47 @@
 import unittest
 
-from chronomancer import Chronomancer
+from chronio import ChronIO
 from datetime import datetime
 
-class TestChronomancer(unittest.TestCase):
+class TestChronIO(unittest.TestCase):
   def setUp(self):
-    self.cm = Chronomancer()
+    self.cm = ChronIO()
 
   def test_should_have_class(self):
     self.assertIsNotNone(self.cm)
+
+  def test_should_get_suffix(self):
+    # some explanation: this is designed 
+    # to be used in a "while exists" loop 
+    # so we will first try just the year, 
+    # then the year and month, then the 
+    # day also, drilling down all the way 
+    # to the second if necessary to create 
+    # unique file and folder names
+
+    # TODO: after passing with hard coded values, get these from datetime
+    current_year = "25"
+    current_month = "2504"
+    current_day = "250422"
+
+    # with no arguments should get just the year, two digit
+    year_sfx = self.cm.get_suffix()
+    self.assertEqual(year_sfx, "25")
+    self.assertEqual(year_sfx, current_year)
+
+    # if year is supplied, get month and year
+    month_sfx = self.cm.get_suffix(year_sfx)
+    self.assertEqual(month_sfx, current_month)
+    
+    # if month is supplied, get year, month, and day
+    day_sfx = self.cm.get_suffix(month_sfx)
+    self.assertEqual(day_sfx, current_day)
+
+    # TODO: year, month, day, and hour
+    # TODO: year, month, day, hour, and minute
+    # TODO: year, month, day, hour, minute, and second
+    
+
 
   def test_should_get_sabbat_by_letter_code(self):
 

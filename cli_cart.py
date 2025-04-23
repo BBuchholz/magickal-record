@@ -1,4 +1,4 @@
-from cartographer import Cartographer
+from cartio import Cartographer
 from menus import (
   # LineOption,
   # Menu,
@@ -9,6 +9,7 @@ from op_list_myrkis import ListMyrkisOp
 from cli_select_cart_file import SelectCartFileMenu
 from op_list_related_myrkis import ListRelatedMyrkisOp
 from op_audit_myrkis import AuditMyrkisOp
+from op_audit_report import AudRepMenu
 
 class CartMenu(SubMenu):
   def __init__(self):
@@ -24,6 +25,7 @@ class CartMenu(SubMenu):
     ops.append(ListRelatedMyrkisOp(self.cart))
     ops.append(AuditMyrkisOp(self.cart))
     ops.append(SelectCartFileMenu(self.cart))
+    ops.append(AudRepMenu(self.cart))
     return ops
 
 if __name__ == "__main__":
