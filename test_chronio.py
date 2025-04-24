@@ -20,9 +20,13 @@ class TestChronIO(unittest.TestCase):
     # unique file and folder names
 
     # TODO: after passing with hard coded values, get these from datetime
-    current_year = "25"
-    current_month = "2504"
-    current_day = "250422"
+    now = datetime.now()
+    current_year = now.strftime("%y")
+    current_month = now.strftime("%y%m")
+    current_day = now.strftime("%y%m%d")
+    current_hour = now.strftime("%y%m%d%H")
+    current_min = now.strftime("%y%m%d%H%M")
+    current_sec = now.strftime("%y%m%d%H%M%S") 
 
     # with no arguments should get just the year, two digit
     year_sfx = self.cm.get_suffix()
@@ -38,8 +42,16 @@ class TestChronIO(unittest.TestCase):
     self.assertEqual(day_sfx, current_day)
 
     # TODO: year, month, day, and hour
+    hour_sfx = self.cm.get_suffix(day_sfx)
+    self.assertEqual(hour_sfx, current_hour)
+
     # TODO: year, month, day, hour, and minute
+    min_sfx = self.cm.get_suffix(hour_sfx)
+    self.assertEqual(min_sfx, current_min)
+    
     # TODO: year, month, day, hour, minute, and second
+    sec_sfx = self.cm.get_suffix(min_sfx)
+    self.assertEqual(sec_sfx, current_sec)
     
 
 

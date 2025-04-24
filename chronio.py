@@ -16,14 +16,24 @@ class ChronIO:
     pass
 
   def get_suffix(self, current_sfx=""):
-    sfx = "25"
-    # TODO: year
-    # TODO: year, month
+    now = datetime.now()
+    # year
+    current_year = now.strftime("%y")
+    print(f"current_sfx: {current_sfx} current_year: {current_year}")
+    if len(current_sfx) < len(current_year):
+      return current_year
+    # year, month
+    current_month = now.strftime("%y%m")
+    if len(current_sfx) < len(current_month):
+      return current_month
     # TODO: year, month, day
+    current_day = now.strftime("%y%m%d")
+    if len(current_sfx) < len(current_day):
+      return current_day
     # TODO: year, month, day, hour
     # TODO: year, month, day, hour, minute
     # TODO: year, month, day, hour, minute, second
-    return sfx
+    return current_sfx
 
   def get_timestamp(self):
     now = datetime.now()
