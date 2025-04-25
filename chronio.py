@@ -16,23 +16,46 @@ class ChronIO:
     pass
 
   def get_suffix(self, current_sfx=""):
+    debugging = False
     now = datetime.now()
     # year
     current_year = now.strftime("%y")
-    print(f"current_sfx: {current_sfx} current_year: {current_year}")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_year: {current_year}")
     if len(current_sfx) < len(current_year):
       return current_year
     # year, month
     current_month = now.strftime("%y%m")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_month: {current_month}")
     if len(current_sfx) < len(current_month):
       return current_month
-    # TODO: year, month, day
+    # year, month, day
     current_day = now.strftime("%y%m%d")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_day: {current_day}")
     if len(current_sfx) < len(current_day):
       return current_day
-    # TODO: year, month, day, hour
-    # TODO: year, month, day, hour, minute
-    # TODO: year, month, day, hour, minute, second
+    # year, month, day, hour
+    current_hour = now.strftime("%y%m%d%H")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_hour: {current_hour}")
+    if len(current_sfx) < len(current_hour):
+      return current_hour
+    # year, month, day, hour, minute
+    current_min = now.strftime("%y%m%d%H%M")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_min: {current_min}")
+    if len(current_sfx) < len(current_min):
+      return current_min
+    # year, month, day, hour, minute, second
+    current_sec = now.strftime("%y%m%d%H%M%S")
+    if debugging:
+      print(f"current_sfx: {current_sfx} current_sec: {current_sec}")
+    if len(current_sfx) <= len(current_sec):
+      return current_sec
+    if debugging:
+      print(f"current_sfx: {current_sfx}")
     return current_sfx
 
   def get_timestamp(self):
