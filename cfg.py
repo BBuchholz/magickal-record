@@ -41,3 +41,10 @@ class TestingConfig():
   @property
   def nwd_folder(self):
     return self._nwd_folder
+  
+  @property
+  def test_vault_config_file(self):
+    folder = os.path.expanduser(self.nwd_folder)
+    fname = "test_vault_config.md"
+    file_path = os.path.join(folder, fname)
+    return file_path
