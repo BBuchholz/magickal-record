@@ -69,10 +69,10 @@ class TestConfig(unittest.TestCase):
     self.assertIsNotNone(self.cfg)
 
   def test_should_replace_constant_CONFIG_FOLDER(self):
-    self.assertEqual(self.cfg.CONFIG_FOLDER, CONFIG_FOLDER)
+    self.assertEqual(self.cfg.config_folder, CONFIG_FOLDER)
 
   def test_should_replace_constant_CARTOGRAPHER_FOLDER(self):
-    self.assertEqual(self.cfg.CARTOGRAPHER_FOLDER, CARTOGRAPHER_FOLDER)
+    self.assertEqual(self.cfg.cartio_folder, CARTOGRAPHER_FOLDER)
 
   def test_should_replace_constant_CETS_FILE(self):
-    self.assertEqual(self.cfg.CETS_FILE, CETS_FILE)
+    self.assertEqual(self.cfg.cets_file, CETS_FILE)
