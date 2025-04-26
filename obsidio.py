@@ -1,4 +1,4 @@
-from cfg import TestConfig
+from cfg import TestingConfig
 
 class ObsidIO():
   def __init__(self, cfg):
