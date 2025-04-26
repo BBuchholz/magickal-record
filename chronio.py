@@ -15,6 +15,41 @@ class ChronIO:
   def __init__(self):
     pass
 
+  def load_sabbats(self):
+    # TODO: we need to have them loaded for 
+    # many different requirements, all the 
+    # "match leter_code" items in other 
+    # functions can then be replaced with 
+    # a for in loop and going forward we 
+    # can add attributes to the sabbats 
+    # themselves for greater functionality
+    
+    # TODO: should include date of sabbat 
+    # which will vary by year for the 
+    # solstices and equinoxes so they kinda 
+    # have to be hard coded
+    pass
+
+  def get_all_aliases(self, letter_code):
+    match letter_code:
+      case "SMH":
+        return SMH_ALIASES
+      case "YUL":
+        return YUL_ALIASES
+      case "IMB":
+        return IMB_ALIASES
+      case "OST":
+        return OST_ALIASES
+      case "BEL":
+        return BEL_ALIASES
+      case "LTH":
+        return LTH_ALIASES
+      case "LMS":
+        return LMS_ALIASES
+      case "MBN":
+        return MBN_ALIASES
+
+
   def get_suffix(self, current_sfx=""):
     debugging = False
     now = datetime.now()

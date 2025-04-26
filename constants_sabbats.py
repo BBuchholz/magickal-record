@@ -4,6 +4,7 @@ BEL_ALIASES = [
 
 LTH_ALIASES = [
   "Litha",
+  "Midsummer"
 ]
 
 LMS_ALIASES = [

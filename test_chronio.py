@@ -53,7 +53,11 @@ class TestChronIO(unittest.TestCase):
     sec_sfx = self.cm.get_suffix(min_sfx)
     self.assertEqual(sec_sfx, current_sec)
     
-
+  def test_should_give_all_aliases_for_letter_codes(self):
+    lth_aliases = self.cm.get_all_aliases("LTH")
+    self.assertIn("Litha", lth_aliases)
+    self.assertIn("Midsummer", lth_aliases)
+    
 
   def test_should_get_sabbat_by_letter_code(self):
 
