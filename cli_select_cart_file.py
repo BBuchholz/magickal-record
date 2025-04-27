@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from menus import SubMenu
 
 from op_select_file import SelectFileOp
@@ -29,7 +29,7 @@ class SelectCartFileMenu(SubMenu):
     return ops
 
 if __name__ == "__main__":
-  cart = Cartographer()
+  cart = CartIO()
   main = SelectCartFileMenu(cart)
   main.show_menu()
   

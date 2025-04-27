@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from constants import CART_TEST_FILE_SOME_CARDS
 from menus import (
   LineOption,
@@ -33,7 +33,7 @@ class AuditMyrkisOp(LineOption):
         print("no missing myrkis found")
 
 if __name__ == "__main__":
-  cart = Cartographer()
+  cart = CartIO()
   cart.select_file(CART_TEST_FILE_SOME_CARDS)
   main = AuditMyrkisOp(cart)
   main.run()

@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from menus import LineOption
 
 class SelectFileOp(LineOption):
@@ -20,7 +20,7 @@ class SelectFileOp(LineOption):
     print("")
 
 if __name__ == "__main__":
-  cart = Cartographer()
+  cart = CartIO()
   print(f"Selected file is: {cart.selected_file}")
   main = SelectFileOp(cart, 1, "EXAMPLE.xlsx")
   main.run()

@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from menus import (
   # LineOption,
   # Menu,
@@ -13,7 +13,7 @@ from op_audit_report import AudRepMenu
 
 class CartMenu(SubMenu):
   def __init__(self):
-    self.cart = Cartographer()
+    self.cart = CartIO()
   def key(self):
     return "cart"
   def desc(self):

@@ -11,7 +11,7 @@ from files import (
   get_path_in_folder,
 )
 
-class Cartographer:
+class CartIO:
   def __init__(self):
     self.selected_file = None
     self.cards = {}

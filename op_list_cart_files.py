@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from menus import (
   LineOption,
 )
@@ -29,6 +29,6 @@ class ListCartFilesOp(LineOption):
 
 
 if __name__ == "__main__":
-  cart = Cartographer()
+  cart = CartIO()
   main = ListCartFilesOp(cart)
   main.run()

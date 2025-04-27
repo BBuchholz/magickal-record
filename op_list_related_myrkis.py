@@ -1,4 +1,4 @@
-from cartio import Cartographer
+from cartio import CartIO
 from constants import CART_TEST_FILE_SOME_CARDS
 from menus import (
   LineOption,
@@ -35,7 +35,7 @@ class ListRelatedMyrkisOp(LineOption):
 
 
 if __name__ == "__main__":
-  cart = Cartographer()
+  cart = CartIO()
   cart.select_file(CART_TEST_FILE_SOME_CARDS)
   main = ListRelatedMyrkisOp(cart)
   main.run()
