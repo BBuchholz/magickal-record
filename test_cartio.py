@@ -1,13 +1,12 @@
 import unittest
 
 from cartio import CartIO
-from constants import (
-  CARTOGRAPHER_FOLDER,
-  CART_TEST_FILE_NO_CARDS,
-  CART_TEST_FILE_SOME_CARDS,
-)
+from cfg import TestingConfig
 
 class TestCartographer(unittest.TestCase):
+  def setUp(self):
+    self.tcfg = TestingConfig()
+
   def test_should_check_for_cartographer_folder(self):
     cg = CartIO()
     self.assertTrue(cg.verify_folder())
@@ -22,7 +21,7 @@ class TestCartographer(unittest.TestCase):
 
   def test_should_get_cart_files(self):
     cg = CartIO()
-    self.assertIn(CART_TEST_FILE_NO_CARDS, cg.get_cart_files())
+    self.assertIn(self.tcfg.cart_test_file_no_cards, cg.get_cart_files())
     
   def test_should_get_release_name_from_line(self):
     cg = CartIO()
@@ -31,19 +30,19 @@ class TestCartographer(unittest.TestCase):
 
   def test_should_get_myrkis(self):
     cg = CartIO()
-    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+    cg.select_file(self.tcfg.cart_test_file_some_cards)
     myrkis = cg.get_myrkis()
     self.assertIn("SERPENT", myrkis)
 
   def test_should_get_related_myrkis(self):
     cg = CartIO()
-    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+    cg.select_file(self.tcfg.cart_test_file_some_cards)
     myrkis = cg.get_related_myrkis()
     self.assertIn("DIMENSION", myrkis)
 
   def test_should_get_unconnected_myrkis(self):
     cg = CartIO()
-    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+    cg.select_file(self.tcfg.cart_test_file_some_cards)
     myrkis = cg.get_unconnected_myrkis()
     
     # NB: ALL MYRKIS SHOULD BE IN BOTH COLUMNS 
@@ -57,7 +56,7 @@ class TestCartographer(unittest.TestCase):
 
   def test_should_get_card(self):
     cg = CartIO()
-    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+    cg.select_file(self.tcfg.cart_test_file_some_cards)
     star_card = cg.get_card("STAR")
 
     star_card_values = {
@@ -78,7 +77,7 @@ class TestCartographer(unittest.TestCase):
     self.assertEqual(len(cg.get_related_myrkis()), 0)
 
     # file should load here
-    cg.select_file(CART_TEST_FILE_SOME_CARDS)
+    cg.select_file(self.tcfg.cart_test_file_some_cards)
 
     # lists should be populated
     self.assertNotEqual(len(cg.get_myrkis()), 0)
