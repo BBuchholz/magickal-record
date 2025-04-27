@@ -1,17 +1,18 @@
 from obsidio import ObsidIO
 from cfg import TestingConfig
 from menus import SubMenu
+from op_set_filter import SetFileNameFilterOp
 
 class ImportObsidianFilesMenu(SubMenu):
   def __init__(self, obio):
     self.obio = obio
-    self.filter = ""
+    self.obio.file_filter = ""
 
   def key(self):
     return "imp"
   
   def exit_after_selection(self):
-    return True
+    return False
 
   def desc(self):
     return "Import Obsidian Files"
@@ -22,8 +23,9 @@ class ImportObsidianFilesMenu(SubMenu):
     # should be available in all menus, 
     # even if its already set, so it 
     # can be changed
-    if len(self.filter) > 2 :
-      filtered = self.obio.get_file_names(self.filter)
+    ops.append(SetFileNameFilterOp(self.obio))
+    if len(self.obio.file_filter) > 2 :
+      filtered = self.obio.get_file_names()
       if len(filtered) < 100:
         # TODO: add filtered filenames here
         print("add files goes here")
@@ -36,6 +38,6 @@ class ImportObsidianFilesMenu(SubMenu):
 
 if __name__ == "__main__":
   tcfg = TestingConfig()
-  obo = ObsidIO(tcfg)
-  main = ImportObsidianFilesMenu(obo)
+  obio = ObsidIO(tcfg)
+  main = ImportObsidianFilesMenu(obio)
   main.show_menu()
