@@ -19,6 +19,40 @@ class TestCartIO(unittest.TestCase):
     is_implemented = False
     self.assertTrue(is_implemented)
 
+  def test_should_respect_AWLWA_tree(self):
+    # TODO: 3D == [2,1]; 3ID == [2,1]
+    is_implemented = False
+    self.assertTrue(is_implemented)
+
+  def test_should_respect_AWLWA_valknut(self):
+    # TODO: make these true
+
+    # 9D == [
+    #         [8,1],
+    #         [2,7],
+    #         [6,3],
+    #         [4,5],
+    #       ]
+
+    # 9ID == [
+    #         [4,5],
+    #         [6,3],
+    #         [2,7],
+    #         [8,1],
+    #       ]
+    is_implemented = False
+    self.assertTrue(is_implemented)
+
+  def test_should_translate_AWLWA_terminology(self):
+    # TODO: make these true, should translate both ways
+    # 3D == "Tree Delta",
+    # 3ID == "Tree Inverse Delta", 
+    # 9D == "Nigh Delta", 
+    # 9ID == "Nigh Inverse Delta" 
+    is_implemented = False
+    self.assertTrue(is_implemented)
+    
+
   def test_should_check_for_cartographer_folder(self):
     cg = CartIO()
     self.assertTrue(cg.verify_folder())
