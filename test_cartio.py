@@ -3,9 +3,21 @@ import unittest
 from cartio import CartIO
 from cfg import TestingConfig
 
-class TestCartographer(unittest.TestCase):
+class TestCartIO(unittest.TestCase):
   def setUp(self):
     self.tcfg = TestingConfig()
+
+  def test_should_enshrine_AWLWA_carteography(self):
+    # TODO: from Grey Iron Prison days, chart by speaker
+    # should implement all those tables and enshrine
+    # their reproduction in various formats
+    # (YES, this is an open ended goal, mod this test 
+    # and create others as we proceed, 
+    # storing a flash of insight for later)
+    # TODO: also: include this particular task 
+    # somewhere in the Pomodoro Roll (where apropos)
+    is_implemented = False
+    self.assertTrue(is_implemented)
 
   def test_should_check_for_cartographer_folder(self):
     cg = CartIO()
