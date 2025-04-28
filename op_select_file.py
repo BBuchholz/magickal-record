@@ -1,9 +1,10 @@
 from cartio import CartIO
+from cfg import TestingConfig
 from menus import LineOption
 
 class SelectFileOp(LineOption):
-  def __init__(self, cart, key, file_name):
-    self.cart = cart
+  def __init__(self, file_mgr, key, file_name):
+    self.file_mgr = file_mgr
     self.key_value = key
     self.file_name = file_name
 
@@ -15,14 +16,15 @@ class SelectFileOp(LineOption):
 
   def run(self):
     print("")
-    self.cart.select_file(self.file_name)
+    self.file_mgr.select_file(self.file_name)
     print(f"selecting file: {self.file_name}")
     print("")
 
 if __name__ == "__main__":
+  tcfg = TestingConfig()
   cart = CartIO()
   print(f"Selected file is: {cart.selected_file}")
-  main = SelectFileOp(cart, 1, "EXAMPLE.xlsx")
+  main = SelectFileOp(cart, 1, tcfg.cart_test_file_some_cards)
   main.run()
   print(f"Selected file is: {cart.selected_file}")
 

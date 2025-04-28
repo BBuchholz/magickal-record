@@ -14,4 +14,8 @@ class TestObsidIO(unittest.TestCase):
     fpath = self.tcfg.test_vault_config_file
     vaults = self.obio.load_vaults(fpath)
     self.assertEqual(len(vaults), 1)
+
+  def test_should_get_cfg_files(self):
+    cfg_files = self.obio.get_cfg_files()
+    self.assertTrue(len(cfg_files) > 0)
     

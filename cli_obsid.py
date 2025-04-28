@@ -1,7 +1,8 @@
 from obsidio import ObsidIO
+from cfg import TestingConfig
 from menus import SubMenu
 from op_imp_obo import ImportObsidianFilesMenu
-from op_ld_vaults import LoadVaultsOp
+from cli_load_vaults import LoadVaultsMenu
 from op_dsp_vaults import DisplayVaultsOp
 
 class ObsidMenu(SubMenu):
@@ -17,10 +18,11 @@ class ObsidMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(DisplayVaultsOp(self.obio))
-    ops.append(LoadVaultsOp(self.obio))
+    ops.append(LoadVaultsMenu(self.obio))
     ops.append(ImportObsidianFilesMenu(self.obio))
     return ops
   
 if __name__ == "__main__":
-  main = ObsidMenu()
+  tcfg = TestingConfig()
+  main = ObsidMenu(tcfg)
   main.show_menu()
