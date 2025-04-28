@@ -1,5 +1,23 @@
+### NB: we are currently moving constants into 
+# config files to allow for alternate setups that 
+# live side by side, this file will be split into 
+# two sections, constants that have migrated and 
+# those awaiting migration, move them accordingly 
+# as they are tested and transformed
+
+
+##############################################
+###### CONSTANTS THAT HAVE MIGRATED ##########
+##############################################
+
 # keep a small subset for testing here
 OBSIDIAN_TEST_FOLDER = "~/obsidianTestFolder"
+
+
+##############################################
+###### CONSTANTS AWAITING MIGRATION ##########
+##############################################
+
 # for testing adjacent vaults
 OBSIDIAN_TEST_VAULT_ONE = "~/obsidianTestFolder/testVaultOne"
 OBSIDIAN_TEST_VAULT_TWO = "~/obsidianTestFolder/testVaultTwo"
