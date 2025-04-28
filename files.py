@@ -11,7 +11,13 @@ def path_exists(file_or_folder_path):
   full_path = os.path.expanduser(file_or_folder_path)
   return os.path.exists(full_path)
 
+def get_md_files(folder_path):
+  return get_files_by_ext(folder_path, ".md")
+
 def get_xslx_files(folder_path):
+  return get_files_by_ext(folder_path, ".xlsx")
+
+def get_files_by_ext(folder_path, extension):
   # expand user if needed
   folder_path = os.path.expanduser(folder_path)
   file_list = []
@@ -20,10 +26,12 @@ def get_xslx_files(folder_path):
     return file_list
   
   for file_name in os.listdir(folder_path):
-    if file_name.endswith(".xlsx"):
+    if file_name.endswith(extension):
       file_list.append(file_name)
   
   return file_list
+
+
 
 def get_path(file_name):
   """

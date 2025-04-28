@@ -92,3 +92,8 @@ class TestingConfig():
     fname = "test_vault_config.md"
     file_path = os.path.join(folder, fname)
     return file_path
+  
+  @property
+  def obsidio_cfg_folder(self):
+    folder = os.path.join(self.nwd_folder, "obsidio/cfg")
+    return folder

@@ -1,4 +1,4 @@
-from cfg import TestingConfig
+from files import get_md_files
 
 class ObsidIO():
   def __init__(self, cfg):
@@ -11,4 +11,9 @@ class ObsidIO():
   
   def load_vaults(self, cfg_file):
     pass
+
+  def get_cfg_files(self):
+    folder = self._cfg.obsidio_cfg_folder
+    cfg_files = get_md_files(folder)
+    return cfg_files
 
