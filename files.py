@@ -1,4 +1,6 @@
-from constants import OBSIDIAN_TEST_FOLDER
+##### moving constants to cfg
+# from constants import OBSIDIAN_TEST_FOLDER
+from cfg import TestingConfig
 import os
 
 def folder_exists(folder_path):
@@ -26,10 +28,12 @@ def get_xslx_files(folder_path):
 def get_path(file_name):
   """
   gets the path for given file_name from the
-  folder specified in constants file as
-  OBSIDIAN_TEST_FOLDER
+  folder specified in TestingConfig
   """
-  dir_path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
+  tcfg = TestingConfig()
+  ##### moving constants to cfg
+  # dir_path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
+  dir_path = os.path.expanduser(tcfg.obsidian_test_folder)
   return os.path.join(dir_path, file_name)
 
 def get_path_in_folder(folder_path, file_name):
