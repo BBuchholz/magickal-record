@@ -12,12 +12,6 @@
 
 # keep a small subset for testing here
 OBSIDIAN_TEST_FOLDER = "~/obsidianTestFolder"
-
-
-##############################################
-###### CONSTANTS AWAITING MIGRATION ##########
-##############################################
-
 # for testing adjacent vaults
 OBSIDIAN_TEST_VAULT_ONE = "~/obsidianTestFolder/testVaultOne"
 OBSIDIAN_TEST_VAULT_TWO = "~/obsidianTestFolder/testVaultTwo"
@@ -28,6 +22,11 @@ CONFIG_FOLDER = "~/obsidianConfig"
 NONEXISTANT_FILE = "THISFILEDOESNOTEXIST.md"
 # To Test Existing files
 EXISTANT_FILE = "BasicFile.md"
+
+##############################################
+###### CONSTANTS AWAITING MIGRATION ##########
+##############################################
+
 # BasicFile with full path
 BASIC_MYR_FILE_TEST_PATH = "~/nwd/test/BasicMyrFile.md"
 # Folder that doesn't exist

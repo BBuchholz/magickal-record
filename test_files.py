@@ -8,29 +8,35 @@ from files import (
   get_path_in_folder,
   path_exists,
 )
-
+from cfg import NwdTestConfig
 from constants import (
-  EXISTANT_FILE,
-  NONEXISTANT_FILE,
-  TEST_FOLDER,
-  NONEXISTANT_FOLDER,
+  # EXISTANT_FILE,
+  # NONEXISTANT_FILE,
+  # TEST_FOLDER,
+  # NONEXISTANT_FOLDER,
   CARTOGRAPHER_FOLDER,
   CART_TEST_FILE_NO_CARDS,
 )
 
 class TestFiles(unittest.TestCase):
   def test_get_lines_array(self):
-    arr = get_lines_array(EXISTANT_FILE)
+    tcfg = NwdTestConfig()
+    arr = get_lines_array(tcfg.existant_file())
     self.assertEqual(len(arr), 5)
-    arr = get_lines_array(NONEXISTANT_FILE)
+    arr = get_lines_array(tcfg.nonexistant_file())
     self.assertEqual(len(arr), 0)
   
   def test_folder_exists(self):
-    self.assertFalse(folder_exists(NONEXISTANT_FOLDER))
-    self.assertTrue(folder_exists(TEST_FOLDER))
+    tcfg = NwdTestConfig()
+    ne_folder = tcfg.nonexistant_folder()
+    self.assertFalse(folder_exists(ne_folder))
+    tst_folder = tcfg.test_folder()
+    self.assertTrue(folder_exists(tst_folder))
   
   def test_should_get_xslx_files(self):
-    files_found = get_xslx_files(TEST_FOLDER)
+    tcfg = NwdTestConfig()
+    tst_folder = tcfg.test_folder()
+    files_found = get_xslx_files(tst_folder)
     self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", files_found)
 
   def test_get_path_in_folder(self):
