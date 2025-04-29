@@ -42,7 +42,7 @@ def get_path(file_name):
   tcfg = NwdTestConfig()
   ##### moving constants to cfg
   # dir_path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
-  dir_path = os.path.expanduser(tcfg.obsidian_test_folder)
+  dir_path = os.path.expanduser(tcfg.obsidian_test_folder())
   return os.path.join(dir_path, file_name)
 
 def get_path_in_folder(folder_path, file_name):

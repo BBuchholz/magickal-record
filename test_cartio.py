@@ -67,7 +67,7 @@ class TestCartIO(unittest.TestCase):
 
   def test_should_get_cart_files(self):
     cg = CartIO()
-    self.assertIn(self.tcfg.cart_test_file_no_cards, cg.get_cart_files())
+    self.assertIn(self.tcfg.cart_test_file_no_cards(), cg.get_cart_files())
     
   def test_should_get_release_name_from_line(self):
     cg = CartIO()
@@ -76,19 +76,19 @@ class TestCartIO(unittest.TestCase):
 
   def test_should_get_myrkis(self):
     cg = CartIO()
-    cg.select_file(self.tcfg.cart_test_file_some_cards)
+    cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_myrkis()
     self.assertIn("SERPENT", myrkis)
 
   def test_should_get_related_myrkis(self):
     cg = CartIO()
-    cg.select_file(self.tcfg.cart_test_file_some_cards)
+    cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_related_myrkis()
     self.assertIn("DIMENSION", myrkis)
 
   def test_should_get_unconnected_myrkis(self):
     cg = CartIO()
-    cg.select_file(self.tcfg.cart_test_file_some_cards)
+    cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_unconnected_myrkis()
     
     # NB: ALL MYRKIS SHOULD BE IN BOTH COLUMNS 
@@ -102,7 +102,7 @@ class TestCartIO(unittest.TestCase):
 
   def test_should_get_card(self):
     cg = CartIO()
-    cg.select_file(self.tcfg.cart_test_file_some_cards)
+    cg.select_file(self.tcfg.cart_test_file_some_cards())
     star_card = cg.get_card("STAR")
 
     star_card_values = {
@@ -123,7 +123,7 @@ class TestCartIO(unittest.TestCase):
     self.assertEqual(len(cg.get_related_myrkis()), 0)
 
     # file should load here
-    cg.select_file(self.tcfg.cart_test_file_some_cards)
+    cg.select_file(self.tcfg.cart_test_file_some_cards())
 
     # lists should be populated
     self.assertNotEqual(len(cg.get_myrkis()), 0)
