@@ -1,11 +1,11 @@
 import unittest
 
 from cartio import CartIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 
 class TestCartIO(unittest.TestCase):
   def setUp(self):
-    self.tcfg = TestingConfig()
+    self.tcfg = NwdTestConfig()
 
   def test_should_enshrine_AWLWA_carteography(self):
     # TODO: from Grey Iron Prison days, chart by speaker

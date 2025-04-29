@@ -38,6 +38,9 @@ class LoadVaultsMenu(SubMenu):
     cfg_files = self.obio.get_cfg_files()
     if len(cfg_files) < 1:
       print("no files to list")
+      print("files must start with Config prefix")
+      print("if this is in error, check file names")
+      print("for prefix: Config")
     else:
       key = 0
       for file in cfg_files:

@@ -1,5 +1,5 @@
 from obsidio import ObsidIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 from menus import LineOption
 
 class SetFileNameFilterOp(LineOption):
@@ -20,7 +20,7 @@ class SetFileNameFilterOp(LineOption):
     print(f"filter set to {self.obio.file_filter}")
 
 if __name__ == "__main__":
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   obio = ObsidIO(tcfg)
   main = SetFileNameFilterOp(obio)
   main.run()

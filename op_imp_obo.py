@@ -1,5 +1,5 @@
 from obsidio import ObsidIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 from menus import SubMenu
 from op_set_filter import SetFileNameFilterOp
 
@@ -37,7 +37,7 @@ class ImportObsidianFilesMenu(SubMenu):
   
 
 if __name__ == "__main__":
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   obio = ObsidIO(tcfg)
   main = ImportObsidianFilesMenu(obio)
   main.show_menu()

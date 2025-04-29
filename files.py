@@ -1,6 +1,6 @@
 ##### moving constants to cfg
 # from constants import OBSIDIAN_TEST_FOLDER
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 import os
 
 def folder_exists(folder_path):
@@ -11,13 +11,13 @@ def path_exists(file_or_folder_path):
   full_path = os.path.expanduser(file_or_folder_path)
   return os.path.exists(full_path)
 
-def get_md_files(folder_path):
-  return get_files_by_ext(folder_path, ".md")
+def get_md_files(folder_path, prefix):
+  return get_files_by_ext(folder_path, ".md", prefix)
 
 def get_xslx_files(folder_path):
   return get_files_by_ext(folder_path, ".xlsx")
 
-def get_files_by_ext(folder_path, extension):
+def get_files_by_ext(folder_path, extension, prefix=""):
   # expand user if needed
   folder_path = os.path.expanduser(folder_path)
   file_list = []
@@ -27,7 +27,8 @@ def get_files_by_ext(folder_path, extension):
   
   for file_name in os.listdir(folder_path):
     if file_name.endswith(extension):
-      file_list.append(file_name)
+      if file_name.startswith(prefix):
+        file_list.append(file_name)
   
   return file_list
 
@@ -38,7 +39,7 @@ def get_path(file_name):
   gets the path for given file_name from the
   folder specified in TestingConfig
   """
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   ##### moving constants to cfg
   # dir_path = os.path.expanduser(OBSIDIAN_TEST_FOLDER)
   dir_path = os.path.expanduser(tcfg.obsidian_test_folder)

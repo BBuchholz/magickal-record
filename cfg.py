@@ -1,6 +1,21 @@
 import os
+from abc import ABC, abstractmethod
 
-class Config():
+class Config(ABC):
+  @abstractmethod
+  def nwd_folder(self):
+    pass
+
+  def get_obsidio_file(self, md_file):
+    o_fldr = self.obsidio_folder
+    return os.path.join(o_fldr, md_file)
+
+  @property
+  def obsidio_folder(self):
+    nwd_fldr = self.nwd_folder
+    return os.path.join(nwd_fldr, "obsidio")
+
+class NwdConfig(Config):
   def __init__(self):
     self._nwd_folder = os.path.expanduser("~/nwd")
     self._config_folder = "~/obsidianConfig"
@@ -23,7 +38,7 @@ class Config():
   def cets_file(self):
     return self._cets_file
 
-class TestingConfig():
+class NwdTestConfig(Config):
   def __init__(self):
     self._nwd_folder = os.path.expanduser("~/nwd/test")
     self._test_folder = "~/nwd/test"
@@ -93,7 +108,8 @@ class TestingConfig():
     file_path = os.path.join(folder, fname)
     return file_path
   
-  @property
-  def obsidio_cfg_folder(self):
-    folder = os.path.join(self.nwd_folder, "obsidio/cfg")
-    return folder
+  # @property
+  # def obsidio_cfg_folder(self):
+  #   folder = os.path.join(self.nwd_folder, "obsidio/cfg")
+  #   return folder
+  

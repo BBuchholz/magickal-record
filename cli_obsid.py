@@ -1,5 +1,5 @@
 from obsidio import ObsidIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 from menus import SubMenu
 from op_imp_obo import ImportObsidianFilesMenu
 from cli_load_vaults import LoadVaultsMenu
@@ -23,6 +23,6 @@ class ObsidMenu(SubMenu):
     return ops
   
 if __name__ == "__main__":
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   main = ObsidMenu(tcfg)
   main.show_menu()

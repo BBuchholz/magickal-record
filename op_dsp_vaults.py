@@ -1,6 +1,6 @@
 from obsidio import ObsidIO
 from menus import LineOption
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 
 class DisplayVaultsOp(LineOption):
   def __init__(self, obio):
@@ -28,7 +28,7 @@ class DisplayVaultsOp(LineOption):
 
 
 if __name__ == "__main__":
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   obio = ObsidIO(tcfg)
   obio.load_vaults(tcfg.test_vault_config_file)
   main = DisplayVaultsOp(obio)

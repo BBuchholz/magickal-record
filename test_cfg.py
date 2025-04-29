@@ -17,13 +17,13 @@ from constants import (
 )
 
 from cfg import (
-  TestingConfig,
-  Config,
+  NwdTestConfig,
+  NwdConfig,
 )
 
 class TestTestingConfig(unittest.TestCase):
   def setUp(self):
-    self.cfg = TestingConfig()
+    self.cfg = NwdTestConfig()
   
   def test_should_have_class(self):
     self.assertIsNotNone(self.cfg)
@@ -63,7 +63,7 @@ class TestTestingConfig(unittest.TestCase):
 
 class TestConfig(unittest.TestCase):
   def setUp(self):
-    self.cfg = Config()
+    self.cfg = NwdConfig()
   
   def test_should_have_class(self):
     self.assertIsNotNone(self.cfg)

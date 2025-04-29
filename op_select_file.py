@@ -1,5 +1,5 @@
 from cartio import CartIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 from menus import LineOption
 
 class SelectFileOp(LineOption):
@@ -21,7 +21,7 @@ class SelectFileOp(LineOption):
     print("")
 
 if __name__ == "__main__":
-  tcfg = TestingConfig()
+  tcfg = NwdTestConfig()
   cart = CartIO()
   print(f"Selected file is: {cart.selected_file}")
   main = SelectFileOp(cart, 1, tcfg.cart_test_file_some_cards)

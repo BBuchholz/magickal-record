@@ -1,10 +1,10 @@
 import unittest
 from obsidio import ObsidIO
-from cfg import TestingConfig
+from cfg import NwdTestConfig
 
 class TestObsidIO(unittest.TestCase):
   def setUp(self):
-    self.tcfg = TestingConfig()
+    self.tcfg = NwdTestConfig()
     self.obio = ObsidIO(self.tcfg)
 
   def test_should_have_class(self):
