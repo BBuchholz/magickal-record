@@ -22,11 +22,6 @@ CONFIG_FOLDER = "~/obsidianConfig"
 NONEXISTANT_FILE = "THISFILEDOESNOTEXIST.md"
 # To Test Existing files
 EXISTANT_FILE = "BasicFile.md"
-
-##############################################
-###### CONSTANTS AWAITING MIGRATION ##########
-##############################################
-
 # BasicFile with full path
 BASIC_MYR_FILE_TEST_PATH = "~/nwd/test/BasicMyrFile.md"
 # Folder that doesn't exist
@@ -39,6 +34,11 @@ DSV_TEST_FOLDER = "~/nwd/test-dsv"
 CARTOGRAPHER_FOLDER = "~/nwd/cartographer"
 # Cets File
 CETS_FILE = "~/nwd/cartographer/Cets.md"
+
+##############################################
+###### CONSTANTS AWAITING MIGRATION ##########
+##############################################
+
 # Cartographer test file without any cards
 CART_TEST_FILE_NO_CARDS = "TEST_DONOTMODIFY_NoCards.xlsx"
 # Cartographer test file with some cards

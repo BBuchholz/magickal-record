@@ -8,13 +8,16 @@ from files import (
   get_path_in_folder,
   path_exists,
 )
-from cfg import NwdTestConfig
+from cfg import (
+  NwdTestConfig, 
+  NwdConfig,
+)
 from constants import (
   # EXISTANT_FILE,
   # NONEXISTANT_FILE,
   # TEST_FOLDER,
   # NONEXISTANT_FOLDER,
-  CARTOGRAPHER_FOLDER,
+  # CARTOGRAPHER_FOLDER,
   CART_TEST_FILE_NO_CARDS,
 )
 
@@ -40,7 +43,8 @@ class TestFiles(unittest.TestCase):
     self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", files_found)
 
   def test_get_path_in_folder(self):
-    file_path = get_path_in_folder(CARTOGRAPHER_FOLDER, CART_TEST_FILE_NO_CARDS)
+    cfg = NwdConfig()
+    file_path = get_path_in_folder(cfg.cartio_folder(), CART_TEST_FILE_NO_CARDS)
     self.assertTrue(path_exists(file_path))
    
 
