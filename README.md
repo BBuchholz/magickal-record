@@ -26,10 +26,30 @@ can message me through GitHub)
 
 # External Planning Documents
 
-### Cartographer Planning
+### CartIO Planning
 
-[Link to Cartographer Notion Page](https://www.notion.so/Cartographer-1d5222f451ee814aa844cb5a858fb4c9?pvs=4)
+[Link to CartIO Handler Notion Planning Page](https://www.notion.so/Cartographer-1d5222f451ee814aa844cb5a858fb4c9?pvs=4)
 
-### Chronomancer Planning
+### ChronIO Planning
 
-[Link to Chronomancer Notion Page](https://www.notion.so/Chronomancer-1d5222f451ee8181a7a3ea0e5b09f23c?pvs=4)
+[Link to ChronIO Handler Notion Planning Page](https://www.notion.so/Chronomancer-1d5222f451ee8181a7a3ea0e5b09f23c?pvs=4)
+
+### CFG Planning
+
+[Link to Config Handler Notion Planning Page](https://www.notion.so/Config-cfg-1e1222f451ee814bba6fd1beb8d26878?pvs=4)
+
+### ObsidIO Planning
+
+[Link to Obsidian Handler Notion Planning Page](https://www.notion.so/Obsidian-Handler-obsidio-1df222f451ee819f93ead60f8362f833?pvs=4)
+
+### XLIO Planning
+
+[Link to Xlsx Handler Notion Planning Page](https://www.notion.so/XL-Handler-xlio-1dd222f451ee80ccb2c9de79566f85dd?pvs=4)
+
+### MDIO Planning
+
+[Link to MarkDown Handler Notion Planning Page](https://www.notion.so/MD-Handler-mdio-1db222f451ee81ce812eeeecc7dd77e5?pvs=4)
+
+### LitIO Planning
+
+[Link to LitIO Handler Notion Planning Page](https://www.notion.so/LRT-Handler-litio-1d8222f451ee81c8ae83f8d4dacfdf85?pvs=4)
