@@ -51,7 +51,6 @@ class TestCartIO(unittest.TestCase):
     # 9ID == "Nigh Inverse Delta" 
     is_implemented = False
     self.assertTrue(is_implemented)
-    
 
   def test_should_check_for_cartographer_folder(self):
     cg = CartIO(NwdTestConfig())
@@ -132,3 +131,5 @@ class TestCartIO(unittest.TestCase):
     # should have cards loaded to dict keyed to myrki
     star_card = cg.get_card("STAR")
     self.assertEqual(star_card["MYRKI"], "STAR")
+
+    

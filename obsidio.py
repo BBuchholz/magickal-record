@@ -38,7 +38,7 @@ class ObsidIO():
       self.process_line(line)
 
   def get_cfg_files(self):
-    folder = self._cfg.obsidio_folder
+    folder = self._cfg.obsidio_folder()
     cfg_files = get_md_files(folder, "Config")
     return cfg_files
 

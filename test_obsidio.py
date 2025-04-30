@@ -11,7 +11,8 @@ class TestObsidIO(unittest.TestCase):
     self.assertIsNotNone(self.obio)
 
   def test_should_load_vaults(self):
-    vaults = self.obio.load_vaults()
+    md_file = self.obio.get_cfg_files()[0]
+    self.obio.load_vaults(md_file)
     vault_count = len(self.obio.loaded_vaults)
     self.assertEqual(vault_count, 1)
 
