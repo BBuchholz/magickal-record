@@ -1,4 +1,5 @@
 import unittest
+from os import path
 from constants import (
   TEST_FOLDER,
   CART_TEST_FILE_NO_CARDS,
@@ -21,12 +22,22 @@ from cfg import (
   NwdConfig,
 )
 
-class TestTestingConfig(unittest.TestCase):
+class TestNwdTestConfig(unittest.TestCase):
   def setUp(self):
     self.cfg = NwdTestConfig()
   
   def test_should_have_class(self):
     self.assertIsNotNone(self.cfg)
+
+  def test_should_have_xlsx_test_files(self):
+    some_cards = self.cfg.cart_test_file_some_cards()
+    no_cards = self.cfg.cart_test_file_no_cards()
+    sc_path = self.cfg.get_cartio_file(some_cards)
+    nc_path = self.cfg.get_cartio_file(no_cards)
+    print(f"testing path: {sc_path}")
+    self.assertTrue(path.exists(sc_path))
+    print(f"testing path: {nc_path}")
+    self.assertTrue(path.exists(nc_path))
 
   def test_should_replace_constant_TEST_FOLDER(self):
     self.assertEqual(self.cfg.test_folder(), TEST_FOLDER)
@@ -61,7 +72,7 @@ class TestTestingConfig(unittest.TestCase):
   def test_should_replace_constant_NONEXISTANT_FILE(self):
     self.assertEqual(self.cfg.nonexistant_file(), NONEXISTANT_FILE)
 
-class TestConfig(unittest.TestCase):
+class TestNwdConfig(unittest.TestCase):
   def setUp(self):
     self.cfg = NwdConfig()
   

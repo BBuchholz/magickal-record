@@ -1,6 +1,6 @@
 import pandas as pd
 
-from cfg import NwdConfig
+from cfg import Config
 
 from files import (
   path_exists,
@@ -10,26 +10,23 @@ from files import (
 )
 
 class CartIO:
-  def __init__(self):
+  def __init__(self, cfg: Config):
     self.selected_file = None
     self.cards = {}
+    self.cfg = cfg
 
   def verify_folder(self):
-    cfg = NwdConfig()
-    return path_exists(cfg.cartio_folder())
+    return path_exists(self.cfg.cartio_folder())
 
   def verify_cets_file(self):
-    cfg = NwdConfig()
-    return path_exists(cfg.cets_file())
+    return path_exists(self.cfg.cets_file())
 
   def get_cart_files(self):
-    cfg = NwdConfig()
-    cart_files = get_xslx_files(cfg.cartio_folder())
+    cart_files = get_xslx_files(self.cfg.cartio_folder())
     return cart_files
 
   def get_release_file_names(self):
-    cfg = NwdConfig()
-    cets_file_lines = get_lines_from(cfg.cets_file())
+    cets_file_lines = get_lines_from(self.cfg.cets_file())
     # print(f"cets file lines: {len(cets_file_lines)}")
     release_file_names = []
     releases_found = False
@@ -53,12 +50,11 @@ class CartIO:
     return line
 
   def select_file(self, file_name):
-    cfg = NwdConfig()
     self.selected_file = file_name
     # self.load_myrkis()
     # self.load_related_myrkis()
     if self.selected_file is not None:
-      file_path = get_path_in_folder(cfg.cartio_folder(), self.selected_file)
+      file_path = get_path_in_folder(self.cfg.cartio_folder(), self.selected_file)
       df = pd.read_excel(file_path, sheet_name='Cards')
       df_dict = df.to_dict()
       # print(df_dict)

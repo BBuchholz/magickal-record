@@ -54,40 +54,40 @@ class TestCartIO(unittest.TestCase):
     
 
   def test_should_check_for_cartographer_folder(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     self.assertTrue(cg.verify_folder())
 
   def test_should_look_for_cets_file(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     self.assertTrue(cg.verify_cets_file())
 
   def test_should_get_release_names(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     self.assertIn("LMS24A", cg.get_release_file_names())
 
   def test_should_get_cart_files(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     self.assertIn(self.tcfg.cart_test_file_no_cards(), cg.get_cart_files())
     
   def test_should_get_release_name_from_line(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     name = cg.get_release_file_name_from_line("- [ ] [[LMS24A]]")
     self.assertEqual(name, "LMS24A")
 
   def test_should_get_myrkis(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_myrkis()
     self.assertIn("SERPENT", myrkis)
 
   def test_should_get_related_myrkis(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_related_myrkis()
     self.assertIn("DIMENSION", myrkis)
 
   def test_should_get_unconnected_myrkis(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     cg.select_file(self.tcfg.cart_test_file_some_cards())
     myrkis = cg.get_unconnected_myrkis()
     
@@ -101,7 +101,7 @@ class TestCartIO(unittest.TestCase):
     self.assertIn("SERPENT", myrkis)
 
   def test_should_get_card(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     cg.select_file(self.tcfg.cart_test_file_some_cards())
     star_card = cg.get_card("STAR")
 
@@ -117,7 +117,7 @@ class TestCartIO(unittest.TestCase):
     self.assertEqual(star_card, star_card_values)
 
   def test_should_select_file(self):
-    cg = CartIO()
+    cg = CartIO(NwdTestConfig())
     # lists should be empty
     self.assertEqual(len(cg.get_myrkis()), 0)
     self.assertEqual(len(cg.get_related_myrkis()), 0)

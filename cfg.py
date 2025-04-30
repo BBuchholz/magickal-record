@@ -7,19 +7,31 @@ class Config(ABC):
     pass
 
   def get_obsidio_file(self, md_file):
-    o_fldr = self.obsidio_folder
+    o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, md_file)
 
   def obsidio_folder(self):
-    nwd_fldr = self.nwd_folder
+    nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "obsidio")
+  
+  def get_cartio_file(self, md_file):
+    c_fldr = self.cartio_folder()
+    return os.path.join(c_fldr, md_file)
+
+  def cartio_folder(self):
+    nwd_fldr = self.nwd_folder()
+    return os.path.join(nwd_fldr, "cartographer")
+  
+  def cets_file(self):
+    c_flder = self.cartio_folder()
+    return os.path.join(c_flder, "Cets.md")
 
 class NwdConfig(Config):
   def __init__(self):
     self._nwd_folder = os.path.expanduser("~/nwd")
     self._config_folder = "~/obsidianConfig"
     self._cartio_folder = "~/nwd/cartographer"
-    self._cets_file = "~/nwd/cartographer/Cets.md"
+    # self._cets_file = "~/nwd/cartographer/Cets.md"
 
   def nwd_folder(self):
     return self._nwd_folder
@@ -30,8 +42,6 @@ class NwdConfig(Config):
   def cartio_folder(self):
     return self._cartio_folder
 
-  def cets_file(self):
-    return self._cets_file
 
 class NwdTestConfig(Config):
   def __init__(self):

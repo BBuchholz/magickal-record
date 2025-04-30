@@ -38,13 +38,13 @@ class TestFiles(unittest.TestCase):
   
   def test_should_get_xslx_files(self):
     tcfg = NwdTestConfig()
-    tst_folder = tcfg.test_folder()
+    tst_folder = tcfg.cartio_folder()
     files_found = get_xslx_files(tst_folder)
     self.assertIn("TEST_DONOTMODIFY_NoCards.xlsx", files_found)
 
   def test_get_path_in_folder(self):
-    cfg = NwdConfig()
-    file_path = get_path_in_folder(cfg.cartio_folder(), CART_TEST_FILE_NO_CARDS)
+    tcfg = NwdTestConfig()
+    file_path = get_path_in_folder(tcfg.cartio_folder(), CART_TEST_FILE_NO_CARDS)
     self.assertTrue(path_exists(file_path))
    
 
