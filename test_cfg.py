@@ -12,7 +12,6 @@ from constants import (
   NONEXISTANT_FOLDER,
   EXISTANT_FILE,
   NONEXISTANT_FILE,
-  CONFIG_FOLDER,
   CARTOGRAPHER_FOLDER,
   CETS_FILE,
 )
@@ -78,9 +77,6 @@ class TestNwdConfig(unittest.TestCase):
   
   def test_should_have_class(self):
     self.assertIsNotNone(self.cfg)
-
-  def test_should_replace_constant_CONFIG_FOLDER(self):
-    self.assertEqual(self.cfg.config_folder(), CONFIG_FOLDER)
 
   def test_should_replace_constant_CARTOGRAPHER_FOLDER(self):
     self.assertEqual(self.cfg.cartio_folder(), CARTOGRAPHER_FOLDER)

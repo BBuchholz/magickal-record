@@ -22,6 +22,14 @@ class Config(ABC):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "cartographer")
   
+  def get_config_file(self, md_file):
+    c_fldr = self.config_folder()
+    return os.path.join(c_fldr, md_file)
+  
+  def config_folder(self):
+    nwd_fldr = self.nwd_folder()
+    return os.path.join(nwd_fldr, "config")
+  
   def cets_file(self):
     c_flder = self.cartio_folder()
     return os.path.join(c_flder, "Cets.md")
@@ -29,15 +37,11 @@ class Config(ABC):
 class NwdConfig(Config):
   def __init__(self):
     self._nwd_folder = os.path.expanduser("~/nwd")
-    self._config_folder = "~/obsidianConfig"
     self._cartio_folder = "~/nwd/cartographer"
     # self._cets_file = "~/nwd/cartographer/Cets.md"
 
   def nwd_folder(self):
     return self._nwd_folder
-
-  def config_folder(self):
-    return self._config_folder
   
   def cartio_folder(self):
     return self._cartio_folder
@@ -95,13 +99,9 @@ class NwdTestConfig(Config):
     return self._nonexistant_file
   
   def test_vault_config_file(self):
-    folder = os.path.expanduser(self.nwd_folder)
-    fname = "test_vault_config.md"
+    folder = os.path.expanduser(self.config_folder())
+    fname = "ConfigTestVault.md"
     file_path = os.path.join(folder, fname)
     return file_path
   
-  
-  # def obsidio_cfg_folder(self):
-  #   folder = os.path.join(self.nwd_folder, "obsidio/cfg")
-  #   return folder
   

@@ -15,9 +15,6 @@ OBSIDIAN_TEST_FOLDER = "~/obsidianTestFolder"
 # for testing adjacent vaults
 OBSIDIAN_TEST_VAULT_ONE = "~/obsidianTestFolder/testVaultOne"
 OBSIDIAN_TEST_VAULT_TWO = "~/obsidianTestFolder/testVaultTwo"
-# store external folder addresses in md files 
-# in this folder, so they stay out of github
-CONFIG_FOLDER = "~/obsidianConfig"
 # To Test NONEXISTANT FILES
 NONEXISTANT_FILE = "THISFILEDOESNOTEXIST.md"
 # To Test Existing files

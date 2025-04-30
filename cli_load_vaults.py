@@ -17,18 +17,20 @@
 # with self.obio.get_config_files()
 
 from obsidio import ObsidIO
+from cfg import NwdTestConfig
 from menus import SubMenu
-from op_select_file import SelectFileOp
+from op_select_cfg_file import SelectCfgFileOp
 
 class LoadVaultsMenu(SubMenu):
   def __init__(self, obio):
     self.obio = obio
+    self._exit_after_selection = False
 
   def key(self):
     return "ldv"
   
   def exit_after_selection(self):
-    return False
+    return self._exit_after_selection
   
   def desc(self):
     return "Load Vaults"
@@ -45,5 +47,11 @@ class LoadVaultsMenu(SubMenu):
       key = 0
       for file in cfg_files:
         key = key + 1
-        ops.append(SelectFileOp(self.obio, key, file))
+        ops.append(SelectCfgFileOp(self, key, file))
     return ops
+  
+if __name__ == "__main__":
+  tcfg = NwdTestConfig()
+  obio = ObsidIO(tcfg)
+  main = LoadVaultsMenu(obio)
+  main.show_menu()

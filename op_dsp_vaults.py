@@ -30,6 +30,6 @@ class DisplayVaultsOp(LineOption):
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
   obio = ObsidIO(tcfg)
-  obio.load_vaults(tcfg.test_vault_config_file)
+  obio.load_vaults(tcfg.test_vault_config_file())
   main = DisplayVaultsOp(obio)
   main.run()

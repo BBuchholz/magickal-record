@@ -20,6 +20,13 @@ class ObsidIO():
     for line in lines:
       self.process_line(line)
 
+  def select_cfg_file(self, md_file):
+    file_path = self._cfg.get_config_file(md_file)
+    lines = get_lines_from(file_path)
+    success = False
+    for line in lines:
+      self.process_line(line)
+
   def process_line(self, line):
     if line.lower().startswith("vault: "):
       vault_address = line[7:]
@@ -32,13 +39,13 @@ class ObsidIO():
         print("skipping vault address, loading aborted")
   
   def load_vaults(self, md_file):
-    file_path = self._cfg.get_obsidio_file(md_file)
+    file_path = self._cfg.get_config_file(md_file)
     lines = get_lines_from(file_path)
     for line in lines:
       self.process_line(line)
 
   def get_cfg_files(self):
-    folder = self._cfg.obsidio_folder()
+    folder = self._cfg.config_folder()
     cfg_files = get_md_files(folder, "Config")
     return cfg_files
 

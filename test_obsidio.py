@@ -1,6 +1,7 @@
 import unittest
 from obsidio import ObsidIO
 from cfg import NwdTestConfig
+from os import path
 
 class TestObsidIO(unittest.TestCase):
   def setUp(self):
@@ -11,7 +12,9 @@ class TestObsidIO(unittest.TestCase):
     self.assertIsNotNone(self.obio)
 
   def test_should_load_vaults(self):
-    md_file = self.obio.get_cfg_files()[0]
+    cfg_files = self.obio.get_cfg_files()
+    self.assertTrue(len(cfg_files) > 0)
+    md_file = cfg_files[0]
     self.obio.load_vaults(md_file)
     vault_count = len(self.obio.loaded_vaults)
     self.assertEqual(vault_count, 1)
@@ -20,3 +23,8 @@ class TestObsidIO(unittest.TestCase):
     cfg_files = self.obio.get_cfg_files()
     self.assertTrue(len(cfg_files) > 0)
     
+  def test_cfg_test_files_should_be_in_test_folder(self):
+    expected = "~/nwd/test/config/ConfigTestVault.md"
+    expected = path.expanduser(expected)
+    print(f"expecting path: {expected}")
+    self.assertTrue(path.exists(expected))
