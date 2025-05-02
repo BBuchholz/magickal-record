@@ -6,6 +6,10 @@ class Config(ABC):
   def nwd_folder(self):
     pass
 
+  @abstractmethod
+  def status(self):
+    pass
+
   def get_obsidio_file(self, md_file):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, md_file)
@@ -43,6 +47,9 @@ class NwdConfig(Config):
   def nwd_folder(self):
     return self._nwd_folder
   
+  def status(self):
+    return "NWD MODE"
+  
   def cartio_folder(self):
     return self._cartio_folder
 
@@ -64,6 +71,9 @@ class NwdTestConfig(Config):
 
   def nwd_folder(self):
     return self._nwd_folder
+  
+  def status(self):
+    return "TEST MODE"
 
   def test_folder(self):
     return self._test_folder

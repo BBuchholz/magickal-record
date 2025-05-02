@@ -1,43 +1,32 @@
 import tkinter as tk
+from tk_mdio import MdioWindow
+from cfg import Config, NwdConfig
 
-def add_btn(txt, cmd):
-  button = tk.Button(root, text=txt, command=cmd)
-  button.pack(padx=20, pady=20)
+class MainWindow:
+  def __init__(self, master, cfg: Config):
+    self.master = master
+    self.cfg = cfg
+    master.title("Main Window")
 
-def button_click():
-  print("button was clicked!")
+    self.label = tk.Label(
+       master, 
+       text="Master Control Window"
+       )
+    self.label.pack(padx=20, pady=20)
 
-def open_info():
-  new_window = tk.Toplevel()
-  new_window.title("Info")
-  msg = "This is the info window for 'the Remote'.\n"
-  msg += "Each window should have one that explains\n"
-  msg += "its function and planning.\n"
-  msg += "This window launches all the others."
-  label = tk.Label(new_window, text=msg)
-  label.pack(padx=20, pady=20)
+    self.btn_mdio = tk.Button(
+        master, 
+        text="MDIO", 
+        command=self.open_mdio
+        )
+    self.btn_mdio.pack(padx=20, pady=20)
 
+  def open_mdio(self):
+    self.new_window = tk.Toplevel(self.master)
+    MdioWindow(self.new_window, self.cfg)
 
-def open_mdio():
-  new_window = tk.Toplevel()
-  new_window.title("MDIO")
-  msg = "MDIO (MarkDown IO)\n"
-  msg += ""
-  label = tk.Label(new_window, text=msg)
-  label.pack(padx=20, pady=20)
-
-root = tk.Tk()
-root.title("My first GUI")
-
-label = tk.Label(root, text="Hello, Tkinter!")
-label.pack(padx=20, pady=20)
-
-add_btn("Click Here", button_click)
-
-add_btn("?", open_info)
-
-add_btn("MDIO", open_mdio)
-
-
-
-root.mainloop()
+if __name__ == '__main__':
+    root = tk.Tk()
+    ncfg = NwdConfig()
+    main_window = MainWindow(root, ncfg)
+    root.mainloop()
