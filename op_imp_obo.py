@@ -27,13 +27,15 @@ class ImportObsidianFilesMenu(SubMenu):
     ops.append(SetFileNameFilterOp(self.obio))
     if len(self.obio.file_filter) > 2 :
       filtered = self.obio.get_src_md_files() 
-      if len(filtered) < 20:
+      if len(filtered) < 100:
         print("the following files will be copied ")
         print("from the vault to the obsidio folder ")
         print("if you execute the copy command")
+        for file in filtered:
+          print(f"File: {file}")
         ops.append(CopyFilesOp(self.obio, filtered))
       else:
-        print("too many files selected, limit is 19")
+        print("too many files selected, limit is 99")
         print("please change filter and try again")
     return ops
   
