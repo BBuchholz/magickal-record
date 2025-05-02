@@ -104,4 +104,10 @@ class NwdTestConfig(Config):
     file_path = os.path.join(folder, fname)
     return file_path
   
+  def test_vault_files(self):
+    files = []
+    files.append("Test One.md")
+    files.append("Test Two.md")
+    return files
+  
   

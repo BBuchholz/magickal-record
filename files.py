@@ -11,13 +11,16 @@ def path_exists(file_or_folder_path):
   full_path = os.path.expanduser(file_or_folder_path)
   return os.path.exists(full_path)
 
+def get_filtered_md_files(folder_path, filter):
+  return get_files_by_ext(folder_path, ".md", "", filter)
+
 def get_md_files(folder_path, prefix):
   return get_files_by_ext(folder_path, ".md", prefix)
 
 def get_xslx_files(folder_path):
   return get_files_by_ext(folder_path, ".xlsx")
 
-def get_files_by_ext(folder_path, extension, prefix=""):
+def get_files_by_ext(folder_path, extension, prefix="", filter=""):
   # expand user if needed
   folder_path = os.path.expanduser(folder_path)
   file_list = []
@@ -28,7 +31,8 @@ def get_files_by_ext(folder_path, extension, prefix=""):
   for file_name in os.listdir(folder_path):
     if file_name.endswith(extension):
       if file_name.startswith(prefix):
-        file_list.append(file_name)
+        if filter in file_name:
+          file_list.append(file_name)
   
   return file_list
 

@@ -1,6 +1,7 @@
 from files import (
   get_md_files,
   get_lines_from,
+  get_filtered_md_files,
 )
 from os import path
 from cfg import Config
@@ -8,11 +9,12 @@ from cfg import Config
 class ObsidIO():
   def __init__(self, cfg: Config):
     self._cfg = cfg
-    self._loaded_vaults = []
+    self._loaded_vault = None
+    self.file_filter = ""
 
   @property
-  def loaded_vaults(self):
-    return self._loaded_vaults
+  def loaded_vault(self):
+    return self._loaded_vault
   
   def select_file(self, md_file):
     file_path = self._cfg.get_obsidio_file(md_file)
@@ -32,13 +34,16 @@ class ObsidIO():
       vault_address = line[7:]
       vault_address = path.expanduser(vault_address)
       if path.exists(vault_address):
-        self._loaded_vaults.append(vault_address)
+        self._loaded_vault = vault_address
         print(f"vault address loaded for: {vault_address}")
       else:
         print(f"vault address: {vault_address} not found...")
         print("skipping vault address, loading aborted")
   
   def load_vaults(self, md_file):
+    print("currently only supports one loaded vault at a time")
+    print("multiple lines defined as vault addresses will ")
+    print("overwrite each other and only one will be loaded")
     file_path = self._cfg.get_config_file(md_file)
     lines = get_lines_from(file_path)
     for line in lines:
@@ -49,3 +54,12 @@ class ObsidIO():
     cfg_files = get_md_files(folder, "Config")
     return cfg_files
 
+  def get_src_md_files(self):
+    folder = self._loaded_vault
+    md_files = []
+    if path.exists(folder):
+      md_files = get_filtered_md_files(folder, self.file_filter)
+    return md_files
+  
+  def obsidio_folder(self):
+    return self._cfg.obsidio_folder()
