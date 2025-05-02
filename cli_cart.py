@@ -10,10 +10,11 @@ from cli_select_cart_file import SelectCartFileMenu
 from op_list_related_myrkis import ListRelatedMyrkisOp
 from op_audit_myrkis import AuditMyrkisOp
 from op_audit_report import AudRepMenu
+from cfg import Config, NwdTestConfig
 
 class CartMenu(SubMenu):
-  def __init__(self):
-    self.cart = CartIO()
+  def __init__(self, cfg: Config):
+    self.cart = CartIO(cfg)
   def key(self):
     return "cart"
   def desc(self):
@@ -29,5 +30,6 @@ class CartMenu(SubMenu):
     return ops
 
 if __name__ == "__main__":
-  main = CartMenu()
+  tcfg = NwdTestConfig()
+  main = CartMenu(tcfg)
   main.show_menu()

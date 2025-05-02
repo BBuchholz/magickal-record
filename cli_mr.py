@@ -5,14 +5,21 @@ from menus import (
   # SubMenu,
 )
 from cli_cart import CartMenu
+from cfg import Config, NwdConfig
+from cli_obsid import ObsidMenu
 
 
 class MainMenu(Menu):
+  def __init__(self, cfg: Config):
+    self.cfg = cfg
+
   def get_ops(self):
     ops = []
-    ops.append(CartMenu())
+    ops.append(CartMenu(self.cfg))
+    ops.append(ObsidMenu(self.cfg))
     return ops
 
 if __name__ == "__main__":
-  main = MainMenu()
+  ncfg = NwdConfig()
+  main = MainMenu(ncfg)
   main.show_menu()
