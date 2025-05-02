@@ -63,3 +63,6 @@ class ObsidIO():
   
   def obsidio_folder(self):
     return self._cfg.obsidio_folder()
+  
+  def create_vault_config(self, vault_name, vault_path):
+    pass
