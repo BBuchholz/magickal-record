@@ -9,8 +9,7 @@ class TestCartRegistry(unittest.TestCase):
   def test_should_have_class(self):
     self.assertIsNotNone(self.crtrg)
 
-  def test_should_get_loader(self):
+  def test_should_load(self):
     self.assertEqual(len(self.crtrg.carts), 0)
-    cr_loader = self.crtrg.get_loader(NwdTestConfig())
-    cr_loader.load(self.crtrg)
+    self.crtrg.load(NwdTestConfig())
     self.assertTrue(len(self.crtrg.carts) > 0)

@@ -26,6 +26,14 @@ class Config(ABC):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "cartographer")
   
+  def audit_summary_file(self):
+    c_flder = self.cartio_folder()
+    return os.path.join(c_flder, "audit_file.md")
+  
+  def audit_linkages_file(self):
+    o_fldr = self.obsidio_folder()
+    return os.path.join(o_fldr, "audit_linkages_file.md")
+
   def get_config_file(self, md_file):
     c_fldr = self.config_folder()
     return os.path.join(c_fldr, md_file)

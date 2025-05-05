@@ -2,6 +2,7 @@ from files import (
   get_md_files,
   get_lines_from,
   get_filtered_md_files,
+  get_multi_filter_md_files,
 )
 from os import path
 from cfg import Config
@@ -28,6 +29,14 @@ class ObsidIO():
     success = False
     for line in lines:
       self.process_line(line)
+
+  def fnames_to_wikilinks(self, fnames):
+    wikilinks = []
+    for fname in fnames:
+      if fname.endswith(".md"):
+        fname = fname.rstrip(".md")
+      wikilinks.append(fname) # TODO: finish this, needs to add brackets
+    return wikilinks
 
   def process_line(self, line):
     if line.lower().startswith("vault: "):
@@ -60,6 +69,14 @@ class ObsidIO():
     if path.exists(folder):
       md_files = get_filtered_md_files(folder, self.file_filter)
     return md_files
+  
+  def get_src_md_fnames_containing(self, myrkis):
+    folder = self._loaded_vault
+    md_files = []
+    if path.exists(folder):
+      md_files = get_multi_filter_md_files(folder, myrkis)
+    return md_files
+    
   
   def obsidio_folder(self):
     return self._cfg.obsidio_folder()

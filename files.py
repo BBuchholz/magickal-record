@@ -14,6 +14,15 @@ def path_exists(file_or_folder_path):
 def get_filtered_md_files(folder_path, filter):
   return get_files_by_ext(folder_path, ".md", "", filter)
 
+def get_multi_filter_md_files(folder_path, filters):
+  unfiltered = get_files_by_ext(folder_path, ".md", "", "")
+  filtered = []
+  for file_path in unfiltered:
+    for filter in filters:
+      if filter.lower() in os.path.basename(file_path).lower():
+        filtered.append(file_path)
+  return filtered
+
 def get_md_files(folder_path, prefix):
   return get_files_by_ext(folder_path, ".md", prefix)
 
@@ -73,6 +82,17 @@ def get_lines_array(file_name):
   else:
     print(f"File '{file_path}' does not exists")
   return lines
+
+def write_lines(file_path, lines, add_newlines):
+  if add_newlines:
+    new_lines = []
+    for line in lines:
+      new_lines.append(line + "\n")
+    lines = new_lines
+  file_path = os.path.expanduser(file_path)
+  f = open(file_path, "w")
+  f.writelines(lines)
+  f.close()
 
 def get_lines_from(file_path):
   """

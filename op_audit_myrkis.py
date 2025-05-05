@@ -5,7 +5,7 @@ from menus import (
 )
 
 class AuditMyrkisOp(LineOption):
-  def __init__(self, cart):
+  def __init__(self, cart: CartIO):
     self.cart = cart
 
   def key(self):
@@ -29,6 +29,10 @@ class AuditMyrkisOp(LineOption):
       if len(myrkis) > 0:
         for myrki in myrkis:
           print(myrki)
+        print("myrkis: ")
+        print(self.cart.get_myrkis())
+        print("related myrkis: ")
+        print(self.cart.get_related_myrkis())
       else:
         print("no missing myrkis found")
 

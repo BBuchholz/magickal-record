@@ -83,6 +83,16 @@ class CartIO:
       if myrki not in myrkis:
         myrkis.append(myrki)
     return myrkis
+  
+  def get_all_myrkis(self):
+    myrkis = []
+    for myrki in self.get_myrkis():
+      if myrki not in myrkis:
+        myrkis.append(myrki)
+    for myrki in self.get_related_myrkis():
+      if myrki not in myrkis:
+        myrkis.append(myrki)
+    return myrkis
 
   def get_related_myrkis(self):
     # self.load_related_myrkis() # idempotent
