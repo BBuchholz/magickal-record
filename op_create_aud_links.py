@@ -28,6 +28,6 @@ class CreateAuditLinkagesFile(LineOption):
     linkages = self.obio.fnames_to_wikilinks(fnames)
     print("created linkages: ")
     print(linkages)
-    al_file_path = self.obio.cfg.audit_linkages_file()
+    al_file_path = self.obio._cfg.audit_linkages_file()
     write_lines(al_file_path, linkages, True)
     print(f"{len(myrkis)} lines written to: {al_file_path}")

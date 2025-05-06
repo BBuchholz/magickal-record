@@ -34,8 +34,10 @@ class ObsidIO():
     wikilinks = []
     for fname in fnames:
       if fname.endswith(".md"):
-        fname = fname.rstrip(".md")
-      wikilinks.append(fname) # TODO: finish this, needs to add brackets
+        fname = fname.removesuffix(".md")
+      link = "[[" + fname + "]]"
+      if link not in wikilinks:
+        wikilinks.append(link)
     return wikilinks
 
   def process_line(self, line):

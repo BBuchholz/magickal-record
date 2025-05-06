@@ -1,9 +1,3 @@
-# This option creates an audit report which we 
-# can grow over time and 
-# TODO: should be its own submenu with 
-# the ability to display different parts of 
-# the report after it has been generated
-
 from cartio import CartIO
 from menus import SubMenu
 
