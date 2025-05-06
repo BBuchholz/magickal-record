@@ -112,8 +112,17 @@ class TestCartIO(unittest.TestCase):
       "Canva Link": ""
     }
 
-
     self.assertEqual(star_card, star_card_values)
+
+  def test_should_support_new_columns_in_current_cards(self):
+    # TODO: Current Cards file now has Credit Columns that 
+    # should be accounted for in the various methods that 
+    # run in these tests, make sure they are loading 
+    # TODO: create a new test file dated with the current 
+    # date and at least support the columns as they are 
+    # on the date this gets done
+    is_implemented = False
+    self.assertTrue(is_implemented)
 
   def test_should_select_file(self):
     cg = CartIO(NwdTestConfig())
