@@ -33,6 +33,10 @@ class Config(ABC):
   def audit_linkages_file(self):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, "audit_linkages_file.md")
+  
+  def myrkis_audit_file(self):
+    o_fldr = self.obsidio_folder()
+    return os.path.join(o_fldr, "myrkis_audit_file.md")
 
   def get_config_file(self, md_file):
     c_fldr = self.config_folder()

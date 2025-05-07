@@ -3,6 +3,7 @@ from files import (
   get_lines_from,
   get_filtered_md_files,
   get_multi_filter_md_files,
+  get_prefixed_md_files,
 )
 from os import path
 from cfg import Config
@@ -79,6 +80,12 @@ class ObsidIO():
       md_files = get_multi_filter_md_files(folder, myrkis)
     return md_files
     
+  def get_src_md_fnames_starting_with(self, prefixes):
+    folder = self._loaded_vault
+    md_files = []
+    if path.exists(folder):
+      md_files = get_prefixed_md_files(folder, prefixes)
+    return md_files
   
   def obsidio_folder(self):
     return self._cfg.obsidio_folder()

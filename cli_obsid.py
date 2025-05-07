@@ -5,6 +5,7 @@ from op_imp_obo import ImportObsidianFilesMenu
 from cli_load_vaults import LoadVaultsMenu
 from op_dsp_vaults import DisplayVaultsOp
 from op_create_aud_links import CreateAuditLinkagesFile
+from op_create_myr_aud import CreateMyrkisAuditFile
 
 class ObsidMenu(SubMenu):
   def __init__(self, config):
@@ -22,6 +23,7 @@ class ObsidMenu(SubMenu):
     ops.append(LoadVaultsMenu(self.obio))
     ops.append(ImportObsidianFilesMenu(self.obio))
     ops.append(CreateAuditLinkagesFile(self.obio))
+    ops.append(CreateMyrkisAuditFile(self.obio))
     # TODO: CREATE OP HERE to use audit_summary_report 
     # file from config and to create an MD file with a 
     # link to every file that has those myrkis anywhere 
