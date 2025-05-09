@@ -23,11 +23,13 @@ def get_multi_filter_md_files(folder_path, filters):
         filtered.append(file_path)
   return filtered
 
-def get_prefixed_md_files(folder, prefixes):
+def get_prefixed_md_files(folder, prefixes, include_dash=False):
   unfiltered = get_files_by_ext(folder, ".md", "", "")
   filtered = []
   for file_path in unfiltered:
     for prefix in prefixes:
+      if include_dash:
+        prefix = prefix + "-"
       if os.path.basename(file_path).lower().startswith(prefix.lower()):
         filtered.append(file_path)
   return filtered

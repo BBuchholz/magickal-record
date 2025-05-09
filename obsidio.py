@@ -80,11 +80,14 @@ class ObsidIO():
       md_files = get_multi_filter_md_files(folder, myrkis)
     return md_files
     
-  def get_src_md_fnames_starting_with(self, prefixes):
+  def get_src_md_fnames_starting_with(self, prefixes, include_dash=False):
     folder = self._loaded_vault
     md_files = []
-    if path.exists(folder):
-      md_files = get_prefixed_md_files(folder, prefixes)
+    if self._loaded_vault:
+      if path.exists(folder):
+        md_files = get_prefixed_md_files(folder, prefixes, include_dash)
+    else:
+      print("no vault loaded, aborting...")
     return md_files
   
   def obsidio_folder(self):

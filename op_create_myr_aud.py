@@ -22,12 +22,15 @@ class CreateMyrkisAuditFile(LineOption):
     myrkis = get_lines_from(as_file_path)
     print("found myrkis in audit summary file: ")
     print(myrkis)
-    fnames = self.obio.get_src_md_fnames_starting_with(myrkis)
+    fnames = self.obio.get_src_md_fnames_starting_with(myrkis, True)
     print("found fnames: ")
     print(fnames)
     linkages = self.obio.fnames_to_wikilinks(fnames)
     print("created linkages: ")
     print(linkages)
     al_file_path = self.obio._cfg.myrkis_audit_file()
-    write_lines(al_file_path, linkages, True)
-    print(f"{len(myrkis)} lines written to: {al_file_path}")
+    if(len(linkages) > 0):
+      write_lines(al_file_path, linkages, True)
+      print(f"{len(linkages)} lines written to: {al_file_path}")
+    else:
+      print("nothing to write, aborting...")
