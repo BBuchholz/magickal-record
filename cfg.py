@@ -90,6 +90,10 @@ class NwdTestConfig(Config):
   
   def status(self):
     return "TEST MODE"
+  
+  def file_path_star_lth25_md(self):
+    t_flder = self.test_folder()
+    return os.path.join(t_flder, "STAR-LTH25.md")
 
   def test_folder(self):
     return self._test_folder

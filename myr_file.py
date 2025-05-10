@@ -22,3 +22,6 @@ class MyrFile:
     self.lines = [] # clear existing lines
     for line in lines:
       self.lines.append(line)
+
+  def get_main_text(self):
+    return "" # TODO: implement, see unittests for desired behavior
