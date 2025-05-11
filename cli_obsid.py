@@ -24,15 +24,6 @@ class ObsidMenu(SubMenu):
     ops.append(ImportObsidianFilesMenu(self.obio))
     ops.append(CreateAuditLinkagesFile(self.obio))
     ops.append(CreateMyrkisAuditFile(self.obio))
-    # TODO: CREATE OP HERE to use audit_summary_report 
-    # file from config and to create an MD file with a 
-    # link to every file that has those myrkis anywhere 
-    # in their name (can then copy this back into 
-    # obsidian manually and it becomes a working list 
-    # to cross reference all related files that have 
-    # anything to do with a given card set as loaded and 
-    # used to generate the audit summary report 
-    # in the cart menu) SEARCH NAMES LIKE IMPORT DOES ABOVE
     return ops
   
 if __name__ == "__main__":

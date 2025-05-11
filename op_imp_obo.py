@@ -20,10 +20,6 @@ class ImportObsidianFilesMenu(SubMenu):
 
   def get_ops(self):
     ops = []
-    # TODO: add set filter op here, 
-    # should be available in all menus, 
-    # even if its already set, so it 
-    # can be changed
     ops.append(SetFileNameFilterOp(self.obio))
     if len(self.obio.file_filter) > 2 :
       filtered = self.obio.get_src_md_files() 

@@ -14,13 +14,19 @@ class TestCartIO(unittest.TestCase):
     # (YES, this is an open ended goal, mod this test 
     # and create others as we proceed, 
     # storing a flash of insight for later)
-    # TODO: also: include this particular task 
-    # somewhere in the Pomodoro Roll (where apropos)
     is_implemented = False
     self.assertTrue(is_implemented)
 
   def test_should_respect_AWLWA_tree(self):
-    # TODO: 3D == [2,1]; 3ID == [2,1]
+    # TODO: make these true
+
+    # 3D == [
+    #         [2,1],
+    #       ]
+
+    # 3ID == [ 
+    #         [2,1],
+    #        ]
     is_implemented = False
     self.assertTrue(is_implemented)
 
@@ -39,7 +45,7 @@ class TestCartIO(unittest.TestCase):
     #         [6,3],
     #         [2,7],
     #         [8,1],
-    #       ]
+    #        ]
     is_implemented = False
     self.assertTrue(is_implemented)
 
@@ -49,6 +55,17 @@ class TestCartIO(unittest.TestCase):
     # 3ID == "Tree Inverse Delta", 
     # 9D == "Nigh Delta", 
     # 9ID == "Nigh Inverse Delta" 
+    # NUMERIC TERMS
+    # 1 == UNE
+    # 2 == DU
+    # 3 == Tree
+    # 4 == FOE
+    # 5 == FIE
+    # 6 == CIT
+    # 7 == SEB
+    # 8 == A
+    # 9 == Nigh
+    # 0 == ZEE
     is_implemented = False
     self.assertTrue(is_implemented)
 
