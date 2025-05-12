@@ -23,5 +23,20 @@ class MyrFile:
     for line in lines:
       self.lines.append(line)
 
-  def get_main_text(self):
-    return "" # TODO: implement, see unittests for desired behavior
+  def get_main_text_lines(self):
+    # NB: main text can be multiple lines, 
+    # should be the first text, so starts 
+    # with the first line, but can be broken 
+    # up with commentary, which will start 
+    # with a hyphen, thus it should be all 
+    # lines, in order, that do not have a 
+    # hyphen (comments) or an exclamation 
+    # point (embedded images/sub files) at 
+    # the beginning
+    main_text_lines = []
+    for line in self.lines:
+      if not line.startswith("- "):
+        if not line.startswith("!["):
+          if not len(line.strip()) == 0:
+            main_text_lines.append(line)
+    return main_text_lines

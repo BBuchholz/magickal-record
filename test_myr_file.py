@@ -24,8 +24,9 @@ class TestMyrFile(unittest.TestCase):
     mf.load_from_lines_arr(lines)
     self.assertEqual(len(mf.get_lines()), 5)
 
-  def test_should_get_main_text(self):
-    main_text = self.mf_star_lth25.get_main_text()
+  def test_should_get_main_text_lines(self):
+    main_text_lines = self.mf_star_lth25.get_main_text_lines()
+    main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_STAR_LTH25)
 
   def test_file_should_loaded_same_either_way(self):
