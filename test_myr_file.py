@@ -29,6 +29,16 @@ class TestMyrFile(unittest.TestCase):
     main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_STAR_LTH25)
 
+  def test_should_get_image_lines(self):
+    image_embeds = self.mf_star_lth25.get_image_lines()
+    images = "\n".join(image_embeds)
+    self.assertEqual(images, IMAGE_EMBED_STAR_LTH25)
+
+  def test_should_get_comment_lines(self):
+    comment_lines = self.mf_star_lth25.get_comment_lines()
+    comments = "\n".join(comment_lines)
+    self.assertEqual(comments, COMMENT_ONE_STAR_LTH25)
+
   def test_file_should_loaded_same_either_way(self):
     # The goal is to test that a file loaded 
     # from a file system .md file is identical 

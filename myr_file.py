@@ -40,3 +40,17 @@ class MyrFile:
           if not len(line.strip()) == 0:
             main_text_lines.append(line)
     return main_text_lines
+  
+  def get_comment_lines(self):
+    comment_lines = []
+    for line in self.lines:
+      if line.startswith("- "):
+        comment_lines.append(line)
+    return comment_lines
+
+  def get_image_lines(self):
+    image_lines = []
+    for line in self.lines:
+      if line.startswith("!["):
+        image_lines.append(line)
+    return image_lines
