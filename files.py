@@ -7,6 +7,13 @@ def folder_exists(folder_path):
   dir_path = os.path.expanduser(folder_path)
   return os.path.exists(dir_path)
 
+def ensure_folder(folder_path):
+  if not os.path.exists(folder_path):
+      os.makedirs(folder_path)
+      print(f"Folder '{folder_path}' created.")
+  else:
+      print(f"Folder '{folder_path}' already exists.")
+
 def path_exists(file_or_folder_path):
   full_path = os.path.expanduser(file_or_folder_path)
   return os.path.exists(full_path)

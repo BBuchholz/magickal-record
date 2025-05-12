@@ -4,6 +4,7 @@ from files import (
   get_filtered_md_files,
   get_multi_filter_md_files,
   get_prefixed_md_files,
+  ensure_folder,
 )
 from os import path
 from cfg import Config
@@ -95,3 +96,6 @@ class ObsidIO():
   
   def create_vault_config(self, vault_name, vault_path):
     pass
+
+  def ensure_folder(self, folder_path):
+    ensure_folder(folder_path)

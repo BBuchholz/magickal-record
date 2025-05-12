@@ -46,10 +46,12 @@ class TestObsidIO(unittest.TestCase):
       fldr = "test_vault" + sfx
       folder_path = get_path_in_folder(o_flder, fldr)
     print(f"generated folder {folder_path}")
+    self.obio.ensure_folder(folder_path)
     self.assertTrue(path.exists(folder_path))
+    # TODO: look at how Config file is handled in cli_obio.py and make sure our logic here is in line with that same structure, short on time right now, cowboy coded thought process, this is as far as I got within the pomodoro session :)
     print(f"creating vault config for: {fldr}")
     self.obio.create_vault_config(fldr, folder_path)
-    file_name = "Config" + fldr + ".md"
+    file_name = "Config_" + fldr + ".md"
     file_path = self.tcfg.get_config_file(file_name)
     self.assertTrue(path.exists(file_path))
     lines = get_lines_from(file_path)
