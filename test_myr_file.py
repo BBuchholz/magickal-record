@@ -6,6 +6,10 @@ from constants_md import (
   MAIN_TEXT_STAR_LTH25,
   COMMENT_ONE_STAR_LTH25,
   IMAGE_EMBED_STAR_LTH25,
+  LINES_APPLE_LTH25,
+  MAIN_TEXT_APPLE_LTH25,
+  COMMENT_ONE_APPLE_LTH25,
+  IMAGE_EMBED_APPLE_LTH25,
 )
 from files import (
   get_lines_from,
@@ -15,6 +19,8 @@ class TestMyrFile(unittest.TestCase):
   def setUp(self):
     self.mf_star_lth25 = MyrFile()
     self.mf_star_lth25.load_from_lines_arr(LINES_STAR_LTH25)
+    self.mf_apple_lth25 = MyrFile()
+    self.mf_apple_lth25.load_from_lines_arr(LINES_APPLE_LTH25)
 
   def test_should_load_from_lines_array(self):
     tcfg = NwdTestConfig()
@@ -28,16 +34,19 @@ class TestMyrFile(unittest.TestCase):
     main_text_lines = self.mf_star_lth25.get_main_text_lines()
     main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_STAR_LTH25)
+    # TODO: add APPLE
 
   def test_should_get_image_lines(self):
     image_embeds = self.mf_star_lth25.get_image_lines()
     images = "\n".join(image_embeds)
     self.assertEqual(images, IMAGE_EMBED_STAR_LTH25)
+    # TODO: add APPLE
 
   def test_should_get_comment_lines(self):
     comment_lines = self.mf_star_lth25.get_comment_lines()
     comments = "\n".join(comment_lines)
     self.assertEqual(comments, COMMENT_ONE_STAR_LTH25)
+    # TODO: add APPLE
 
   def test_file_should_loaded_same_either_way(self):
     # The goal is to test that a file loaded 
@@ -57,12 +66,22 @@ class TestMyrFile(unittest.TestCase):
     # pattern
     tcfg = NwdTestConfig()
     mf_from_file_system = MyrFile()
+    
+    # STAR
     lines = get_lines_from(tcfg.file_path_star_lth25_md())
     mf_from_file_system.load_from_lines_arr(lines)
 
     self.assertEqual(len(lines), len(LINES_STAR_LTH25))
     self.assertEqual(lines, LINES_STAR_LTH25)
     self.assertEqual(self.mf_star_lth25, mf_from_file_system)
+    
+    # APPLE
+    lines = get_lines_from(tcfg.file_path_apple_lth25_md())
+    mf_from_file_system.load_from_lines_arr(lines)
+
+    self.assertEqual(len(lines), len(LINES_APPLE_LTH25))
+    self.assertEqual(lines, LINES_APPLE_LTH25)
+    self.assertEqual(self.mf_apple_lth25, mf_from_file_system)
     
 
   def test_should_be_equal_if_lines_are_equal(self):
