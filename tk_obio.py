@@ -1,13 +1,13 @@
 import tkinter as tk
 from cfg import Config, NwdTestConfig
 
-class MdIOWindow:
+class ObsidIOWindow:
   def __init__(self, master, cfg: Config):
     self.master = master
     self.cfg = cfg
-    master.title("MDIO")
+    master.title("ObsidIO")
 
-    lbltxt = "MDIO Window"
+    lbltxt = "ObsidIO Window"
     self.label = tk.Label(master, text=lbltxt)
     self.label.pack(padx=20, pady=20)
 
@@ -19,5 +19,5 @@ class MdIOWindow:
 if __name__ == '__main__':
   root = tk.Tk()
   tcfg = NwdTestConfig()
-  window = MdIOWindow(root, tcfg)
+  window = ObsidIOWindow(root, tcfg)
   root.mainloop()
