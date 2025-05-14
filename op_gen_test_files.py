@@ -34,7 +34,7 @@ class GenerateTestFiles(LineOption):
       folder_path = get_path_in_folder(o_flder, fldr)
     print(f"generated folder {folder_path}")
     print(f"creating vault config for: {fldr}")
-    self.obio.create_vault_config(fldr, folder_path)
+    self.obio.create_vault_config_file(fldr, folder_path)
     
 
   

@@ -17,12 +17,12 @@ class DisplayVaultsOp(LineOption):
 
   def run(self):
     print("")
-    if self.obio.loaded_vault is None:
+    if self.obio.last_loaded_vault is None:
       print("no vault is currently loaded")
       print("please use the load vaults op")
       print("to load vaults from config files")
     else:
-      print(self.obio.loaded_vault)
+      print(self.obio.last_loaded_vault)
 
 
 if __name__ == "__main__":

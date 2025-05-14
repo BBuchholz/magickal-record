@@ -7,7 +7,7 @@ from os import path
 
 class CopyFilesOp(LineOption):
   def __init__(self, obio: ObsidIO, files):
-    self.vault_location = obio.loaded_vault
+    self.vault_location = obio.last_loaded_vault
     self.files = files
     self.obio = obio
 
