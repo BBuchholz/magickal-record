@@ -5,10 +5,12 @@ from constants_md import (
   LINES_STAR_LTH25,
   MAIN_TEXT_STAR_LTH25,
   COMMENT_ONE_STAR_LTH25,
+  COMMENT_TWO_STAR_LTH25,
   IMAGE_EMBED_STAR_LTH25,
   LINES_APPLE_LTH25,
   MAIN_TEXT_APPLE_LTH25,
   COMMENT_ONE_APPLE_LTH25,
+  COMMENT_TWO_APPLE_LTH25,
   IMAGE_EMBED_APPLE_LTH25,
 )
 from files import (
@@ -31,22 +33,48 @@ class TestMyrFile(unittest.TestCase):
     self.assertEqual(len(mf.get_lines()), 5)
 
   def test_should_get_main_text_lines(self):
+    # STAR
     main_text_lines = self.mf_star_lth25.get_main_text_lines()
     main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_STAR_LTH25)
-    # TODO: add APPLE
+
+    # APPLE
+    main_text_lines = self.mf_apple_lth25.get_main_text_lines()
+    main_text = "\n".join(main_text_lines)
+    self.assertEqual(main_text, MAIN_TEXT_APPLE_LTH25)
+
 
   def test_should_get_image_lines(self):
+    # STAR
     image_embeds = self.mf_star_lth25.get_image_lines()
     images = "\n".join(image_embeds)
     self.assertEqual(images, IMAGE_EMBED_STAR_LTH25)
-    # TODO: add APPLE
+    
+    # APPLE
+    image_embeds = self.mf_apple_lth25.get_image_lines()
+    images = "\n".join(image_embeds)
+    self.assertEqual(images, IMAGE_EMBED_APPLE_LTH25)
 
   def test_should_get_comment_lines(self):
+    # STAR
     comment_lines = self.mf_star_lth25.get_comment_lines()
-    comments = "\n".join(comment_lines)
-    self.assertEqual(comments, COMMENT_ONE_STAR_LTH25)
-    # TODO: add APPLE
+    expected_comments = [
+      COMMENT_ONE_STAR_LTH25,
+      COMMENT_TWO_STAR_LTH25,
+    ]
+    comments_join = "\n".join(comment_lines)
+    expected_join = "\n".join(expected_comments)
+    self.assertEqual(comments_join, expected_join)
+
+    # APPLE
+    comment_lines = self.mf_apple_lth25.get_comment_lines()
+    expected_comments = [
+      COMMENT_ONE_APPLE_LTH25,
+      COMMENT_TWO_APPLE_LTH25,
+    ]
+    comments_join = "\n".join(comment_lines)
+    expected_join = "\n".join(expected_comments)
+    self.assertEqual(comments_join, expected_join)
 
   def test_file_should_loaded_same_either_way(self):
     # The goal is to test that a file loaded 
@@ -60,9 +88,9 @@ class TestMyrFile(unittest.TestCase):
     # we can add additional test cases to this test 
     # to verify that this always remains true
     #
-    # FOR NOW, just using one example of an
-    # existing file in the ecosystem and hard coding
-    # a version of it manually to start this test
+    # FOR NOW, just using two examples of
+    # existing files in the ecosystem and hard coding
+    # a version of them manually to start this test
     # pattern
     tcfg = NwdTestConfig()
     mf_from_file_system = MyrFile()
