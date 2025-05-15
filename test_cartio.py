@@ -132,14 +132,13 @@ class TestCartIO(unittest.TestCase):
     self.assertEqual(star_card, star_card_values)
 
   def test_should_support_new_columns_in_current_cards(self):
-    # TODO: Current Cards file now has Credit Columns that 
-    # should be accounted for in the various methods that 
-    # run in these tests, make sure they are loading 
-    # TODO: create a new test file dated with the current 
-    # date and at least support the columns as they are 
-    # on the date this gets done
-    is_implemented = False
-    self.assertTrue(is_implemented)
+    cg = CartIO(NwdTestConfig())
+    cg.select_file(self.tcfg.cart_test_file_current_cards())
+    apple_card = cg.get_card("APPLE")
+    self.assertEqual(apple_card["Text Credit"], "Brent Buchholz")
+    self.assertEqual(apple_card["Image Credit"], "Microsoft Copilot")
+    self.assertEqual(apple_card["Myrki Credit"], "Brent Buchholz")
+
 
   def test_should_select_file(self):
     cg = CartIO(NwdTestConfig())

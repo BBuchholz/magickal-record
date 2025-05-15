@@ -75,7 +75,7 @@ class NwdTestConfig(Config):
     self._nwd_folder = os.path.expanduser("~/nwd/test")
     self._test_folder = "~/nwd/test"
     self._cart_test_file_no_cards = "TEST_DONOTMODIFY_NoCards.xlsx"
-    self._cart_test_file_some_cards = "TEST_DONOTMODIFY_SomeCards.xlsx"
+    # self._cart_test_file_some_cards = "TEST_DONOTMODIFY_SomeCards.xlsx"
     self._obsidian_test_folder = "~/obsidianTestFolder"
     self._obsidian_test_vault_one = "~/obsidianTestFolder/testVaultOne"
     self._obsidian_test_vault_two = "~/obsidianTestFolder/testVaultTwo"
@@ -106,7 +106,11 @@ class NwdTestConfig(Config):
     return self._cart_test_file_no_cards
 
   def cart_test_file_some_cards(self):
-    return self._cart_test_file_some_cards
+    # return self._cart_test_file_some_cards
+    return "TEST_DONOTMODIFY_SomeCards.xlsx"
+  
+  def cart_test_file_current_cards(self):
+    return "TEST - Current Cards - 20250515.xlsx"
 
   def obsidian_test_folder(self):
     return self._obsidian_test_folder
