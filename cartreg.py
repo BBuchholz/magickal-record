@@ -22,7 +22,7 @@ class CartRegistry:
       print(f"selecting file {cart_file}")
       self.cartio.select_file(cart_file)
       print("loading registry from CartIO")
-      for card in self.cartio.cards:
+      for card in self.cartio.cards.values():
         self.carts.append(card)
         print(f"loaded card {card}")
       print(f"{len(self.carts)} cards loaded")
