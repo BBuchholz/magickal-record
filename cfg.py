@@ -30,6 +30,10 @@ class Config(ABC):
     c_flder = self.cartio_folder()
     return os.path.join(c_flder, "audit_file.md")
   
+  def gardiner_report_file(self):
+    c_flder = self.config_folder()
+    return os.path.join(c_flder, "GarDinEr_RepOrT.md")
+  
   def verified_cart_file(self):
     c_flder = self.config_folder()
     return os.path.join(c_flder, "verified_cart_file.md")  

@@ -1,9 +1,11 @@
 from chronio import ChronIO
+from cfg import Config
 
 class GarDinEr:
-  def __init__(self):
+  def __init__(self, cfg: Config):
     self.greeting = "Welcome toTha GarDin..."
     self.chron = ChronIO()
+    self.cfg = cfg
 
   def load(self):
     pass # TODO: loading functionality goes here
@@ -20,7 +22,7 @@ class GarDinEr:
 
   def get_timestamp_lines(self):
     timestamp_lines = [
-      f"- {self.chron.get_timestamp()}"
+      f"- {self.chron.get_timestamp()}",
       "timestamp_lines",
       "go_here"
     ]
