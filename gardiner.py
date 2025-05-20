@@ -58,7 +58,8 @@ class GarDinEr:
           cet_file_names.append(look_for)
       year += 1
     for fname in cet_file_names:
-      cet_lines.append(fname)
+      link = "[[" + fname + "]]"
+      cet_lines.append(link)
     return cet_lines
   
   def get_place_lines(self):
