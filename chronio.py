@@ -30,6 +30,19 @@ class ChronIO:
     # have to be hard coded
     pass
 
+  def get_all_sabbat_codes(self):
+    codes = [
+      "SMH",
+      "YUL",
+      "IMB",
+      "OST",
+      "BEL",
+      "LTH",
+      "LMS",
+      "MBN",
+    ]
+    return codes
+
   def get_all_aliases(self, letter_code):
     match letter_code:
       case "SMH":

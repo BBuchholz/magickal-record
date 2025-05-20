@@ -80,6 +80,16 @@ class ObsidIO():
       md_files = get_filtered_md_files(folder, self.file_filter)
     return md_files
   
+  def get_src_md_file_path(self, fname_without_suffix):
+    fldr = ""
+    if not self.last_loaded_vault:
+      raise Exception("vault not loaded")
+    else:
+      fldr = self.last_loaded_vault
+    fname = fname_without_suffix + ".md"
+    f_path = path.join(fldr, fname)
+    return f_path
+  
   def get_src_md_fnames_containing(self, myrkis):
     folder = self._last_loaded_vault
     md_files = []

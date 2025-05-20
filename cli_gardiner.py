@@ -2,10 +2,11 @@ from menus import SubMenu
 from op_gar_report import GenerateGarDinErReport
 from cfg import Config
 from gardiner import GarDinEr
+from obsidio import ObsidIO
 
 class GarDinErMenu(SubMenu):
-  def __init__(self, cfg: Config):
-    self.gar = GarDinEr(cfg)
+  def __init__(self, cfg: Config, obio: ObsidIO):
+    self.gar = GarDinEr(cfg, obio)
 
   def key(self):
     return "gar"

@@ -9,8 +9,8 @@ from op_create_myr_aud import CreateMyrkisAuditFile
 from op_launch_vault_gui import LaunchVaultBrowserGUI
 
 class ObsidMenu(SubMenu):
-  def __init__(self, config):
-    self.obio = ObsidIO(config)
+  def __init__(self, obio: ObsidIO):
+    self.obio = obio
 
   def key(self):
     return "obo"
@@ -30,5 +30,6 @@ class ObsidMenu(SubMenu):
   
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
-  main = ObsidMenu(tcfg)
+  obio = ObsidIO(tcfg)
+  main = ObsidMenu(obio)
   main.show_menu()

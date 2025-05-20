@@ -14,7 +14,7 @@ class CartRegistry:
     msg = "attempting to load CartRegistry from "
     msg += "stored configuation"
     print(msg)
-    # TODO: check if stored configuration exists
+    # check if stored configuration exists
     verified_file = self.cartio.cfg.verified_cart_file()
     if path.exists(verified_file):
       print("verified file found")

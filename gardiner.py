@@ -1,11 +1,14 @@
 from chronio import ChronIO
 from cfg import Config
+from obsidio import ObsidIO
+from files import path_exists
 
 class GarDinEr:
-  def __init__(self, cfg: Config):
+  def __init__(self, cfg: Config, obio: ObsidIO):
     self.greeting = "Welcome toTha GarDin..."
     self.chron = ChronIO()
     self.cfg = cfg
+    self.obio = obio
 
   def load(self):
     pass # TODO: loading functionality goes here
@@ -30,16 +33,32 @@ class GarDinEr:
   
   def get_config_lines(self):
     config_lines = [
-      "config_lines",
-      "go_here"
+      f"- Status: {self.cfg.status()}",
+      f"- NWD FOLDER: {self.cfg.nwd_folder()}",
+      f"- OBSIDIO FOLDER: {self.cfg.obsidio_folder()}",
+      f"- CARTIO FOLDER: {self.cfg.cartio_folder()}",
     ]
     return config_lines
   
   def get_cet_lines(self):
-    cet_lines = [
-      "cet_lines",
-      "go_here"
-    ]
+    cet_lines = []
+    if not self.obio.last_loaded_vault:
+      msg = "no vault loaded at time of report generation"
+      print("no vault loaded at time of report generation")
+      cet_lines.append(msg)
+      return cet_lines
+    year = 24
+    codes = self.chron.get_all_sabbat_codes()
+    cet_file_names = []
+    while year < 27:
+      for code in codes:
+        look_for = code + str(year)
+        vault_path = self.obio.get_src_md_file_path(look_for)
+        if path_exists(vault_path):
+          cet_file_names.append(look_for)
+      year += 1
+    for fname in cet_file_names:
+      cet_lines.append(fname)
     return cet_lines
   
   def get_place_lines(self):
