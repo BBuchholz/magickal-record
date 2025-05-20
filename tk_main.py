@@ -2,6 +2,7 @@ import tkinter as tk
 from tk_mdio import MdIOWindow
 from tk_obio import ObsidIOWindow
 from tk_cartio import CartIOWindow
+from tk_gitio import GitIOWindow
 from cfg import Config, NwdConfig
 
 class MainWindow:
@@ -37,6 +38,13 @@ class MainWindow:
         )
     self.btn_cartio.pack(padx=20, pady=20)
 
+    self.btn_gitio = tk.Button(
+        master, 
+        text="GitIO", 
+        command=self.open_gitio
+        )
+    self.btn_gitio.pack(padx=20, pady=20)
+
   def open_mdio(self):
     self.new_window = tk.Toplevel(self.master)
     MdIOWindow(self.new_window, self.cfg)
@@ -48,6 +56,10 @@ class MainWindow:
   def open_cartio(self):
     self.new_window = tk.Toplevel(self.master)
     CartIOWindow(self.new_window, self.cfg)
+
+  def open_gitio(self):
+    self.new_window = tk.Toplevel(self.master)
+    GitIOWindow(self.new_window, self.cfg)
 
 if __name__ == '__main__':
     root = tk.Tk()
