@@ -1,19 +1,26 @@
 from cfg import Config
 from os import path
 from obsidio import ObsidIO
+from cartreg import CartRegistry
 
 class MyrkiRegistry:
   def __init__(self, cfg: Config):
     self.myrkis = []
     self.obio = ObsidIO(cfg)
+    self.cartrg = CartRegistry(cfg)
 
-  def load(self, myrkis_to_look_for):
-    # TODO: mirror CartRegistry.load()
+  def load(self):
+    # TODO: CartRegistry.load()
+    self.cartrg.load()
+    if len(self.cartrg.carts) < 0:
+      print("no carts loaded for CartRegistry")
+      print("no MyrKiS to search for, aborting...")
+      return
     msg = "attempting to load MyrkiRegistry from "
     msg += "stored configuation"
     print(msg)
     # check if stored configuration exists
-    verified_file = self.obio.cfg.verified_vault_file()
+    verified_file = self.obio._cfg.verified_vault_file()
     if path.exists(verified_file):
       print("verified file found")
       # TODO: mirror CartRegistry.load() but check 
@@ -25,7 +32,7 @@ class MyrkiRegistry:
     else:
       print("verified file not found")
       msg = "autoloading is disabled until a verified "
-      msg += "cartographer file is stored using the "
-      msg += "store option in the cart ops menu"
+      msg += "vault file is stored using the store "
+      msg += "option in the obsidio ops menu (obo)"
       print(msg)
       

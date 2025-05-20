@@ -38,6 +38,10 @@ class Config(ABC):
     c_flder = self.config_folder()
     return os.path.join(c_flder, "verified_cart_file.md")  
 
+  def verified_vault_file(self):
+    c_flder = self.config_folder()
+    return os.path.join(c_flder, "verified_vault_file.md")
+  
   def audit_linkages_file(self):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, "audit_linkages_file.md")
