@@ -7,6 +7,7 @@ from op_dsp_vaults import DisplayVaultsOp
 from op_create_aud_links import CreateAuditLinkagesFile
 from op_create_myr_aud import CreateMyrkisAuditFile
 from op_launch_vault_gui import LaunchVaultBrowserGUI
+from op_str_ver_vlt import StoreLastLoadedVaultAsDefault
 
 class ObsidMenu(SubMenu):
   def __init__(self, obio: ObsidIO):
@@ -26,6 +27,7 @@ class ObsidMenu(SubMenu):
     ops.append(CreateAuditLinkagesFile(self.obio))
     ops.append(CreateMyrkisAuditFile(self.obio))
     ops.append(LaunchVaultBrowserGUI(self.obio))
+    ops.append(StoreLastLoadedVaultAsDefault(self.obio))
     return ops
   
 if __name__ == "__main__":
