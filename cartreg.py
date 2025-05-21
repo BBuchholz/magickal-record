@@ -10,6 +10,13 @@ class CartRegistry:
     self.carts = []
     self.cartio = CartIO(cfg)
 
+  def get_myrkis(self):
+    myrkis = []
+    for cart in self.carts:
+      if "MYRKI" in cart:
+        myrkis.append(cart["MYRKI"])
+    return myrkis
+
   def load(self):
     msg = "attempting to load CartRegistry from "
     msg += "stored configuation"
