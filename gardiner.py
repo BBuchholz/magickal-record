@@ -26,16 +26,14 @@ class GarDinEr:
   def get_timestamp_lines(self):
     timestamp_lines = [
       f"- {self.chron.get_timestamp()}",
-      "timestamp_lines",
-      "go_here"
     ]
     return timestamp_lines
   
   def get_config_lines(self):
     config_lines = [
       f"- Status: {self.cfg.status()}",
-      f"- NWD FOLDER: {self.cfg.nwd_folder()}",
-      f"- OBSIDIO FOLDER: {self.cfg.obsidio_folder()}",
+      f"- NWD FOLDER: {self.cfg._nwd_folder}",
+      f"- OBSIDIO FOLDER: {self.cfg.obsidio_folder(False)}",
       f"- CARTIO FOLDER: {self.cfg.cartio_folder()}",
     ]
     return config_lines

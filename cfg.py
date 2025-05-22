@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Config(ABC):
   @abstractmethod
-  def nwd_folder(self):
+  def nwd_folder(self, expand_user=True):
     pass
 
   @abstractmethod
@@ -14,8 +14,8 @@ class Config(ABC):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, md_file)
 
-  def obsidio_folder(self):
-    nwd_fldr = self.nwd_folder()
+  def obsidio_folder(self, expand_user=True):
+    nwd_fldr = self.nwd_folder(expand_user)
     return os.path.join(nwd_fldr, "obsidio")
   
   def get_cartio_file(self, md_file):
@@ -64,12 +64,16 @@ class Config(ABC):
 
 class NwdConfig(Config):
   def __init__(self):
-    self._nwd_folder = os.path.expanduser("~/nwd")
+    # self._nwd_folder = os.path.expanduser("~/nwd")
+    self._nwd_folder = "~/nwd"
     self._cartio_folder = "~/nwd/cartographer"
     # self._cets_file = "~/nwd/cartographer/Cets.md"
 
-  def nwd_folder(self):
-    return self._nwd_folder
+  def nwd_folder(self, expand_user=True):
+    if expand_user:
+      return os.path.expanduser(self._nwd_folder)
+    else:
+      return self._nwd_folder
   
   def status(self):
     return "NWD MODE"
@@ -80,7 +84,8 @@ class NwdConfig(Config):
 
 class NwdTestConfig(Config):
   def __init__(self):
-    self._nwd_folder = os.path.expanduser("~/nwd/test")
+    # self._nwd_folder = os.path.expanduser("~/nwd/test")
+    self._nwd_folder = "~/nwd/test"
     self._test_folder = "~/nwd/test"
     self._cart_test_file_no_cards = "TEST_DONOTMODIFY_NoCards.xlsx"
     # self._cart_test_file_some_cards = "TEST_DONOTMODIFY_SomeCards.xlsx"
@@ -93,8 +98,11 @@ class NwdTestConfig(Config):
     self._existant_file = "BasicFile.md"
     self._nonexistant_file = "THISFILEDOESNOTEXIST.md"
 
-  def nwd_folder(self):
-    return self._nwd_folder
+  def nwd_folder(self, expand_user=True):
+    if expand_user:
+      return os.path.expanduser(self._nwd_folder)
+    else:
+      return self._nwd_folder
   
   def status(self):
     return "TEST MODE"
