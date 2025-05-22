@@ -1,9 +1,13 @@
 import unittest
 from gardiner import GarDinEr
+from cfg import NwdTestConfig
+from obsidio import ObsidIO
 
 class TestGarDinEr(unittest.TestCase):
   def setUp(self):
-    self.gard = GarDinEr()
+    tcfg = NwdTestConfig()
+    obio = ObsidIO(tcfg)
+    self.gard = GarDinEr(tcfg, obio)
 
   def test_should_have_class(self):
     self.assertIsNotNone(self.gard)

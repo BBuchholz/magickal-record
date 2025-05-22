@@ -34,12 +34,12 @@ class Config(ABC):
     c_flder = self.config_folder()
     return os.path.join(c_flder, "GarDinEr_RepOrT.md")
   
-  def verified_cart_file(self):
-    c_flder = self.config_folder()
+  def verified_cart_file(self, expand_user=True):
+    c_flder = self.config_folder(expand_user)
     return os.path.join(c_flder, "verified_cart_file.md")  
 
-  def verified_vault_file(self):
-    c_flder = self.config_folder()
+  def verified_vault_file(self, expand_user=True):
+    c_flder = self.config_folder(expand_user)
     return os.path.join(c_flder, "verified_vault_file.md")
   
   def audit_linkages_file(self):
@@ -54,8 +54,8 @@ class Config(ABC):
     c_fldr = self.config_folder()
     return os.path.join(c_fldr, md_file)
   
-  def config_folder(self):
-    nwd_fldr = self.nwd_folder()
+  def config_folder(self, expand_user=True):
+    nwd_fldr = self.nwd_folder(expand_user)
     return os.path.join(nwd_fldr, "config")
   
   def cets_file(self):

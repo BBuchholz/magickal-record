@@ -35,6 +35,8 @@ class GarDinEr:
       f"- NWD FOLDER: {self.cfg._nwd_folder}",
       f"- OBSIDIO FOLDER: {self.cfg.obsidio_folder(False)}",
       f"- CARTIO FOLDER: {self.cfg.cartio_folder()}",
+      f"- verified cart file: {self.cfg.verified_cart_file(False)}",
+      f"- verified vault file: {self.cfg.verified_vault_file(False)}"
     ]
     return config_lines
   
