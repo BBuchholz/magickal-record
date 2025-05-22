@@ -10,11 +10,14 @@ class CartRegistry:
     self.carts = []
     self.cartio = CartIO(cfg)
 
-  def get_myrkis(self):
+  def get_myrkis(self, to_lower=False):
     myrkis = []
     for cart in self.carts:
       if "MYRKI" in cart:
-        myrkis.append(cart["MYRKI"])
+        myrki = str(cart["MYRKI"])
+        if to_lower:
+          myrki = myrki.lower()
+        myrkis.append(myrki)
     return myrkis
 
   def load(self):

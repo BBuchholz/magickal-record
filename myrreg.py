@@ -15,7 +15,6 @@ class MyrkiRegistry:
     self.cartrg = CartRegistry(cfg)
 
   def load(self):
-    # TODO: CartRegistry.load()
     self.cartrg.load()
     if len(self.cartrg.carts) < 0:
       print("no carts loaded for CartRegistry")
@@ -31,7 +30,7 @@ class MyrkiRegistry:
       # TODO: mirror CartRegistry.load()  
       vlt_fldr = self.load_vault_fldr_from(verified_file)
       # using cartreg myrki list, 
-      myrkis = self.cartrg.get_myrkis()
+      myrkis = self.cartrg.get_myrkis(True)
       # check Obsidio verified vault for any file 
       print(f"checking files in vault: {vlt_fldr}")
       # get everything that starts with a myrki
@@ -49,15 +48,33 @@ class MyrkiRegistry:
         stripped_fnames.append(stripped)
 
       # then sort into two types:
+      myrki_instance_candidates = []
+      myrki_candidates = []
       for stripped in stripped_fnames:
-        # if in MYRKI-SUFFIX format add to myrki instances 
+        # if in MYRKI-SUFFIX format add to myrki instance candidates
         if "-" in stripped:
-          self.myrki_instances.append(stripped)
-          print(f"added {stripped} to myrki instances")
+          myrki_instance_candidates.append(stripped)
+          print(f"added {stripped} to myrki instance candidates")
         else:
-          # add to myrkis proper
-          self.myrkis.append(stripped)
-          print(f"added {stripped} to myrkis")
+          # add to myrki candidates
+          myrki_candidates.append(stripped)
+          print(f"added {stripped} to myrki candidates")
+
+      # filter them against the original list
+      print("")
+      print("filtering candidates")
+      print("")
+      for candidate in myrki_instance_candidates:
+        first_half = str(candidate.split("-")[0])
+        if first_half.lower() in myrkis:
+          self.myrki_instances.append(candidate)
+          print(f"added {candidate} to myrki instances")
+      
+      for candidate in myrki_candidates:
+        lowered = str(candidate).lower()
+        if lowered in myrkis:
+          self.myrkis.append(candidate)
+          print(f"added {candidate} to myrkis")
 
     else:
       print("verified file not found")
