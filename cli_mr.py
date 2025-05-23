@@ -8,6 +8,7 @@ from cli_cart import CartMenu
 from cfg import Config, NwdConfig
 from cli_obsid import ObsidMenu
 from cli_gardiner import GarDinErMenu
+from cli_reg import RegistryMenu
 from obsidio import ObsidIO
 
 
@@ -21,6 +22,7 @@ class MainMenu(Menu):
     ops.append(CartMenu(self.cfg))
     ops.append(ObsidMenu(self.obio))
     ops.append(GarDinErMenu(self.cfg, self.obio))
+    ops.append(RegistryMenu(self.cfg))
     return ops
 
 if __name__ == "__main__":
