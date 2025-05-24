@@ -12,8 +12,11 @@ class ListMyrKisOp(LineOption):
     return "List Myrkis"
   
   def run(self):
-    print(f"Myrkis({len(self.myrreg.myrkis)}): ")
+    total = len(self.myrreg.myrkis)
+    print(f"Listing Myrkis({total}): ")
+    count = 0
     for myrki in self.myrreg.myrkis:
-      print("Myrki: ")
-      print(myrki)
+      count += 1
+      print(f"Myrki {count} of {total}: {myrki}")
+    print(f"Finished Listing Myrkis({total})") 
     

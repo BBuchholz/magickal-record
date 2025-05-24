@@ -12,7 +12,10 @@ class ListMyrkiInstancesOp(LineOption):
     return "List Myrki Instances"
   
   def run(self):
-    print(f"Myrki Instances({len(self.myrreg.myrki_instances)}): ")
+    total = len(self.myrreg.myrki_instances)
+    print(f"Listing Myrki Instances({total}): ")
+    count = 0
     for mi in self.myrreg.myrki_instances:
-      print("Myrki Instance: ")
-      print(mi)
+      count += 1
+      print(f"Myrki Instance {count} of {total}: {mi}")
+    print(f"Finished Listing Myrki Instances({total}): ")

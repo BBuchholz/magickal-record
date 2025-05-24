@@ -28,9 +28,10 @@ class CartRegistry:
     verified_file = self.cartio.cfg.verified_cart_file()
     if path.exists(verified_file):
       print("verified file found")
-      cart_file = self.load_cart_file_from(verified_file)
-      print(f"selecting file {cart_file}")
-      self.cartio.select_file(cart_file)
+      cart_files = self.load_cart_file_from(verified_file)
+      for cart_file in cart_files:
+        print(f"selecting files {cart_file}")
+        self.cartio.select_file(cart_file)
       print("loading registry from CartIO")
       for card in self.cartio.cards.values():
         self.carts.append(card)
@@ -46,16 +47,14 @@ class CartRegistry:
       
   def load_cart_file_from(self, verified_file):
     print(f"loading verified file: {verified_file}")
-    # TODO: load from that file
-    # mimic obsidio.load vaults
     lines = get_lines_from(verified_file)
     print("reading from verified file")
     print("if verified file has multiple lines")
-    print("only last line will be used")
+    print("all lines will be used")
     print(f"found {len(lines)} line(s)")
-    found = ""
+    found = []
     for line in lines:
-      found = self.process_verified_file_line(line)
+      found.append(self.process_verified_file_line(line))
     return found
   
   def process_verified_file_line(self, line):
