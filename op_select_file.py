@@ -22,9 +22,9 @@ class SelectFileOp(LineOption):
 
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
-  cart = CartIO()
-  print(f"Selected file is: {cart.selected_file}")
-  main = SelectFileOp(cart, 1, tcfg.cart_test_file_some_cards)
+  cart = CartIO(tcfg)
+  cart.print_selected_files()
+  main = SelectFileOp(cart, 1, tcfg.cart_test_file_some_cards())
   main.run()
-  print(f"Selected file is: {cart.selected_file}")
+  cart.print_selected_files()
 

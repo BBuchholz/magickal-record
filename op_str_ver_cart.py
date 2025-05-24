@@ -19,15 +19,15 @@ class StoreSelectedCartFileAsVerifiedDefault(LineOption):
 
   def run(self):
     print("")
-    if self.cart.selected_file is None:
+    if len(self.cart.selected_files) < 1:
       print("no cartographer file selected")
       print("please select a file using")
       print("the select option")
       print("")
     else:
-      lines = [
-        f"cart_file: {self.cart.selected_file}"
-      ]
+      lines = []
+      for file_name in self.cart.selected_files:
+        lines.append(f"cart_file: {file_name}")
       file_path = self.cart.cfg.verified_cart_file()
       print(f"storing file as {file_path}")
       write_lines(file_path, lines, True)

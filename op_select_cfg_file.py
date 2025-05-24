@@ -21,11 +21,4 @@ class SelectCfgFileOp(LineOption):
     self.obio.select_cfg_file(self.file_name)
     print("")
 
-if __name__ == "__main__":
-  tcfg = NwdTestConfig()
-  cart = CartIO()
-  print(f"Selected file is: {cart.selected_file}")
-  main = SelectCfgFileOp(cart, 1, tcfg.cart_test_file_some_cards)
-  main.run()
-  print(f"Selected file is: {cart.selected_file}")
 

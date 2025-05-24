@@ -3,6 +3,7 @@ from constants import CART_TEST_FILE_SOME_CARDS
 from menus import (
   LineOption,
 )
+from cfg import NwdTestConfig
 
 class AuditMyrkisOp(LineOption):
   def __init__(self, cart: CartIO):
@@ -19,7 +20,7 @@ class AuditMyrkisOp(LineOption):
 
   def run(self):
     print("")
-    if self.cart.selected_file is None:
+    if len(self.cart.selected_files) < 1:
       print("no cartographer file selected")
       print("please select a file using")
       print("the select option")
@@ -37,7 +38,8 @@ class AuditMyrkisOp(LineOption):
         print("no missing myrkis found")
 
 if __name__ == "__main__":
-  cart = CartIO()
+  tcfg = NwdTestConfig()
+  cart = CartIO(tcfg)
   cart.select_file(CART_TEST_FILE_SOME_CARDS)
   main = AuditMyrkisOp(cart)
   main.run()

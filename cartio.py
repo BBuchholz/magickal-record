@@ -11,7 +11,7 @@ from files import (
 
 class CartIO:
   def __init__(self, cfg: Config):
-    self.selected_file = None
+    self.selected_files = []
     self.cards = {}
     self.cfg = cfg
 
@@ -24,6 +24,12 @@ class CartIO:
   def get_cart_files(self):
     cart_files = get_xslx_files(self.cfg.cartio_folder())
     return cart_files
+  
+  def print_selected_files(self):
+    print("currently selected files: ")
+    for file_name in self.selected_files:
+      print(file_name)
+    print("end of currently selected files")
 
   def get_release_file_names(self):
     cets_file_lines = get_lines_from(self.cfg.cets_file())
@@ -50,11 +56,10 @@ class CartIO:
     return line
 
   def select_file(self, file_name):
-    self.selected_file = file_name
-    # self.load_myrkis()
-    # self.load_related_myrkis()
-    if self.selected_file is not None:
-      file_path = get_path_in_folder(self.cfg.cartio_folder(), self.selected_file)
+    if file_name is not None:
+      if file_name not in self.selected_files:
+        self.selected_files.append(file_name)
+      file_path = get_path_in_folder(self.cfg.cartio_folder(), file_name)
       df = pd.read_excel(file_path, sheet_name='Cards')
       df_dict = df.to_dict()
       # print(df_dict)

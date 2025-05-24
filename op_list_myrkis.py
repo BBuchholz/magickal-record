@@ -5,7 +5,7 @@ from menus import (
 )
 
 class ListMyrkisOp(LineOption):
-  def __init__(self, cart):
+  def __init__(self, cart: CartIO):
     self.cart = cart
 
   def key(self):
