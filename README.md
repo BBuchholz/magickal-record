@@ -30,9 +30,12 @@ Much of Magickal Record has come to revolve
 around Cards and this is intentional. I will
 elaborate more upon my reasons another time, 
 but for now I'm including an ERD to help visualize
-how they work inside the system itself.
+how they work inside the system itself. 
 
-[ERD-Cards](ERD-Cards.md)
+(If you are viewing this inside an IDE, you
+will need Mermaid support to parse the diagram)
+
+[ERD-Cards](README_ERD-Cards.md)
 
 # External Planning Documents
 
