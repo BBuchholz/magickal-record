@@ -1,6 +1,7 @@
 import pandas as pd
 
 from cfg import Config
+from file_mgr import FileManager
 
 from files import (
   path_exists,
@@ -9,7 +10,7 @@ from files import (
   get_path_in_folder,
 )
 
-class CartIO:
+class CartIO(FileManager):
   def __init__(self, cfg: Config):
     self.selected_files = []
     self.cards = {}

@@ -1,10 +1,10 @@
 from cartio import CartIO
 from menus import SubMenu
-
+from cfg import NwdTestConfig
 from op_select_file import SelectFileOp
 
 class SelectCartFileMenu(SubMenu):
-  def __init__(self, cart):
+  def __init__(self, cart: CartIO):
     self.cart = cart
   
   def key(self):
@@ -29,7 +29,8 @@ class SelectCartFileMenu(SubMenu):
     return ops
 
 if __name__ == "__main__":
-  cart = CartIO()
+  tcfg = NwdTestConfig()
+  cart = CartIO(tcfg)
   main = SelectCartFileMenu(cart)
   main.show_menu()
   

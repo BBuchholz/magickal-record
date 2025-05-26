@@ -47,6 +47,9 @@ def get_md_files(folder_path, prefix):
 def get_xslx_files(folder_path):
   return get_files_by_ext(folder_path, ".xlsx")
 
+def get_sqlite3_files(folder_path):
+  return get_files_by_ext(folder_path, ".sqlite3")
+
 def get_files_by_ext(folder_path, extension, prefix="", filter=""):
   # expand user if needed
   folder_path = os.path.expanduser(folder_path)

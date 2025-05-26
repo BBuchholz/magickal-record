@@ -26,6 +26,10 @@ class Config(ABC):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "cartographer")
   
+  def sqlite_folder(self):
+    nwd_fldr = self.nwd_folder()
+    return os.path.join(nwd_fldr, "sqlite")
+
   def audit_summary_file(self):
     c_flder = self.cartio_folder()
     return os.path.join(c_flder, "audit_file.md")

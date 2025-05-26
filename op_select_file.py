@@ -1,9 +1,10 @@
 from cartio import CartIO
 from cfg import NwdTestConfig
 from menus import LineOption
+from file_mgr import FileManager
 
 class SelectFileOp(LineOption):
-  def __init__(self, file_mgr, key, file_name):
+  def __init__(self, file_mgr: FileManager, key, file_name):
     self.file_mgr = file_mgr
     self.key_value = key
     self.file_name = file_name
