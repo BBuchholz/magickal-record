@@ -10,6 +10,7 @@ from cli_obsid import ObsidMenu
 from cli_gardiner import GarDinErMenu
 from cli_reg import RegistryMenu
 from obsidio import ObsidIO
+from cli_sql import SqliteMenu
 
 
 class MainMenu(Menu):
@@ -20,10 +21,10 @@ class MainMenu(Menu):
   def get_ops(self):
     ops = []
     ops.append(CartMenu(self.cfg))
-    # TODO: mimic cli_cart and create cli_sql, add cli_slct_sql_db.py to it (already written)
     ops.append(ObsidMenu(self.obio))
     ops.append(GarDinErMenu(self.cfg, self.obio))
     ops.append(RegistryMenu(self.cfg))
+    ops.append(SqliteMenu(self.cfg))
     return ops
 
 if __name__ == "__main__":
