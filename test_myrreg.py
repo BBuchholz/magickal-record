@@ -14,6 +14,7 @@ class TestMyrkiRegistry(unittest.TestCase):
     self.myrg.load()
     # TODO: UPDATE THESE (more test data added, should have more myrkis)
     # TODO: FILE LOADING FROM NEEDS TO BE UPDATED WITH VALID CARD ENTRIES
+    # TODO: replace with a MODIFIED copy of https://docs.google.com/spreadsheets/d/1VLb6xyDPOJrD2KSv0Ucp77Fil3zBTiIPZxlU4CaUTz0/edit?usp=sharing
     # test vault is vaultone and should have the following myrkis:
     # DRAGON, FIRE, LOREFUL, RF, TCTKL, ZAGREUS, SERPENT and STAR
     # other files are in there to make sure we are filtering
