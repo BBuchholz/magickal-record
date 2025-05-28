@@ -14,6 +14,17 @@ class MyrkiRegistry:
     self.obio = ObsidIO(cfg)
     self.cartrg = CartRegistry(cfg)
 
+  def validate_myrki_instance(self, candidate):
+    # TODO: implement, see sheets for valid 
+    # and invalid instances to test against 
+    # (write unit test)
+    # logic already filters candidates against
+    # registered myrkis (ie. only files starting)
+    # with a myrki and a dash are "candidates"
+    # just need to filter everything that doesn't 
+    # end with a 4 digit uuid suffix or a 5 digit Cet code
+    return True
+
   def load(self):
     self.cartrg.load()
     if len(self.cartrg.carts) < 0:
@@ -67,8 +78,9 @@ class MyrkiRegistry:
       for candidate in myrki_instance_candidates:
         first_half = str(candidate.split("-")[0])
         if first_half.lower() in myrkis:
-          self.myrki_instances.append(candidate)
-          print(f"added {candidate} to myrki instances")
+          if self.validate_myrki_instance(candidate):
+            self.myrki_instances.append(candidate)
+            print(f"added {candidate} to myrki instances")
       
       for candidate in myrki_candidates:
         lowered = str(candidate).lower()
