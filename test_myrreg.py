@@ -29,8 +29,7 @@ class TestMyrkiRegistry(unittest.TestCase):
     self.myrg.load()
     
     # VALID INSTANCES
-    valid = "DRAGON-LMS25"
-    self.assertTrue(self.myrg.validate_myrki_instance(valid))
+    self.assertTrue(self.myrg.validate_myrki_instance("DRAGON-LMS25"))
 
     valid = "DRAGON-LTH25"
     self.assertTrue(self.myrg.validate_myrki_instance(valid))
@@ -70,8 +69,7 @@ class TestMyrkiRegistry(unittest.TestCase):
 
 
     # INVALID INSTANCES
-    invalid = "RF-240818R1"
-    self.assertFalse(self.myrg.validate_myrki_instance(invalid))
+    self.assertFalse(self.myrg.validate_myrki_instance("RF-240818R1"))
 
     invalid = "RF-91d6 BGB Card"
     self.assertFalse(self.myrg.validate_myrki_instance(invalid))

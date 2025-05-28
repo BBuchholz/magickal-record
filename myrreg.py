@@ -6,6 +6,7 @@ from files import (
   get_prefixed_md_files,
   get_lines_from,
 )
+from regexer import Regexer
 
 class MyrkiRegistry:
   def __init__(self, cfg: Config):
@@ -14,7 +15,7 @@ class MyrkiRegistry:
     self.obio = ObsidIO(cfg)
     self.cartrg = CartRegistry(cfg)
 
-  def validate_myrki_instance(self, candidate):
+  def validate_myrki_instance(self, candidate: str):
     # TODO: implement, see sheets for valid 
     # and invalid instances to test against 
     # (write unit test)
@@ -23,7 +24,20 @@ class MyrkiRegistry:
     # with a myrki and a dash are "candidates"
     # just need to filter everything that doesn't 
     # end with a 4 digit uuid suffix or a 5 digit Cet code
-    return True
+    res = candidate.rsplit('-', 1)
+    regex = Regexer()
+    if len(res) < 2:
+      # didn't have a dash
+      return False 
+    else:
+      suffix = res[1]
+      if regex.match_uuid_suffix(suffix):
+        return True
+      else:
+        if regex.match_sabbat_code(suffix):
+          return True
+        else:
+          return False
 
   def load(self):
     self.cartrg.load()
