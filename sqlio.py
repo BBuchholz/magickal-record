@@ -1,19 +1,50 @@
 from file_mgr import FileManager
+from sqlite3 import (
+  connect,
+  Cursor,
+)
 from cfg import Config
 from files import (
   get_sqlite3_files,
+  get_path_in_folder,
 )
 
 class SqlIO(FileManager):
   def __init__(self, cfg: Config):
     self.cfg = cfg
+    self.selected_db = ""
+
+  def open_connection(self):
+    conn = None
+    try:
+      if self.selected_db is not None:
+        s_fldr = self.cfg.sqlite_folder()
+        fname = self.selected_db
+        file_path = get_path_in_folder(s_fldr, fname)
+        print(f"attempting to connect to {file_path}")
+        conn = connect(file_path)
+      else:
+        print("no db file selected")
+    except Exception as e:
+      print("Exception opening connection to db")
+      print(repr(e))
+    finally:
+      return conn
 
   def select_file(self, file_name):
-    # TODO: connect to db and all that goes here
-    db_version = self.get_current_db_version()
+    conn = self.open_connection()
+    if conn is not None:
+      cursor = conn.cursor()
+      # TODO: connect to db and all that goes here
+      version = self.get_current_db_version(cursor)
+      if version is not None:
+        self.db_version = version
+    else:
+      print("Error getting db version")
 
 
-  def get_current_db_version(self):
+  def get_current_db_version(self, cursor: Cursor):
+    version = None
     # TODO: check db_version goes here
     # to allow for this, each db should have 
     # a table called DbMeta that is just two 
@@ -37,7 +68,15 @@ class SqlIO(FileManager):
     # to include the expected version number
     # in the file name so when selecting we 
     # know which is the latest version
-    return "DB VERSIONING NOT YET IMPLEMENTED"
+    cursor.execute("SELECT DbMetaValue FROM DbMeta WHERE DbMetaKey = 'db_version'")
+    rows = cursor.fetchall()
+    if len(rows) > 1:
+      print("multiple db version values found")
+    elif len(rows) < 1:
+      print("no db version found")
+    else:
+      version = rows[0]
+    return version
 
   def get_db_files(self):
     db_files = get_sqlite3_files(self.cfg.sqlite_folder())

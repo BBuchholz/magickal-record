@@ -42,6 +42,7 @@ class MyrkiRegistry:
       vlt_fldr = self.load_vault_fldr_from(verified_file)
       # using cartreg myrki list, 
       myrkis = self.cartrg.get_myrkis(True)
+      print(f"cartreg myrkis are: {myrkis}")
       # check Obsidio verified vault for any file 
       print(f"checking files in vault: {vlt_fldr}")
       # get everything that starts with a myrki

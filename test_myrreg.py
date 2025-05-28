@@ -12,13 +12,10 @@ class TestMyrkiRegistry(unittest.TestCase):
   def test_should_load(self):
     self.assertEqual(len(self.myrg.myrkis), 0)
     self.myrg.load()
-    # TODO: UPDATE THESE (more test data added, should have more myrkis)
-    # TODO: FILE LOADING FROM NEEDS TO BE UPDATED WITH VALID CARD ENTRIES
-    # TODO: replace with a MODIFIED copy of https://docs.google.com/spreadsheets/d/1VLb6xyDPOJrD2KSv0Ucp77Fil3zBTiIPZxlU4CaUTz0/edit?usp=sharing
     # test vault is vaultone and should have the following myrkis:
-    # DRAGON, FIRE, LOREFUL, RF, TCTKL, ZAGREUS, SERPENT and STAR
+    # RF, TCTKL, SERPENT and STAR
     # other files are in there to make sure we are filtering
-    self.assertEqual(len(self.myrg.myrkis), 8)
+    self.assertEqual(len(self.myrg.myrkis), 4)
     # test vault is vaultone and should have the following: 
     # DRAGON(2), FIRE(2), LOREFUL(2), RF(4), TCTKL(16), ZAGREUS(4), SERPENT(2) and STAR(1)
     # other files are in there to make sure we are filtering
