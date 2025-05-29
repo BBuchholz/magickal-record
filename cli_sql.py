@@ -6,6 +6,7 @@ from cli_slct_sql_db import SelectSqliteDbFileMenu
 
 class SqliteMenu(SubMenu):
   def __init__(self, cfg: Config):
+    print(f"loading SqlIO configuration: {cfg.status()}")
     self.sql = SqlIO(cfg)
 
   def key(self):

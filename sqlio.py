@@ -1,8 +1,5 @@
 from file_mgr import FileManager
-from sqlite3 import (
-  connect,
-  Cursor,
-)
+import sqlite3
 from cfg import Config
 from files import (
   get_sqlite3_files,
@@ -12,7 +9,7 @@ from files import (
 class SqlIO(FileManager):
   def __init__(self, cfg: Config):
     self.cfg = cfg
-    self.selected_db = ""
+    self.selected_db = None
 
   def open_connection(self):
     conn = None
@@ -22,7 +19,8 @@ class SqlIO(FileManager):
         fname = self.selected_db
         file_path = get_path_in_folder(s_fldr, fname)
         print(f"attempting to connect to {file_path}")
-        conn = connect(file_path)
+        conn = sqlite3.connect(file_path)
+        conn.row_factory = sqlite3.Row
       else:
         print("no db file selected")
     except Exception as e:
@@ -32,6 +30,7 @@ class SqlIO(FileManager):
       return conn
 
   def select_file(self, file_name):
+    self.selected_db = file_name
     conn = self.open_connection()
     if conn is not None:
       cursor = conn.cursor()
@@ -43,7 +42,7 @@ class SqlIO(FileManager):
       print("Error getting db version")
 
 
-  def get_current_db_version(self, cursor: Cursor):
+  def get_current_db_version(self, cursor: sqlite3.Cursor):
     version = None
     # TODO: check db_version goes here
     # to allow for this, each db should have 
@@ -75,7 +74,9 @@ class SqlIO(FileManager):
     elif len(rows) < 1:
       print("no db version found")
     else:
-      version = rows[0]
+      row = rows[0]
+      version = row['DbMetaValue']
+      print(f"found db_version: {version}")
     return version
 
   def get_db_files(self):
