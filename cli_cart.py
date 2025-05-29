@@ -13,7 +13,7 @@ from op_audit_report import AudRepMenu
 from cfg import Config, NwdTestConfig
 from op_str_ver_cart import StoreSelectedCartFileAsVerifiedDefault
 from op_clr_ver_cart import ClearSelectedVerifiedCartFiles
-from op_lst_ver_cart import ListSelectedVerifiedCartFiles
+from op_lst_sel_cart_files import ListSelectedCartFilesOp
 
 class CartMenu(SubMenu):
   def __init__(self, cfg: Config):
@@ -32,8 +32,7 @@ class CartMenu(SubMenu):
     ops.append(AudRepMenu(self.cart))
     ops.append(StoreSelectedCartFileAsVerifiedDefault(self.cart))
     ops.append(ClearSelectedVerifiedCartFiles(self.cart))
-    # TODO: implement
-    # ops.append(ListSelectedVerifiedCartFiles(self.cart))
+    ops.append(ListSelectedCartFilesOp(self.cart))
     return ops
 
 if __name__ == "__main__":

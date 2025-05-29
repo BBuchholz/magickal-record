@@ -1,4 +1,5 @@
 from cartio import CartIO
+from cfg import NwdTestConfig
 from constants import CART_TEST_FILE_SOME_CARDS
 from menus import (
   LineOption,
@@ -19,7 +20,7 @@ class ListMyrkisOp(LineOption):
 
   def run(self):
     print("")
-    if self.cart.selected_file is None:
+    if len(self.cart.selected_files) < 1:
       print("no cartographer file selected")
       print("please select a file using")
       print("the select option")
@@ -34,7 +35,8 @@ class ListMyrkisOp(LineOption):
 
 
 if __name__ == "__main__":
-  cart = CartIO()
+  tcfg = NwdTestConfig()
+  cart = CartIO(tcfg)
   cart.select_file(CART_TEST_FILE_SOME_CARDS)
   main = ListMyrkisOp(cart)
   main.run()
