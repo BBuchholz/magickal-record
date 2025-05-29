@@ -35,14 +35,13 @@ class SqlIO(FileManager):
     if conn is not None:
       cursor = conn.cursor()
       # TODO: connect to db and all that goes here
-      version = self.get_current_db_version(cursor)
-      if version is not None:
-        self.db_version = version
+      metaData = self.get_db_meta(cursor)
+      self.db_meta = metaData
     else:
-      print("Error getting db version")
+      print("Error getting db metadata")
 
 
-  def get_current_db_version(self, cursor: sqlite3.Cursor):
+  def get_db_meta(self, cursor: sqlite3.Cursor):
     version = None
     # TODO: check db_version goes here
     # to allow for this, each db should have 
@@ -67,17 +66,32 @@ class SqlIO(FileManager):
     # to include the expected version number
     # in the file name so when selecting we 
     # know which is the latest version
-    cursor.execute("SELECT DbMetaValue FROM DbMeta WHERE DbMetaKey = 'db_version'")
+    cursor.execute("SELECT * FROM DbMeta")
     rows = cursor.fetchall()
-    if len(rows) > 1:
-      print("multiple db version values found")
-    elif len(rows) < 1:
-      print("no db version found")
+    metaData = {}
+    if len(rows) > 0:
+      metaData = self.load_db_meta_from_rows(rows)
+      print(f"metadata found: {metaData}")
     else:
-      row = rows[0]
-      version = row['DbMetaValue']
-      print(f"found db_version: {version}")
-    return version
+      print("no db meta rows found")
+    return metaData
+  
+  def load_db_meta_from_rows(self, rows):
+    metaData = {}
+    for row in rows:
+      if row['DbMetaKey'] == 'db_version':
+        version = row['DbMetaValue']
+        metaData['db_version'] = version
+        print(f"found db_version: {version}")
+      if row['DbMetaKey'] == 'tables_ensured_at':
+        ensured = row['DbMetaValue']
+        metaData['tables_ensured_at'] = ensured
+        print(f"found tables_ensured_at: {ensured}")
+    return metaData
+    
+    
+    
+    
 
   def get_db_files(self):
     db_files = get_sqlite3_files(self.cfg.sqlite_folder())
