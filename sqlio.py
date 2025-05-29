@@ -5,11 +5,22 @@ from files import (
   get_sqlite3_files,
   get_path_in_folder,
 )
+from db_one import DbOne
 
 class SqlIO(FileManager):
   def __init__(self, cfg: Config):
     self.cfg = cfg
     self.selected_db = None
+
+  def insert_db_meta(self, key, value):
+    pass
+
+  def ensure_all_tables(self):
+    db_one = DbOne()
+    self.insert_db_meta('db_version', db_one.version)
+    # TODO: do all the ensure operations here
+    timestamp = "TIME FINISHED"
+    self.insert_db_meta('db_ensured_at', timestamp)
 
   def open_connection(self):
     conn = None

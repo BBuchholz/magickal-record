@@ -21,8 +21,8 @@ class SqliteMenu(SubMenu):
     ops = []
     ops.append(SelectSqliteDbFileMenu(self.sql))
     # TODO: implement these
-    # ops.append(EnsureDbTablesOp(self.sql))
-    # ops.append(EnsureDbFileOp(self.sql))
+    ops.append(EnsureDbTablesOp(self.sql))
+    ops.append(EnsureDbFileOp(self.sql))
     return ops
   
 if __name__ == "__main__":
