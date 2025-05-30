@@ -12,17 +12,26 @@ class SqlIO(FileManager):
     self.cfg = cfg
     self.selected_db = None
 
-  def insert_db_meta(self, key, value):
-    pass
-
-  def ensure_all_tables(self):
+  def create_db(self, file_name: str):
+    if not file_name.endswith(".sqlite3"):
+      file_name = file_name + ".sqlite3"
+    conn = self.open_connection(file_name)
+    cursor = conn.cursor()
     db_one = DbOne()
-    self.insert_db_meta('db_version', db_one.version)
+    db_one.create_table_db_meta(cursor)
+    key = 'db_version'
+    val = db_one.version
+    db_one.insert_db_meta(cursor, key, val)
     # TODO: do all the ensure operations here
-    timestamp = "TIME FINISHED"
-    self.insert_db_meta('db_ensured_at', timestamp)
+    key = 'db_ensured_at'
+    val = "TIME FINISHED"
+    db_one.insert_db_meta(cursor, key, val)
+    conn.commit()
+    conn.close()
 
-  def open_connection(self):
+  def open_connection(self, file_name=None):
+    if file_name is not None:
+      self.selected_db = file_name
     conn = None
     try:
       if self.selected_db is not None:
@@ -44,12 +53,16 @@ class SqlIO(FileManager):
     self.selected_db = file_name
     conn = self.open_connection()
     if conn is not None:
-      cursor = conn.cursor()
-      # TODO: connect to db and all that goes here
-      metaData = self.get_db_meta(cursor)
-      self.db_meta = metaData
-    else:
-      print("Error getting db metadata")
+      try:
+        cursor = conn.cursor()
+        # TODO: connect to db and all that goes here
+        metaData = self.get_db_meta(cursor)
+        self.db_meta = metaData
+      except Exception as e:
+        print("Error getting db metadata")
+        print("if this is a new database run etb option to ensure tables")
+      finally:
+        print("IMPLEMENTTHIS NEEDS TESTING")
 
 
   def get_db_meta(self, cursor: sqlite3.Cursor):
