@@ -11,21 +11,15 @@ class SqlIO(FileManager):
   def __init__(self, cfg: Config):
     self.cfg = cfg
     self.selected_db = None
+    self.db_one = DbOne()
 
   def create_db(self, file_name: str):
     if not file_name.endswith(".sqlite3"):
       file_name = file_name + ".sqlite3"
     conn = self.open_connection(file_name)
     cursor = conn.cursor()
-    db_one = DbOne()
-    db_one.create_table_db_meta(cursor)
-    key = 'db_version'
-    val = db_one.version
-    db_one.insert_db_meta(cursor, key, val)
-    # TODO: do all the ensure operations here
-    key = 'db_ensured_at'
-    val = "TIME FINISHED"
-    db_one.insert_db_meta(cursor, key, val)
+    self.db_one.ensure_table_db_meta(cursor)
+    self.db_one.ensure_db_meta_values(cursor)
     conn.commit()
     conn.close()
 
@@ -38,7 +32,9 @@ class SqlIO(FileManager):
         s_fldr = self.cfg.sqlite_folder()
         fname = self.selected_db
         file_path = get_path_in_folder(s_fldr, fname)
+        print("")
         print(f"attempting to connect to {file_path}")
+        print("")
         conn = sqlite3.connect(file_path)
         conn.row_factory = sqlite3.Row
       else:
@@ -66,52 +62,53 @@ class SqlIO(FileManager):
 
 
   def get_db_meta(self, cursor: sqlite3.Cursor):
-    version = None
-    # TODO: check db_version goes here
-    # to allow for this, each db should have 
-    # a table called DbMeta that is just two 
-    # columns "DbMetaKey" and "DbMetaValue", 
-    # a key value store where we can store 
-    # db information, then as we create 
-    # different table definitions and revise 
-    # them we can just increment the 
-    # db version number and have different 
-    # handlers for each version, so this 
-    # method should check DbMeta for a key 
-    # of "db_version" and should return 
-    # that value here, going forward we can 
-    # use that to load the proper sql scripts 
-    # for any version we desire and will 
-    # have ultimate flexibility with cowboy 
-    # coding tables as inspiration strikes 
-    # that we can clean up later, just moving 
-    # things between DB files
-    # We can even eventually write a script 
-    # to include the expected version number
-    # in the file name so when selecting we 
-    # know which is the latest version
-    cursor.execute("SELECT * FROM DbMeta")
-    rows = cursor.fetchall()
-    metaData = {}
-    if len(rows) > 0:
-      metaData = self.load_db_meta_from_rows(rows)
-      print(f"metadata found: {metaData}")
-    else:
-      print("no db meta rows found")
-    return metaData
+    return self.db_one.get_db_meta(cursor)
+  #   version = None
+  #   # TODO: check db_version goes here
+  #   # to allow for this, each db should have 
+  #   # a table called DbMeta that is just two 
+  #   # columns "DbMetaKey" and "DbMetaValue", 
+  #   # a key value store where we can store 
+  #   # db information, then as we create 
+  #   # different table definitions and revise 
+  #   # them we can just increment the 
+  #   # db version number and have different 
+  #   # handlers for each version, so this 
+  #   # method should check DbMeta for a key 
+  #   # of "db_version" and should return 
+  #   # that value here, going forward we can 
+  #   # use that to load the proper sql scripts 
+  #   # for any version we desire and will 
+  #   # have ultimate flexibility with cowboy 
+  #   # coding tables as inspiration strikes 
+  #   # that we can clean up later, just moving 
+  #   # things between DB files
+  #   # We can even eventually write a script 
+  #   # to include the expected version number
+  #   # in the file name so when selecting we 
+  #   # know which is the latest version
+  #   cursor.execute("SELECT * FROM DbMeta")
+  #   rows = cursor.fetchall()
+  #   metaData = {}
+  #   if len(rows) > 0:
+  #     metaData = self.load_db_meta_from_rows(rows)
+  #     print(f"metadata found: {metaData}")
+  #   else:
+  #     print("no db meta rows found")
+  #   return metaData
   
-  def load_db_meta_from_rows(self, rows):
-    metaData = {}
-    for row in rows:
-      if row['DbMetaKey'] == 'db_version':
-        version = row['DbMetaValue']
-        metaData['db_version'] = version
-        print(f"found db_version: {version}")
-      if row['DbMetaKey'] == 'tables_ensured_at':
-        ensured = row['DbMetaValue']
-        metaData['tables_ensured_at'] = ensured
-        print(f"found tables_ensured_at: {ensured}")
-    return metaData
+  # def load_db_meta_from_rows(self, rows):
+  #   metaData = {}
+  #   for row in rows:
+  #     if row['DbMetaKey'] == 'db_version':
+  #       version = row['DbMetaValue']
+  #       metaData['db_version'] = version
+  #       print(f"found db_version: {version}")
+  #     if row['DbMetaKey'] == 'tables_ensured_at':
+  #       ensured = row['DbMetaValue']
+  #       metaData['tables_ensured_at'] = ensured
+  #       print(f"found tables_ensured_at: {ensured}")
+  #   return metaData
     
     
     

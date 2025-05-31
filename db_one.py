@@ -5,7 +5,7 @@ class DbOne:
   def __init__(self):
     self.version = 1
 
-  def create_table_db_meta(self, cursor):
+  def ensure_table_db_meta(self, cursor):
     cursor.execute('''
       CREATE TABLE IF NOT EXISTS DbMeta (
         DbMetaKey TEXT NOT NULL UNIQUE,
@@ -13,6 +13,42 @@ class DbOne:
         PRIMARY KEY(DbMetaKey)
       )
     ''')
+
+  def ensure_db_meta_values(self, cursor):
+    print(f"checking current db metadata")
+    current_meta = self.get_db_meta(cursor)
+    print(f"current metadata is {current_meta}")
+    key = 'db_version'
+    if key not in current_meta:
+      val = self.version
+      print(f"key {key} not found, inserting")
+      self.insert_db_meta(cursor, key, val)
+      print(f"inserted value: {val} for key: {key}")
+    else:
+      val = current_meta[key]
+      print(f"found existing value: {val} for key: {key}")
+    key = 'db_ensured_at'
+    if key not in current_meta:
+      val = "TIME FINISHED"
+      print(f"key {key} not found, inserting")
+      self.insert_db_meta(cursor, key, val)
+      print(f"inserted value: {val} for key: {key}")
+    else:
+      val = current_meta[key]
+      print(f"found existing value: {val} for key: {key}")
+
+
+  def get_db_meta(self, cursor: Cursor):
+    version = None
+    cursor.execute("SELECT * FROM DbMeta")
+    rows = cursor.fetchall()
+    metaData = {}
+    if len(rows) > 0:
+      metaData = self.load_db_meta_from_rows(rows)
+      print(f"metadata found: {metaData}")
+    else:
+      print("no db meta rows found")
+    return metaData
 
   def insert_db_meta(self, cursor: Cursor, key, value):
     try:
@@ -23,3 +59,17 @@ class DbOne:
     except Exception as e:
       print("Exception inserting into db:")
       print(repr(e))
+
+
+  def load_db_meta_from_rows(self, rows):
+    metaData = {}
+    for row in rows:
+      if row['DbMetaKey'] == 'db_version':
+        version = row['DbMetaValue']
+        metaData['db_version'] = version
+        print(f"found db_version: {version}")
+      if row['DbMetaKey'] == 'tables_ensured_at':
+        ensured = row['DbMetaValue']
+        metaData['tables_ensured_at'] = ensured
+        print(f"found tables_ensured_at: {ensured}")
+    return metaData
