@@ -1,9 +1,11 @@
 from sqlite3 import Cursor
+from chronio import ChronIO
 
 class DbOne:
   # database definitions for version one
   def __init__(self):
     self.version = 1
+    self.chron = ChronIO()
 
   def ensure_table_db_meta(self, cursor):
     cursor.execute('''
@@ -29,13 +31,16 @@ class DbOne:
       print(f"found existing value: {val} for key: {key}")
     key = 'db_ensured_at'
     if key not in current_meta:
-      val = "TIME FINISHED"
+      val = self.chron.get_timestamp()
       print(f"key {key} not found, inserting")
       self.insert_db_meta(cursor, key, val)
       print(f"inserted value: {val} for key: {key}")
     else:
       val = current_meta[key]
       print(f"found existing value: {val} for key: {key}")
+      val = self.chron.get_timestamp()
+      print(f"Updating db_ensured_at timestamp to {val}")
+      self.update_db_meta(cursor, key, val)
 
 
   def get_db_meta(self, cursor: Cursor):
@@ -60,6 +65,13 @@ class DbOne:
       print("Exception inserting into db:")
       print(repr(e))
 
+  def update_db_meta(self, cursor: Cursor, key, val):
+    query = '''
+      UPDATE DbMeta
+      SET DbMetaValue = ?
+      WHERE DbMetaKey = ?
+    '''
+    cursor.execute(query, (val, key))
 
   def load_db_meta_from_rows(self, rows):
     metaData = {}
@@ -68,8 +80,8 @@ class DbOne:
         version = row['DbMetaValue']
         metaData['db_version'] = version
         print(f"found db_version: {version}")
-      if row['DbMetaKey'] == 'tables_ensured_at':
+      if row['DbMetaKey'] == 'db_ensured_at':
         ensured = row['DbMetaValue']
-        metaData['tables_ensured_at'] = ensured
-        print(f"found tables_ensured_at: {ensured}")
+        metaData['db_ensured_at'] = ensured
+        print(f"found db_ensured_at: {ensured}")
     return metaData
