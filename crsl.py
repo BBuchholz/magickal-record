@@ -15,4 +15,25 @@ class MyrCarousel:
       return None
     if current_item is None:
       return self.lst[0]
+    lst_length = len(self.lst)
+    last_index = lst_length - 1
+    for i in range(lst_length):
+      if current_item == self.lst[last_index]:
+        return self.lst[0]
+      if current_item == self.lst[i]:
+        return self.lst[i+1]
+    return None
+  
+  def get_previous(self, current_item=None):
+    if len(self.lst) < 1:
+      return None
+    lst_length = len(self.lst)
+    last_index = lst_length - 1
+    if current_item is None:
+      return self.lst[last_index]
+    for i in range(lst_length):
+      if current_item == self.lst[0]:
+        return self.lst[last_index]
+      if current_item == self.lst[i]:
+        return self.lst[i-1]
     return None

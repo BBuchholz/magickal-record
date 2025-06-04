@@ -26,7 +26,18 @@ class TestMyrCarousel(unittest.TestCase):
     self.assertEqual(next, "TCTKL-0-6c4b")
     # should get next
     next = self.crsl.get_next(next)
-    self.assertEqual(next, "TCTKL-1-da")
+    self.assertEqual(next, "TCTKL-1-da24")
     # should loop at last one
     next = self.crsl.get_next("TCTKL-MATRIX-0fe4")
     self.assertEqual(next, "TCTKL-0-6c4b")
+
+  def test_should_get_previous(self):
+    # should get last if no argument supplied
+    prev = self.crsl.get_previous()
+    self.assertEqual(prev, "TCTKL-MATRIX-0fe4")
+    # should get prev
+    prev = self.crsl.get_previous(prev)
+    self.assertEqual(prev, "TCTKL-ccf2")
+    # should loop at first one
+    prev = self.crsl.get_previous("TCTKL-0-6c4b")
+    self.assertEqual(prev, "TCTKL-MATRIX-0fe4")
