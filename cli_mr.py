@@ -11,6 +11,7 @@ from cli_gardiner import GarDinErMenu
 from cli_reg import RegistryMenu
 from obsidio import ObsidIO
 from cli_sql import SqliteMenu
+from cli_crsl import MyrCarouselMenu
 
 
 class MainMenu(Menu):
@@ -25,6 +26,7 @@ class MainMenu(Menu):
     ops.append(GarDinErMenu(self.cfg, self.obio))
     ops.append(RegistryMenu(self.cfg))
     ops.append(SqliteMenu(self.cfg))
+    ops.append(MyrCarouselMenu(self.cfg))
     return ops
 
 if __name__ == "__main__":
