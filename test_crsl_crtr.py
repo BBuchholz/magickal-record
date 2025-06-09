@@ -20,8 +20,8 @@ class TestCarouselCreator(unittest.TestCase):
     ]
     mf = MyrFile()
     mf.load_from_lines_arr(myrki_lines)
-    created_mf = self.crtr.create_myrki_file("SERPENT")
-    self.assertEquals(created_mf, mf) 
+    created_mf = self.crtr.create_myrki_file("TCTKL")
+    self.assertEqual(created_mf.lines, mf.lines) 
 
   def test_should_create_myrki_instance_myr_file(self):
     pass

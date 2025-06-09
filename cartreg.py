@@ -19,6 +19,15 @@ class CartRegistry:
           myrki = myrki.lower()
         myrkis.append(myrki)
     return myrkis
+  
+  def get_carts_for_myrki(self, myrki_string):
+    carts = []
+    for cart in self.carts:
+      if "MYRKI" in cart:
+        myrki = str(cart["MYRKI"]).lower()
+        if myrki == myrki_string.lower():
+          carts.append(cart)
+    return carts
 
   def load(self):
     msg = "attempting to load CartRegistry from "

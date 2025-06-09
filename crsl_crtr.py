@@ -22,12 +22,14 @@ class CarouselCreator:
 
   def create_myrki_file(self, myrki_string):
     mf = MyrFile()
-    if myrki_string in self.myrreg.myrkis:
+    if self.myrreg.contains_myrki(myrki_string):
       carts = self.cartreg.get_carts_for_myrki(myrki_string)
       if len(carts) > 0:
         lines = []
         for cart in carts:
           print(f"found cart: {cart}")
-          lines.append("")
+          card_id = cart["Card Id"]
+          wikilink = f"[[{card_id}]]"
+          lines.append(wikilink)
         mf.load_from_lines_arr(lines)
     return mf

@@ -15,6 +15,12 @@ class MyrkiRegistry:
     self.obio = ObsidIO(cfg)
     self.cartrg = CartRegistry(cfg)
 
+  def contains_myrki(self, myrki_value):
+    for myrki in self.myrkis:
+      if myrki.lower() == myrki_value.lower():
+        return True
+    return False
+
   def validate_myrki_instance(self, candidate: str):
     # TODO: implement, see sheets for valid 
     # and invalid instances to test against 
