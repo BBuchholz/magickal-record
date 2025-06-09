@@ -16,8 +16,8 @@ from op_clr_ver_cart import ClearSelectedVerifiedCartFiles
 from op_lst_sel_cart_files import ListSelectedCartFilesOp
 
 class CartMenu(SubMenu):
-  def __init__(self, cfg: Config):
-    self.cart = CartIO(cfg)
+  def __init__(self, cart: CartIO):
+    self.cart = cart
   def key(self):
     return "cart"
   def desc(self):
@@ -37,5 +37,6 @@ class CartMenu(SubMenu):
 
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
-  main = CartMenu(tcfg)
+  cart = CartIO(tcfg)
+  main = CartMenu(cart)
   main.show_menu()

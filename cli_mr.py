@@ -5,6 +5,7 @@ from menus import (
   # SubMenu,
 )
 from cli_cart import CartMenu
+from cartio import CartIO
 from cfg import Config, NwdConfig
 from cli_obsid import ObsidMenu
 from cli_gardiner import GarDinErMenu
@@ -18,10 +19,11 @@ class MainMenu(Menu):
   def __init__(self, cfg: Config):
     self.cfg = cfg
     self.obio = ObsidIO(cfg)
+    self.cart = CartIO(cfg)
 
   def get_ops(self):
     ops = []
-    ops.append(CartMenu(self.cfg))
+    ops.append(CartMenu(self.cart))
     ops.append(ObsidMenu(self.obio))
     ops.append(GarDinErMenu(self.cfg, self.obio))
     ops.append(RegistryMenu(self.cfg))
