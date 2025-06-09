@@ -8,6 +8,7 @@ from cli_cart import CartMenu
 from op_ens_db_tbls import EnsureDbTablesOp
 from op_ens_db import EnsureDbFileOp
 from op_ins_carts import InsertSelectedCartFileIntoCurrentDb
+from op_rd_myrkis import ReadMyrkis
 
 class SqliteMenu(SubMenu):
   def __init__(self, cfg: Config):
@@ -30,6 +31,7 @@ class SqliteMenu(SubMenu):
     ops.append(EnsureDbFileOp(self.sql))
     ops.append(InsertSelectedCartFileIntoCurrentDb(self.sql, self.cart))
     ops.append(CartMenu(self.cart))
+    ops.append(ReadMyrkis(self.sql))
     return ops
   
 if __name__ == "__main__":

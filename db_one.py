@@ -16,6 +16,9 @@ class DbOne:
       )
     ''')
 
+  def table_exists(self, table_name):
+    return False #TODO: implement
+
   def ensure_db_meta_values(self, cursor):
     print(f"checking current db metadata")
     current_meta = self.get_db_meta(cursor)

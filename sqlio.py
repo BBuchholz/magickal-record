@@ -111,7 +111,8 @@ class SqlIO(FileManager):
   #   return metaData
     
     
-    
+  def table_exists(self, table_name):
+    return self.db_one.table_exists(table_name)
     
 
   def get_db_files(self):
