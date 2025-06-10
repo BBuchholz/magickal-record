@@ -22,6 +22,8 @@ class Menu(ABC):
     return False
 
   def print_options(self):
+    print("")
+    print("Current Options:")
     for op in self.get_ops():
       print(f"{op.key()} : {op.desc()}")
 

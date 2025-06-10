@@ -1,18 +1,13 @@
 from cfg import Config, NwdTestConfig
-from obsidio import ObsidIO
-from chronio import ChronIO
-from op_gen_test_files import GenerateTestFiles
-from menus import SubMenu
+from cli_cart import CartMenu
+from cartio import CartIO
+from menus import SubMenu, LineOption
 
 class TestMenu(SubMenu):
-  def __init__(
-      self,
-      cfg: Config,
-      obio: ObsidIO,
-      chron: ChronIO):
-    self.cfg = cfg
-    self.obio = obio
-    self.chron = chron
+  def __init__(self, cart: CartIO):
+    self.ops = []
+    op = CartMenu(cart)
+    self.add_op(op)
 
   def key(self):
     return "tst"
@@ -21,16 +16,13 @@ class TestMenu(SubMenu):
     return "Auxillary Test Operations Menu"
   
   def get_ops(self):
-    ops = []
-    ops.append(GenerateTestFiles(
-      self.cfg,
-      self.obio,
-      self.chron))
-    return ops
+    return self.ops
+  
+  def add_op(self, op: LineOption):
+    self.ops.append(op)
     
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
-  obo = ObsidIO(tcfg)
-  chron = ChronIO()
-  main = TestMenu(tcfg, obo, chron)
+  cart = CartIO(tcfg)
+  main = TestMenu(cart)
   main.show_menu()
