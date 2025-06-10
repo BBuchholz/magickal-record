@@ -16,6 +16,9 @@ class DbOne:
       )
     ''')
 
+  def ensure_table_myrki(self, cursor):
+    pass # TODO: mimic ensure_table_db_meta
+
   def table_exists(self, table_name):
     return False #TODO: implement
 
@@ -45,6 +48,16 @@ class DbOne:
       print(f"Updating db_ensured_at timestamp to {val}")
       self.update_db_meta(cursor, key, val)
 
+  def select_myrkis(self, cursor: Cursor):
+    myrkis = {}
+    cursor.execute("SELECT * FROM Myrki")
+    rows = cursor.fetchall()
+    if len(rows) > 0:
+      myrkis = self.load_myrkis_from(rows)
+      print(f"myrkis found: {myrkis}")
+    else:
+      print("no myrkis found")
+    return myrkis
 
   def get_db_meta(self, cursor: Cursor):
     version = None

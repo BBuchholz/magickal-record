@@ -110,6 +110,20 @@ class SqlIO(FileManager):
   #       print(f"found tables_ensured_at: {ensured}")
   #   return metaData
     
+  def select_myrkis(self):
+    conn = self.open_connection()
+    myrkis = {}
+    if conn is not None:
+      try:
+        cursor = conn.cursor()
+        # TODO: connect to db and all that goes here
+        myrkis = self.db_one.select_myrkis(cursor)
+      except Exception as e:
+        print("Error getting db metadata")
+        print("if this is a new database run etb option to ensure tables")
+      finally:
+        print("IMPLEMENTTHIS NEEDS TESTING")
+        return myrkis
     
   def table_exists(self, table_name):
     return self.db_one.table_exists(table_name)

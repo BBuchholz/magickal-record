@@ -12,7 +12,5 @@ class ReadMyrkis(LineOption):
     return "Read Myrkis"
   
   def run(self):
-    if self.sql.table_exists("Myrki"):
-      print("read table here")
-    else:
-      print("table Myrki not found")
+    myrkis = self.sql.select_myrkis()
+    print(f"myrkis found: {myrkis}")

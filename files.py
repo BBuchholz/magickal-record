@@ -83,7 +83,6 @@ def get_path_in_folder(folder_path, file_name):
   dir_path = os.path.expanduser(folder_path)
   return os.path.join(dir_path, file_name)
   
-# TODO: make this account for a missing .md suffix
 def get_lines_array(file_name):
   """
   gets the arrary of lines from the specified 
