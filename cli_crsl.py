@@ -6,7 +6,7 @@ from op_crsl_mis import CarouselMyrkiInstancesOp
 
 class MyrCarouselMenu(SubMenu):
   def __init__(self, cfg: Config):
-    print(f"loading MyrCarousel configuration: {cfg.status}")
+    print(f"loading MyrCarousel configuration: {cfg.status()}")
     self.crtr = CarouselCreator(cfg)
 
   def key(self):

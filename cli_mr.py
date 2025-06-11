@@ -6,14 +6,14 @@ from menus import (
 )
 from cli_cart import CartMenu
 from cartio import CartIO
-from cfg import Config, NwdConfig
+from cfg import Config, NwdConfig, NwdTestConfig
 from cli_obsid import ObsidMenu
 from cli_gardiner import GarDinErMenu
 from cli_reg import RegistryMenu
 from obsidio import ObsidIO
 from cli_sql import SqliteMenu
 from cli_crsl import MyrCarouselMenu
-
+from cli_test import TestMenu
 
 class MainMenu(Menu):
   def __init__(self, cfg: Config):
@@ -29,6 +29,9 @@ class MainMenu(Menu):
     ops.append(RegistryMenu(self.cfg))
     ops.append(SqliteMenu(self.cfg))
     ops.append(MyrCarouselMenu(self.cfg))
+    # TestMenu uses its own test config
+    tcfg = NwdTestConfig()
+    ops.append(TestMenu(tcfg))
     return ops
 
 if __name__ == "__main__":
