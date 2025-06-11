@@ -1,12 +1,16 @@
 from cfg import Config, NwdTestConfig
 from cli_cart import CartMenu
 from cartio import CartIO
+from mdio import MDIO
 from menus import SubMenu, LineOption
+from op_sug import SuggestionOp
 
 class TestMenu(SubMenu):
-  def __init__(self, cart: CartIO):
+  def __init__(self, cart: CartIO, mdio: MDIO):
     self.ops = []
     op = CartMenu(cart)
+    self.add_op(op)
+    op = SuggestionOp(mdio)
     self.add_op(op)
 
   def key(self):
@@ -24,5 +28,6 @@ class TestMenu(SubMenu):
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
   cart = CartIO(tcfg)
-  main = TestMenu(cart)
+  mdio = MDIO(tcfg)
+  main = TestMenu(cart, mdio)
   main.show_menu()
