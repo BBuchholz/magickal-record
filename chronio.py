@@ -111,62 +111,62 @@ class ChronIO:
     timestamp_string = now.strftime("%Y%m%d%H%M%S")
     return timestamp_string
 
-  def get_sabbat(self, letter_code):
+  def get_sabbat(self, letter_code) -> Sabbat:
     match letter_code:
       case "BEL25":
         aliases = BEL_ALIASES
-        sbt = Sabbat("BEL", aliases, 2025)
+        sbt = Sabbat("BEL", aliases, "250501")
         return sbt
       case "LTH25":
         aliases = LTH_ALIASES
-        sbt = Sabbat("LTH", aliases, 2025)
+        sbt = Sabbat("LTH", aliases, "250621")
         return sbt
       case "LMS25":
         aliases = LMS_ALIASES
-        sbt = Sabbat("LMS", aliases, 2025)
+        sbt = Sabbat("LMS", aliases, "25")
         return sbt
       case "MBN25":
         aliases = MBN_ALIASES
-        sbt = Sabbat("MBN", aliases, 2025)
+        sbt = Sabbat("MBN", aliases, "25")
         return sbt
       case "SMH25":
         aliases = SMH_ALIASES
-        sbt = Sabbat("SMH", aliases, 2025)
+        sbt = Sabbat("SMH", aliases, "25")
         return sbt
       case "YUL25":
         aliases = YUL_ALIASES
-        sbt = Sabbat("YUL", aliases, 2025)
+        sbt = Sabbat("YUL", aliases, "25")
         return sbt
       case "IMB26":
         aliases = IMB_ALIASES
-        sbt = Sabbat("IMB", aliases, 2026)
+        sbt = Sabbat("IMB", aliases, "26")
         return sbt
       case "OST26":
         aliases = OST_ALIASES
-        sbt = Sabbat("OST", aliases, 2026)
+        sbt = Sabbat("OST", aliases, "26")
         return sbt
       case "BEL26":
         aliases = BEL_ALIASES
-        sbt = Sabbat("BEL", aliases, 2026)
+        sbt = Sabbat("BEL", aliases, "26")
         return sbt
       case "LTH26":
         aliases = LTH_ALIASES
-        sbt = Sabbat("LTH", aliases, 2026)
+        sbt = Sabbat("LTH", aliases, "26")
         return sbt
       case "LMS26":
         aliases = LMS_ALIASES
-        sbt = Sabbat("LMS", aliases, 2026)
+        sbt = Sabbat("LMS", aliases, "26")
         return sbt
       case "MBN26":
         aliases = MBN_ALIASES
-        sbt = Sabbat("MBN", aliases, 2026)
+        sbt = Sabbat("MBN", aliases, "26")
         return sbt
       case "SMH26":
         aliases = SMH_ALIASES
-        sbt = Sabbat("SMH", aliases, 2026)
+        sbt = Sabbat("SMH", aliases, "26")
         return sbt
       case "YUL26":
         aliases = YUL_ALIASES
-        sbt = Sabbat("YUL", aliases, 2026)
+        sbt = Sabbat("YUL", aliases, "26")
         return sbt
       
