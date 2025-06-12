@@ -10,7 +10,7 @@ class CarouselCreator:
     self.myrreg = None
 
   def get_input_files(self):
-    m_inpt_fldr = self.cfg.mdio_input_folder()
+    m_inpt_fldr = self.cfg.mdio_inbox_folder()
     print(f"checking folder : {m_inpt_fldr} for CRSL files")
     files = []
     return files

@@ -4,6 +4,7 @@ from chronio import ChronIO
 from files import (
   get_path_in_folder,
   path_exists,
+  write_lines,
 )
 
 class SuggestionOp(LineOption):
@@ -20,20 +21,21 @@ class SuggestionOp(LineOption):
   
   def run(self):
     sug = input("Suggestion? ")
-    print(f"Saving suggestion to file system: {sug}")
-    sfx = self.chron.get_suffix()
-    f_name = "Suggestion - " + sfx + ".md"
-    fldr_path = self.mdio.cfg.mdio_input_folder()
-    file_path = get_path_in_folder(fldr_path, f_name)
-    while path_exists(file_path):
-      sfx = self.chron.get_suffix(sfx)
+    if len(sug.strip()) > 0:
+      print(f"Saving suggestion to file system: {sug}")
+      sfx = self.chron.get_suffix()
       f_name = "Suggestion - " + sfx + ".md"
-      fldr_path = self.mdio.cfg.mdio_input_folder()
+      fldr_path = self.mdio.cfg.mdio_inbox_folder()
       file_path = get_path_in_folder(fldr_path, f_name)
-    print(f"saved to: {file_path}")
-    print("TODO: finish implementing")
-    #TODO: implement a suggestion option that 
-    # logs user input to a timestamped md file 
-    # in mdio_inbox_folder like a suggestion box, 
-    # these can then be processed later, which is 
-    # why they belong in the mdio_inbox_folder
+      while path_exists(file_path):
+        sfx = self.chron.get_suffix(sfx)
+        f_name = "Suggestion - " + sfx + ".md"
+        fldr_path = self.mdio.cfg.mdio_inbox_folder()
+        file_path = get_path_in_folder(fldr_path, f_name)
+      lines = []
+      sug_line = "- " + sug
+      lines.append(sug_line)
+      write_lines(file_path, lines, True)
+      print(f"saved to: {file_path}")
+    else:
+      print("abandoning empty suggestion")

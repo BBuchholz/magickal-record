@@ -30,9 +30,9 @@ class Config(ABC):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "sqlite")
   
-  def mdio_input_folder(self):
+  def mdio_inbox_folder(self):
     nwd_fldr = self.nwd_folder()
-    return os.path.join(nwd_fldr, "mdio/input")
+    return os.path.join(nwd_fldr, "mdio/inbox")
 
   def audit_summary_file(self):
     c_flder = self.cartio_folder()
