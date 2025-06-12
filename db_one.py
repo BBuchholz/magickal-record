@@ -17,7 +17,66 @@ class DbOne:
     ''')
 
   def ensure_table_myrki(self, cursor):
-    pass # TODO: mimic ensure_table_db_meta
+    cursor.execute('''    
+      CREATE TABLE Myrki (
+        myrkiValue TEXT NOT NULL UNIQUE,
+        PRIMARY KEY(myrkiValue)
+      )
+    ''')
+  
+  def ensure_table_card(self, cursor):
+    cursor.execute('''    
+      CREATE TABLE Card (
+        cardId	INTEGER NOT NULL UNIQUE,
+        myrkiValue	TEXT NOT NULL,
+        cardCode	TEXT UNIQUE,
+        cardText	TEXT,
+        cetCode	TEXT,
+        imageFile	TEXT,
+        canvaLinkHref	TEXT,
+        myrkiCreditCollabId	INTEGER,
+        textCreditCollabId	INTEGER,
+        imageCreditCollabId	INTEGER,
+        PRIMARY KEY(cardId AUTOINCREMENT)
+      )
+    ''')
+
+  def ensure_table_cet(self, cursor):
+    cursor.execute('''    
+      CREATE TABLE Cet (
+        cetCode	TEXT NOT NULL UNIQUE,
+        releaseDate	TEXT,
+        sabbatName	TEXT NOT NULL,
+        PRIMARY KEY(cetCode)
+      )
+    ''')
+
+  def ensure_table_collab_member(self, cursor):
+    cursor.execute('''    
+      CREATE TABLE CollabMember (
+        collabId	INTEGER NOT NULL,
+        sourceId	INTEGER NOT NULL,
+        PRIMARY KEY(collabId,sourceId)
+      )
+    ''')
+
+  def ensure_table_collaboration(self, cursor):
+    cursor.execute('''    
+      CREATE TABLE Collaboration (
+        collabId	INTEGER NOT NULL UNIQUE,
+        collabNotes	TEXT,
+        PRIMARY KEY(collabId AUTOINCREMENT)
+      )
+    ''')
+
+  def ensure_table_source(self, cursor):
+    cursor.execute('''    
+      CREATE TABLE Source (
+        sourceId	INTEGER NOT NULL UNIQUE,
+        sourceName	TEXT NOT NULL,
+        PRIMARY KEY(sourceId AUTOINCREMENT)
+      )
+    ''')
 
   def table_exists(self, table_name):
     return False #TODO: implement

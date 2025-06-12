@@ -140,10 +140,15 @@ class SqlIO(FileManager):
     if conn is not None:
       try:
         cursor = conn.cursor()
-        # TODO: connect to db and all that goes here
+        # TODO: TEST THESE
         self.db_one.ensure_table_db_meta(cursor)
         self.db_one.ensure_db_meta_values(cursor)
         self.db_one.ensure_table_myrki(cursor)
+        self.db_one.ensure_table_card(cursor)
+        self.db_one.ensure_table_cet(cursor)
+        self.db_one.ensure_table_collaboration(cursor)
+        self.db_one.ensure_table_collab_member(cursor)
+        self.db_one.ensure_table_source(cursor)
       except Exception as e:
         print("Error ensuring tables:")
         print(repr(e))
