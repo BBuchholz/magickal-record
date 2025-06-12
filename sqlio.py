@@ -119,10 +119,11 @@ class SqlIO(FileManager):
         # TODO: connect to db and all that goes here
         myrkis = self.db_one.select_myrkis(cursor)
       except Exception as e:
-        print("Error getting db metadata")
-        print("if this is a new database run etb option to ensure tables")
+        print("Error selecting myrkis:")
+        print(repr(e))
       finally:
-        print("IMPLEMENTTHIS NEEDS TESTING")
+        print("closing connection to db")
+        conn.close()
         return myrkis
     
   def table_exists(self, table_name):
@@ -132,3 +133,24 @@ class SqlIO(FileManager):
   def get_db_files(self):
     db_files = get_sqlite3_files(self.cfg.sqlite_folder())
     return db_files
+  
+  def ensure_all_tables(self):
+    print("opening connection to db")
+    conn = self.open_connection()
+    if conn is not None:
+      try:
+        cursor = conn.cursor()
+        # TODO: connect to db and all that goes here
+        self.db_one.ensure_table_db_meta(cursor)
+        self.db_one.ensure_db_meta_values(cursor)
+        self.db_one.ensure_table_myrki(cursor)
+      except Exception as e:
+        print("Error ensuring tables:")
+        print(repr(e))
+      finally:
+        print("committing changes to db")
+        conn.commit()
+        print("closing connection to db")
+        conn.close()
+        print("TABLES SHOULD BE ENSURED AFTER THIS POINT")
+        

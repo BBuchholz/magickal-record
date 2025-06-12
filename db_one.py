@@ -101,3 +101,11 @@ class DbOne:
         metaData['db_ensured_at'] = ensured
         print(f"found db_ensured_at: {ensured}")
     return metaData
+  
+  def load_myrkis_from(self, rows):
+    myrkis = {}
+    for row in rows:
+      print(f"found row: {row}")
+      # TODO: finish ensure_table_myrki 
+      # method above and use those values 
+      # to mimic load_db_meta_from_rows above
