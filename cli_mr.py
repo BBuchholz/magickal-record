@@ -14,6 +14,7 @@ from obsidio import ObsidIO
 from cli_sql import SqliteMenu
 from cli_crsl import MyrCarouselMenu
 from cli_test import TestMenu
+from cli_git import GitIOMenu
 
 class MainMenu(Menu):
   def __init__(self, cfg: Config):
@@ -29,6 +30,7 @@ class MainMenu(Menu):
     ops.append(RegistryMenu(self.cfg))
     ops.append(SqliteMenu(self.cfg))
     ops.append(MyrCarouselMenu(self.cfg))
+    ops.append(GitIOMenu(self.cfg))
     # TestMenu uses its own test config
     tcfg = NwdTestConfig()
     ops.append(TestMenu(tcfg))
