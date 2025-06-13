@@ -18,7 +18,7 @@ class DbOne:
 
   def ensure_table_myrki(self, cursor):
     cursor.execute('''    
-      CREATE TABLE Myrki (
+      CREATE TABLE IF NOT EXISTS Myrki (
         myrkiValue TEXT NOT NULL UNIQUE,
         PRIMARY KEY(myrkiValue)
       )
@@ -26,7 +26,7 @@ class DbOne:
   
   def ensure_table_card(self, cursor):
     cursor.execute('''    
-      CREATE TABLE Card (
+      CREATE TABLE IF NOT EXISTS Card (
         cardId	INTEGER NOT NULL UNIQUE,
         myrkiValue	TEXT NOT NULL,
         cardCode	TEXT UNIQUE,
@@ -43,7 +43,7 @@ class DbOne:
 
   def ensure_table_cet(self, cursor):
     cursor.execute('''    
-      CREATE TABLE Cet (
+      CREATE TABLE IF NOT EXISTS Cet (
         cetCode	TEXT NOT NULL UNIQUE,
         releaseDate	TEXT,
         sabbatName	TEXT NOT NULL,
@@ -53,7 +53,7 @@ class DbOne:
 
   def ensure_table_collab_member(self, cursor):
     cursor.execute('''    
-      CREATE TABLE CollabMember (
+      CREATE TABLE IF NOT EXISTS CollabMember (
         collabId	INTEGER NOT NULL,
         sourceId	INTEGER NOT NULL,
         PRIMARY KEY(collabId,sourceId)
@@ -62,7 +62,7 @@ class DbOne:
 
   def ensure_table_collaboration(self, cursor):
     cursor.execute('''    
-      CREATE TABLE Collaboration (
+      CREATE TABLE IF NOT EXISTS Collaboration (
         collabId	INTEGER NOT NULL UNIQUE,
         collabNotes	TEXT,
         PRIMARY KEY(collabId AUTOINCREMENT)
@@ -71,7 +71,7 @@ class DbOne:
 
   def ensure_table_source(self, cursor):
     cursor.execute('''    
-      CREATE TABLE Source (
+      CREATE TABLE IF NOT EXISTS Source (
         sourceId	INTEGER NOT NULL UNIQUE,
         sourceName	TEXT NOT NULL,
         PRIMARY KEY(sourceId AUTOINCREMENT)
@@ -113,7 +113,7 @@ class DbOne:
     rows = cursor.fetchall()
     if len(rows) > 0:
       myrkis = self.load_myrkis_from(rows)
-      print(f"myrkis found: {myrkis}")
+      # print(f"myrkis found: {myrkis}")
     else:
       print("no myrkis found")
     return myrkis
@@ -162,9 +162,9 @@ class DbOne:
     return metaData
   
   def load_myrkis_from(self, rows):
-    myrkis = {}
+    myrkis = []
     for row in rows:
-      print(f"found row: {row}")
-      # TODO: finish ensure_table_myrki 
-      # method above and use those values 
-      # to mimic load_db_meta_from_rows above
+      myrki = row['myrkiValue']
+      print(f"found myrki: {myrki}")
+      myrkis.append(myrki)
+    return myrkis
