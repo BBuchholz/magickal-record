@@ -30,6 +30,16 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
       if card_count < 1:
         print("no cards to insert")
       else:
+        # TODO: MODIFY THIS 
+        # insert myrkis from selected file
+        # insert myrki instances (cards) from selected file
+        # TODO: both should pull from the same sources
+        # as the list operations: (
+        # 
+        # 
+        # ) so after a review of the list this insert 
+        # operation can be run to finalize import
+        # TODO:  
         print(f"found {card_count} cards to insert")
         print(f"checking to see if they are already in the database first")
         for card in self.cart.cards:
