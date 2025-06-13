@@ -39,6 +39,10 @@ will need Mermaid support to parse the diagram)
 
 # External Planning Documents
 
+### CipIO Planning
+
+[Link to CipIO Handler Notion Planning Page](https://www.notion.so/CIP-Handler-CipIO-211222f451ee814e89a5ebfdb0b5ae13)
+
 ### CartIO Planning
 
 [Link to CartIO Handler Notion Planning Page](https://www.notion.so/Cartographer-1d5222f451ee814aa844cb5a858fb4c9?pvs=4)
