@@ -108,7 +108,7 @@ class DbOne:
       self.update_db_meta(cursor, key, val)
 
   def select_myrkis(self, cursor: Cursor):
-    myrkis = {}
+    myrkis = []
     cursor.execute("SELECT * FROM Myrki")
     rows = cursor.fetchall()
     if len(rows) > 0:
@@ -117,6 +117,18 @@ class DbOne:
     else:
       print("no myrkis found")
     return myrkis
+
+
+  def select_cards(self, cursor: Cursor):
+    cards = []
+    cursor.execute("SELECT * FROM Card")
+    rows = cursor.fetchall()
+    if len(rows) > 0:
+      cards = self.load_cards_from(rows)
+      print(f"cards found: {cards}")
+    else:
+      print("no cards found")
+    return cards
 
   def get_db_meta(self, cursor: Cursor):
     version = None
@@ -161,10 +173,20 @@ class DbOne:
         print(f"found db_ensured_at: {ensured}")
     return metaData
   
-  def load_myrkis_from(self, rows):
+  def load_myrkis_from(self, rows) -> list:
     myrkis = []
     for row in rows:
       myrki = row['myrkiValue']
       print(f"found myrki: {myrki}")
       myrkis.append(myrki)
     return myrkis
+  
+
+  def load_cards_from(self, rows) -> list:
+    cards = []
+    for row in rows:
+      # TODO: MAKE THIS WORK (COPIED FROM MYRKI, NOT CORRECT CURRENTLY)
+      card = row['cardValue']
+      print(f"found card: {card}")
+      cards.append(card)
+    return cards

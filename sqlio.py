@@ -51,7 +51,6 @@ class SqlIO(FileManager):
     if conn is not None:
       try:
         cursor = conn.cursor()
-        # TODO: connect to db and all that goes here
         metaData = self.get_db_meta(cursor)
         self.db_meta = metaData
       except Exception as e:
@@ -63,60 +62,13 @@ class SqlIO(FileManager):
 
   def get_db_meta(self, cursor: sqlite3.Cursor):
     return self.db_one.get_db_meta(cursor)
-  #   version = None
-  #   # TODO: check db_version goes here
-  #   # to allow for this, each db should have 
-  #   # a table called DbMeta that is just two 
-  #   # columns "DbMetaKey" and "DbMetaValue", 
-  #   # a key value store where we can store 
-  #   # db information, then as we create 
-  #   # different table definitions and revise 
-  #   # them we can just increment the 
-  #   # db version number and have different 
-  #   # handlers for each version, so this 
-  #   # method should check DbMeta for a key 
-  #   # of "db_version" and should return 
-  #   # that value here, going forward we can 
-  #   # use that to load the proper sql scripts 
-  #   # for any version we desire and will 
-  #   # have ultimate flexibility with cowboy 
-  #   # coding tables as inspiration strikes 
-  #   # that we can clean up later, just moving 
-  #   # things between DB files
-  #   # We can even eventually write a script 
-  #   # to include the expected version number
-  #   # in the file name so when selecting we 
-  #   # know which is the latest version
-  #   cursor.execute("SELECT * FROM DbMeta")
-  #   rows = cursor.fetchall()
-  #   metaData = {}
-  #   if len(rows) > 0:
-  #     metaData = self.load_db_meta_from_rows(rows)
-  #     print(f"metadata found: {metaData}")
-  #   else:
-  #     print("no db meta rows found")
-  #   return metaData
-  
-  # def load_db_meta_from_rows(self, rows):
-  #   metaData = {}
-  #   for row in rows:
-  #     if row['DbMetaKey'] == 'db_version':
-  #       version = row['DbMetaValue']
-  #       metaData['db_version'] = version
-  #       print(f"found db_version: {version}")
-  #     if row['DbMetaKey'] == 'tables_ensured_at':
-  #       ensured = row['DbMetaValue']
-  #       metaData['tables_ensured_at'] = ensured
-  #       print(f"found tables_ensured_at: {ensured}")
-  #   return metaData
     
   def select_myrkis(self):
     conn = self.open_connection()
-    myrkis = {}
+    myrkis = []
     if conn is not None:
       try:
         cursor = conn.cursor()
-        # TODO: connect to db and all that goes here
         myrkis = self.db_one.select_myrkis(cursor)
       except Exception as e:
         print("Error selecting myrkis:")
@@ -126,6 +78,21 @@ class SqlIO(FileManager):
         conn.close()
         return myrkis
     
+  def select_cards(self):
+    conn = self.open_connection()
+    cards = []
+    if conn is not None:
+      try:
+        cursor = conn.cursor()
+        cards = self.db_one.select_cards(cursor)
+      except Exception as e:
+        print("Error selecting cards:")
+        print(repr(e))
+      finally:
+        print("closing connection to db")
+        conn.close()
+        return cards
+      
   def table_exists(self, table_name):
     return self.db_one.table_exists(table_name)
     

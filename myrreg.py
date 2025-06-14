@@ -22,14 +22,6 @@ class MyrkiRegistry:
     return False
 
   def validate_myrki_instance(self, candidate: str):
-    # TODO: implement, see sheets for valid 
-    # and invalid instances to test against 
-    # (write unit test)
-    # logic already filters candidates against
-    # registered myrkis (ie. only files starting)
-    # with a myrki and a dash are "candidates"
-    # just need to filter everything that doesn't 
-    # end with a 4 digit uuid suffix or a 5 digit Cet code
     res = candidate.rsplit('-', 1)
     regex = Regexer()
     if len(res) < 2:

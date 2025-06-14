@@ -22,9 +22,6 @@ class TestMyrkiRegistry(unittest.TestCase):
     self.assertEqual(len(self.myrg.myrki_instances), 33)
 
   def test_should_validate_myrki_instance(self):
-    # TODO: add test cases for every list item
-    # in https://docs.google.com/spreadsheets/d/1WRXHCjXrOZrPPkqBTqR7rZ9qz0BlMmzXtSNzeOL6oz0/edit?usp=sharing
-    
     # load registry
     self.myrg.load()
     

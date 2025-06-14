@@ -12,24 +12,6 @@ from constants_sabbats import (
 from datetime import datetime
 
 class ChronIO:
-  def __init__(self):
-    pass
-
-  def load_sabbats(self):
-    # TODO: we need to have them loaded for 
-    # many different requirements, all the 
-    # "match leter_code" items in other 
-    # functions can then be replaced with 
-    # a for in loop and going forward we 
-    # can add attributes to the sabbats 
-    # themselves for greater functionality
-    
-    # TODO: should include date of sabbat 
-    # which will vary by year for the 
-    # solstices and equinoxes so they kinda 
-    # have to be hard coded
-    pass
-
   def get_all_sabbat_codes(self):
     codes = [
       "SMH",

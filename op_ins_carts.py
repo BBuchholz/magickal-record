@@ -33,12 +33,6 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         # TODO: MODIFY THIS 
         # insert myrkis from selected file
         # insert myrki instances (cards) from selected file
-        # TODO: both should pull from the same sources
-        # as the list operations: (
-        # op_reg_lmi.py
-        # op_reg_lmk.py
-        # ) so after a review of the list this insert 
-        # operation can be run to finalize import
         # TODO: should prompt with a list of what is 
         # about to be inserted and then require 
         # a confirmation 
@@ -46,6 +40,10 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         # key to abort")
         print(f"found {card_count} cards to insert")
         print(f"checking to see if they are already in the database first")
+        myrkis = self.sql.select_myrkis()
+        print(f"existing myrkis found: {myrkis}")
+        cards = self.sql.select_cards()
+        print(f"existing cards found: {cards}")
         for card in self.cart.cards:
           print(f"checking for card: {card}")
           print("TODO: check here")
