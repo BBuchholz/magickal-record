@@ -140,7 +140,6 @@ class SqlIO(FileManager):
     if conn is not None:
       try:
         cursor = conn.cursor()
-        # TODO: TEST THESE
         self.db_one.ensure_table_db_meta(cursor)
         self.db_one.ensure_db_meta_values(cursor)
         self.db_one.ensure_table_myrki(cursor)

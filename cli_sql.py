@@ -26,7 +26,6 @@ class SqliteMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(SelectSqliteDbFileMenu(self.sql))
-    # TODO: implement these
     ops.append(EnsureDbTablesOp(self.sql))
     ops.append(EnsureDbFileOp(self.sql))
     ops.append(InsertSelectedCartFileIntoCurrentDb(self.sql, self.cart))
