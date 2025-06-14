@@ -12,8 +12,6 @@ LINES_STAR_LTH25 = [
   IMAGE_EMBED_STAR_LTH25
 ]
 
-# TODO: fix these, they will not pass until you do :) 
-# WELCOME TO EXTREME TDD :)
 MAIN_TEXT_APPLE_LTH25 = "\"For tha prettiest one...\" goes the old tale, setting the goddesses against one another in attempts to claim the title. Indeed, the mere suggestion of being the best is a potent lure that keeps many ever striving upwards from the gutter to the top, stumbling over each other in their frenzy. Such pursuits are a deceptive trap, and the sage knows real game hones itself in the depths of the pit, not the luxuries of the palace."
 COMMENT_ONE_APPLE_LTH25 = "- [[tha Golden Apple]] [[aTop]] [[tha Heights]]"
 COMMENT_TWO_APPLE_LTH25 = "- formerly APPLE-8E3E before the transition to [[Wheel Cycle Release Cet]] codes brought it into alignment with [[LTH25]]"
