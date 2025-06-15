@@ -2,6 +2,7 @@ from sqlio import SqlIO
 from menus import SubMenu
 from cfg import Config, NwdTestConfig
 from cartio import CartIO
+from myrreg import MyrkiRegistry
 
 from cli_slct_sql_db import SelectSqliteDbFileMenu
 from cli_cart import CartMenu
@@ -16,6 +17,7 @@ class SqliteMenu(SubMenu):
     self.cfg = cfg
     self.sql = SqlIO(cfg)
     self.cart = CartIO(cfg)
+    self.reg = MyrkiRegistry(cfg)
 
   def key(self):
     return "sql"
@@ -28,7 +30,7 @@ class SqliteMenu(SubMenu):
     ops.append(SelectSqliteDbFileMenu(self.sql))
     ops.append(EnsureDbTablesOp(self.sql))
     ops.append(EnsureDbFileOp(self.sql))
-    ops.append(InsertSelectedCartFileIntoCurrentDb(self.sql, self.cart))
+    ops.append(InsertSelectedCartFileIntoCurrentDb(self.sql, self.cart, self.reg))
     ops.append(CartMenu(self.cart))
     ops.append(ReadMyrkis(self.sql))
     return ops
