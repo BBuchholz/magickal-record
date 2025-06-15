@@ -186,6 +186,9 @@ class DbOne:
     cards = []
     for row in rows:
       # TODO: MAKE THIS WORK (COPIED FROM MYRKI, NOT CORRECT CURRENTLY)
+      # TODO: copy values from the ERD to fully populate the dict 
+      # (let cards be a list of dicts, each card a dict of 
+      # key value pairs for field values)
       card = row['cardValue']
       print(f"found card: {card}")
       cards.append(card)

@@ -87,6 +87,7 @@ class SqlIO(FileManager):
     cards = []
     if conn is not None:
       try:
+        print(f"aquiring cursor")
         cursor = conn.cursor()
         cards = self.db_one.select_cards(cursor)
       except Exception as e:

@@ -19,6 +19,7 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
   
   def run(self):
     cards = []
+    cards_to_insert = []
     myrkis = []
     use_cart = False
     use_reg = False
@@ -33,12 +34,14 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         use_reg = True
         print("loading MyrkiRegistry")
         self.reg.load()
+        cards_to_insert = self.reg.cartrg.carts
       else:
         print("please select a file using")
         print("the select option in the cartographer menu")
         print("")
     else:
       use_cart = True
+      cards_to_insert = self.cart.cards
     if self.sql.selected_db is None:
       print("no db file selected")
       default_db = "default.sqlite3"
@@ -55,7 +58,8 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
       print("the select option in the sql menu")
       print("")
     else:
-      card_count = len(self.cart.cards)
+      card_count = len(cards_to_insert)
+      print(f"cards to insert: {len(cards_to_insert)}")
       if card_count < 1:
         print("no cards to insert")
       else:
@@ -73,10 +77,12 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         print(f"existing myrkis found: {myrkis}")
         # TODO: after myrkis are working, make this work, 
         # already started just uncomment and run to see where its at
-        # cards = self.sql.select_cards()
+        cards = self.sql.select_cards()
         print(f"existing cards found: {cards}")
-        for card in self.cart.cards:
-          print(f"checking for card: {card}")
+        for card in cards_to_insert:
+          card_id = card['Card Id']
+          card_id = card_id if card_id.strip() != "" else "NO CARD ID"
+          print(f"checking for myrki: {card['MYRKI']} (card: {card_id})")
           print("TODO: check here")
 
 
