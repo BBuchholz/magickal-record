@@ -53,11 +53,15 @@ class SqlIO(FileManager):
         cursor = conn.cursor()
         metaData = self.get_db_meta(cursor)
         self.db_meta = metaData
+        print(f"successfully selected file: {file_name}")
       except Exception as e:
         print("Error getting db metadata")
         print("if this is a new database run etb option to ensure tables")
       finally:
-        print("IMPLEMENTTHIS NEEDS TESTING")
+        print(f"closing connection to: {file_name}")
+        conn.commit()
+        conn.close()
+        print(f"closed connection to: {file_name}")
 
 
   def get_db_meta(self, cursor: sqlite3.Cursor):
