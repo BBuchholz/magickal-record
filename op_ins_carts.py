@@ -78,7 +78,7 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         # TODO: after myrkis are working, make this work, 
         # already started just uncomment and run to see where its at
         cards = self.sql.select_cards()
-        print(f"existing cards found: {cards}")
+        print(f"existing cards found: {len(cards)}")
         for card in cards_to_insert:
           card_id = card['Card Id']
           card_id = card_id if card_id.strip() != "" else "NO CARD ID"

@@ -125,7 +125,7 @@ class DbOne:
     rows = cursor.fetchall()
     if len(rows) > 0:
       cards = self.load_cards_from(rows)
-      print(f"cards found: {cards}")
+      print(f"cards found: {len(cards)}")
     else:
       print("no cards found")
     return cards
@@ -189,7 +189,17 @@ class DbOne:
       # TODO: copy values from the ERD to fully populate the dict 
       # (let cards be a list of dicts, each card a dict of 
       # key value pairs for field values)
-      card = row['cardValue']
-      print(f"found card: {card}")
+      card = {}
+      card['cardId'] = row['cardId']
+      card['myrkiValue'] = row['myrkiValue']
+      card['cardCode'] = row['cardCode']
+      card['cardText'] = row['cardText']
+      card['cetCode'] = row['cetCode']
+      card['imageFile'] = row['imageFile']
+      card['canvaLinkHref'] = row['canvaLinkHref']
+      card['myrkiCreditCollabId'] = row['myrkiCreditCollabId']
+      card['textCreditCollabId'] = row['textCreditCollabId']
+      card['imageCreditCollabId'] = row['imageCreditCollabId']
+      # print(f"found card: {card}")
       cards.append(card)
     return cards
