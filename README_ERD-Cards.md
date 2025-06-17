@@ -19,6 +19,7 @@ We believe in giving credit where credit is due, and envision a future where AI 
 		}
 		
 		c[Card] {
+			int cardId
 			string myrkiValue
 			string cardCode
 			string cardText
