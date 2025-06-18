@@ -154,6 +154,16 @@ class DbOne:
       print("Exception inserting into db:")
       print(repr(e))
 
+  def insert_myrki(self, cursor: Cursor, myrki: str):
+    try:
+      cursor.execute('''
+        INSERT INTO Myrki (myrkiValue)
+        VALUES (?)
+      ''', (myrki,))
+    except Exception as e:
+      print("Exception inserting into db:")
+      print(repr(e))
+
   def update_db_meta(self, cursor: Cursor, key, val):
     query = '''
       UPDATE DbMeta

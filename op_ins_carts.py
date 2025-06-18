@@ -74,6 +74,7 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         print(f"found {card_count} cards to insert")
         print(f"checking to see if they are already in the database first")
         existing_myrkis = self.sql.select_myrkis()
+        queued_myrkis = []
         print(f"existing myrkis found: {len(existing_myrkis)}")
         # TODO: after myrkis are working, make this work, 
         # already started just uncomment and run to see where its at
@@ -86,8 +87,17 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
           print(f"checking for myrki: {myrki} (card: {card_id})")
           if existing_myrkis.contains(myrki):
             print(f"found myrki '{myrki}' in existing myrkis")
+            print(f"ignoring")
           else:
             print(f"did not find myrki '{myrki}' in existing myrkis")
+            print(f"queueing myrki for insertion")
+            queued_myrkis.append(myrki)
+            print(f"myrki queued for insertion: {myrki}")
+            print(f"myrkis queued for insertion: {len(queued_myrkis)}")
+        print(f"total myrkis queued for insertion: {len(queued_myrkis)}")
+        print(f"inserting myrkis: {queued_myrkis}")
+        self.sql.batch_insert_myrkis(queued_myrkis)
+        print(f"inserted myrkis")
           
           
 
