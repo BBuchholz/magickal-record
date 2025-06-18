@@ -73,17 +73,23 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         # key to abort")
         print(f"found {card_count} cards to insert")
         print(f"checking to see if they are already in the database first")
-        myrkis = self.sql.select_myrkis()
-        print(f"existing myrkis found: {myrkis}")
+        existing_myrkis = self.sql.select_myrkis()
+        print(f"existing myrkis found: {len(existing_myrkis)}")
         # TODO: after myrkis are working, make this work, 
         # already started just uncomment and run to see where its at
-        cards = self.sql.select_cards()
-        print(f"existing cards found: {len(cards)}")
+        existing_cards = self.sql.select_cards()
+        print(f"existing cards found: {len(existing_cards)}")
         for card in cards_to_insert:
+          myrki = card['MYRKI']
           card_id = card['Card Id']
           card_id = card_id if card_id.strip() != "" else "NO CARD ID"
-          print(f"checking for myrki: {card['MYRKI']} (card: {card_id})")
-          print("TODO: check here")
+          print(f"checking for myrki: {myrki} (card: {card_id})")
+          if existing_myrkis.contains(myrki):
+            print(f"found myrki '{myrki}' in existing myrkis")
+          else:
+            print(f"did not find myrki '{myrki}' in existing myrkis")
+          
+          
 
 
 

@@ -1,5 +1,7 @@
 from sqlite3 import Cursor
 from chronio import ChronIO
+from myrki_row_list import MyrkiRowList
+from card_row_list import CardRowList
 
 class DbOne:
   # database definitions for version one
@@ -107,8 +109,8 @@ class DbOne:
       print(f"Updating db_ensured_at timestamp to {val}")
       self.update_db_meta(cursor, key, val)
 
-  def select_myrkis(self, cursor: Cursor):
-    myrkis = []
+  def select_myrkis(self, cursor: Cursor) -> MyrkiRowList:
+    myrkis = MyrkiRowList()
     cursor.execute("SELECT * FROM Myrki")
     rows = cursor.fetchall()
     if len(rows) > 0:
@@ -173,8 +175,8 @@ class DbOne:
         print(f"found db_ensured_at: {ensured}")
     return metaData
   
-  def load_myrkis_from(self, rows) -> list:
-    myrkis = []
+  def load_myrkis_from(self, rows) -> MyrkiRowList:
+    myrkis = MyrkiRowList()
     for row in rows:
       myrki = row['myrkiValue']
       print(f"found myrki: {myrki}")

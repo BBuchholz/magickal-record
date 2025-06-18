@@ -6,6 +6,8 @@ from files import (
   get_path_in_folder,
 )
 from db_one import DbOne
+from myrki_row_list import MyrkiRowList
+from card_row_list import CardRowList
 
 class SqlIO(FileManager):
   def __init__(self, cfg: Config):
@@ -67,9 +69,9 @@ class SqlIO(FileManager):
   def get_db_meta(self, cursor: sqlite3.Cursor):
     return self.db_one.get_db_meta(cursor)
     
-  def select_myrkis(self):
+  def select_myrkis(self) -> MyrkiRowList:
     conn = self.open_connection()
-    myrkis = []
+    myrkis = MyrkiRowList()
     if conn is not None:
       try:
         cursor = conn.cursor()
