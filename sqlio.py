@@ -65,6 +65,12 @@ class SqlIO(FileManager):
         conn.close()
         print(f"closed connection to: {file_name}")
 
+  def batch_insert_cards(self, cards):
+    print("IMPLEMENT BATCH insert HERE, MIMIC MYRKIS")
+
+  def batch_update_cards(self, cards):
+    print("IMPLEMENT BATCH update HERE")
+
   def batch_insert_myrkis(self, myrkis):
     if self.selected_db is None:
       print("no db selected, exiting batch myrki insert")
@@ -107,9 +113,9 @@ class SqlIO(FileManager):
         conn.close()
         return myrkis
     
-  def select_cards(self):
+  def select_cards(self) -> CardRowList:
     conn = self.open_connection()
-    cards = []
+    cards = CardRowList()
     if conn is not None:
       try:
         print(f"aquiring cursor")

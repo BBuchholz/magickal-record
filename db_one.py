@@ -121,8 +121,8 @@ class DbOne:
     return myrkis
 
 
-  def select_cards(self, cursor: Cursor):
-    cards = []
+  def select_cards(self, cursor: Cursor) -> CardRowList:
+    cards = CardRowList()
     cursor.execute("SELECT * FROM Card")
     rows = cursor.fetchall()
     if len(rows) > 0:
@@ -194,8 +194,8 @@ class DbOne:
     return myrkis
   
 
-  def load_cards_from(self, rows) -> list:
-    cards = []
+  def load_cards_from(self, rows) -> CardRowList:
+    cards = CardRowList()
     for row in rows:
       # TODO: MAKE THIS WORK (COPIED FROM MYRKI, NOT CORRECT CURRENTLY)
       # TODO: copy values from the ERD to fully populate the dict 
