@@ -26,6 +26,10 @@ class Config(ABC):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "cartographer")
   
+  def cets_folder(self, expand_user=True):
+    nwd_fldr = self.nwd_folder(expand_user)
+    return os.path.join(nwd_fldr, "cets")
+  
   def sqlite_folder(self):
     nwd_fldr = self.nwd_folder()
     return os.path.join(nwd_fldr, "sqlite")

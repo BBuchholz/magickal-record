@@ -1,17 +1,19 @@
 import unittest
 
 from gitio import GitIO
+from cfg import NwdTestConfig
 
 class TestGitIO(unittest.TestCase):
   def setUp(self):
-    self.gio = GitIO()
+    tcfg = NwdTestConfig()
+    self.gio = GitIO(tcfg)
 
   def test_should_have_class(self):
     self.assertIsNotNone(self.gio)
 
   def test_should_list_repos(self):
     repo_list = self.gio.list_repos()
-    expected = 0 # None configured yet
+    expected = 1 # Manually configured
     self.assertEqual(len(repo_list), expected)
 
   def test_should_add_repo(self):
