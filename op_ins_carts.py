@@ -89,23 +89,26 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
           print(f"checking for myrki: {myrki} (card: {card_id})")
           if existing_myrkis.contains(myrki):
             print(f"found myrki '{myrki}' in existing myrkis")
-            print(f"ignoring")
+            print(f"ignoring myrki insertion")
+            if existing_cards.contains_exactly(card):
+              print(f"card already exists in database with no changes: {myrki} -> {card_id}")
+              print(f"ignoring card: {myrki} -> {card_id}")
+              print("")
+            elif existing_cards.contains_outdated(card):
+              print(f"previous version found of card: {myrki} -> {card_id}")
+              print(f"updating from previous verison: {myrki} -> {card_id}")
+              print(f"queueing new version for update: {myrki} -> {card_id}")
+              print("")
+            else:
+              print(f"new card found: {myrki} -> {card_id}")
+              print(f"queuing new card for insertion: {myrki} -> {card_id}")
+              print("")
           else:
             print(f"did not find myrki '{myrki}' in existing myrkis")
             print(f"queueing myrki for insertion")
             queued_myrkis.append(myrki)
             print(f"myrki queued for insertion: {myrki}")
             print(f"myrkis queued for insertion: {len(queued_myrkis)}")
-          if existing_cards.contains_exactly(card):
-            print(f"card already exists in database with no changes: {myrki} -> {card_id}")
-            print(f"ignoring card: {myrki} -> {card_id}")
-          elif existing_cards.contains_outdated(card):
-            print(f"previous version found of card: {myrki} -> {card_id}")
-            print(f"updating from previous verison: {myrki} -> {card_id}")
-            print(f"queueing new version for update: {myrki} -> {card_id}")
-          else:
-            print(f"new card found: {myrki} -> {card_id}")
-            print(f"queuing new card for insertion: {myrki} -> {card_id}")
         print(f"total myrkis queued for insertion: {len(queued_myrkis)}")
         print(f"inserting myrkis: {queued_myrkis}")
         self.sql.batch_insert_myrkis(queued_myrkis)
@@ -113,9 +116,6 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         self.sql.batch_update_cards(queued_card_updates)
         print(f"inserted myrkis")
           
-          
-
-
 
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
