@@ -1,6 +1,6 @@
 from menus import SubMenu
 from op_gar_report import GenerateGarDinErReport
-from cfg import Config
+from cfg import Config, NwdTestConfig
 from gardiner import GarDinEr
 from obsidio import ObsidIO
 
@@ -19,3 +19,8 @@ class GarDinErMenu(SubMenu):
     ops.append(GenerateGarDinErReport(self.gar))
     return ops
   
+if __name__ == "__main__":
+  tcfg = NwdTestConfig()
+  obio = ObsidIO(tcfg)
+  main = GarDinErMenu(tcfg, obio)
+  main.show_menu()
