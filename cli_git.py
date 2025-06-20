@@ -2,6 +2,7 @@ from gitio import GitIO
 from menus import SubMenu
 from cfg import Config, NwdTestConfig
 from op_lst_git import ListGitIOFoldersOp
+from op_aud_git import AuditGitIOFoldersOp
 
 class GitIOMenu(SubMenu):
   def __init__(self, cfg: Config):
@@ -18,6 +19,7 @@ class GitIOMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(ListGitIOFoldersOp(self.git))
+    ops.append(AuditGitIOFoldersOp(self.git))
     return ops
   
 if __name__ == "__main__":
