@@ -9,7 +9,7 @@ from op_list_myrkis import ListMyrkisOp
 from cli_select_cart_file import SelectCartFileMenu
 from op_list_related_myrkis import ListRelatedMyrkisOp
 from op_audit_myrkis import AuditMyrkisOp
-from op_audit_report import AudRepMenu
+from op_aud_rep import AudRepMenu
 from cfg import Config, NwdTestConfig
 from op_str_ver_cart import StoreSelectedCartFileAsVerifiedDefault
 from op_clr_ver_cart import ClearSelectedVerifiedCartFiles
