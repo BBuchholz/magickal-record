@@ -48,8 +48,24 @@ class CetER:
     short_name = repo['short_name']
     rel_address = repo['rel_address']
     print(f"auditing repo with short name: {short_name}")
-    print(f"verifying repo exists:")
     
+    # existence
+    print(f"verifying repo exists: {short_name}")
+    full_path = os.path.expanduser(rel_address)
+    if os.path.exists(full_path):
+      print(f"path exists at: {full_path}")
+      print("")
+    else:
+      print(f"no path exists at: {full_path}")
+      print(f"skipping repo: {short_name}")
+      print("")
+      return # exit audit of this repo
+
+    print(f"verifying repo {short_name} has git initialized:")
+    print("git verification not yet implemented, skipping")
+    print("")
+    print(f"verifying repo {short_name} has a remote set:")
+    print("git remote verification not yet implemented, skipping")
     print("")
     print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
     print("Cet should have a README")
