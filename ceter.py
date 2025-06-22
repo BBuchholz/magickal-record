@@ -1,9 +1,11 @@
 import os
+from gitio import GitIO
 
 class CetER:
-  def __init__(self):
+  def __init__(self, git: GitIO):
     self._expected_cets = []
     self.load_expected_cets()
+    self.git = git
 
   def compare_repos_to_expected(self, repos: list):
     expected_cets = self.get_expected_cets_list()
@@ -62,10 +64,18 @@ class CetER:
       return # exit audit of this repo
 
     print(f"verifying repo {short_name} has git initialized:")
-    print("git verification not yet implemented, skipping")
+    if self.git.is_git_repo(full_path):
+      print(f"found a .git subfolder in repo {short_name}, assuming git has been initialized")
+    else:
+      print(f"could not find a .git subfolder in repo {short_name}, double check that git has been initialized in directory: {full_path}")
     print("")
     print(f"verifying repo {short_name} has a remote set:")
-    print("git remote verification not yet implemented, skipping")
+    if self.git.has_remote(full_path):
+      print(f"found remote(s) for repo: {short_name}")
+      for remote in self.git.get_remotes(full_path):
+        print(f"remote: {remote}")
+    else:
+      print(f"no remotes found for repo: {short_name}")
     print("")
     print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
     print("Cet should have a README")

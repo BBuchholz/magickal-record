@@ -6,7 +6,7 @@ from cfg import NwdTestConfig
 class AuditGitIOFoldersOp(LineOption):
   def __init__(self, git: GitIO):
     self.git = git
-    self.ceter = CetER()
+    self.ceter = CetER(self.git)
 
   def key(self):
     return "aud"
