@@ -6,16 +6,26 @@ class CardRowList:
   def __len__(self):
     return len(self.cards)
   
-  def append(self, card):
+  def append(self, card: dict):
     self.cards.append(card)
 
   def load_sheet_orm(self):
     self.sheet_orm = {}
+    # TODO: change these to the correct values for the column names
+    # db fields are correct, replact Card Id for each
     self.sheet_orm['cardCode'] = 'Card Id'
-    # TODO: fill in for all sheet column names
+    self.sheet_orm['cardId'] = 'Card Id'
+    self.sheet_orm['myrkiValue'] = 'Card Id'
+    self.sheet_orm['cardText'] = 'Card Id'
+    self.sheet_orm['cetCode'] = 'Card Id'
+    self.sheet_orm['imageFile'] = 'Card Id'
+    self.sheet_orm['canvaLinkHref'] = 'Card Id'
+    self.sheet_orm['camyrkiCreditCollabIdrdCode'] = 'Card Id'
+    self.sheet_orm['textCreditCollabId'] = 'Card Id'
+    self.sheet_orm['imageCreditCollabId'] = 'Card Id'
 
-  def get_orm_for_db_field(self, field):
-    return self.sheet_orm(field)
+  def get_orm_value_for_db_field(self, card, field):
+    return card[self.sheet_orm[field]]
 
   def contains_exactly(self, card: dict):
     seeking_card_code = card['Card Id']
@@ -30,53 +40,63 @@ class CardRowList:
         
         # check field cardCode
         # object relational map, field names and sheet names differ so need a reference
-        orm_map = self.get_orm_for_db_field("cardCode") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "cardCode") 
+        row_value = card_row["cardCode"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field cardId
-        orm_map = self.get_orm_for_db_field("cardId") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "cardId") 
+        row_value = card_row["cardId"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field myrkiValue
-        orm_map = self.get_orm_for_db_field("myrkiValue") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "myrkiValue") 
+        row_value = card_row["myrkiValue"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field cardText
-        orm_map = self.get_orm_for_db_field("cardText") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "cardText") 
+        row_value = card_row["cardText"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field cetCode
-        orm_map = self.get_orm_for_db_field("cetCode") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "cetCode") 
+        row_value = card_row["cetCode"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field imageFile
-        orm_map = self.get_orm_for_db_field("imageFile") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "imageFile") 
+        row_value = card_row["imageFile"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field canvaLinkHref
-        orm_map = self.get_orm_for_db_field("canvaLinkHref") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "canvaLinkHref") 
+        row_value = card_row["canvaLinkHref"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field myrkiCreditCollabId
-        orm_map = self.get_orm_for_db_field("myrkiCreditCollabId") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "myrkiCreditCollabId") 
+        row_value = card_row["myrkiCreditCollabId"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field textCreditCollabId
-        orm_map = self.get_orm_for_db_field("textCreditCollabId") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "textCreditCollabId") 
+        row_value = card_row["textCreditCollabId"]
+        if not orm_mapped_value == row_value:
           return False
         
         # check field imageCreditCollabId 
-        orm_map = self.get_orm_for_db_field("imageCreditCollabId") 
-        if not self.fields_match_exactly(card, card_row, orm_map):
+        orm_mapped_value = self.get_orm_value_for_db_field(card, "imageCreditCollabId") 
+        row_value = card_row["imageCreditCollabId"]
+        if not orm_mapped_value == row_value:
           return False
       
       # if found and no fields triggered a false return, at this point all fields match
