@@ -49,6 +49,7 @@ class CetER:
   def audit_repo(self, repo: dict):
     short_name = repo['short_name']
     rel_address = repo['rel_address']
+    missing_elements = []
     print(f"auditing repo with short name: {short_name}")
     
     # existence
@@ -67,7 +68,9 @@ class CetER:
     if self.git.is_git_repo(full_path):
       print(f"found a .git subfolder in repo {short_name}, assuming git has been initialized")
     else:
-      print(f"could not find a .git subfolder in repo {short_name}, double check that git has been initialized in directory: {full_path}")
+      print(f"could not find a .git subfolder in repo {short_name}")
+      missing_elements.append(f"double check that git has been initialized in directory: {full_path}")
+
     print("")
     print(f"verifying repo {short_name} has a remote set:")
     if self.git.has_remote(full_path):
@@ -75,20 +78,47 @@ class CetER:
       for remote in self.git.get_remotes(full_path):
         print(f"remote: {remote}")
     else:
-      print(f"no remotes found for repo: {short_name}")
+      missing_remote = f"no remotes found for repo: {short_name}"
+      print(missing_remote)
+      missing_elements.append(missing_remote)
     print("")
-    print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
     print("Cet should have a README")
     readme_fname = "README.md"
+    readme_fpath = os.path.join(full_path, readme_fname)
+    if os.path.exists(readme_fpath):
+      print(f"found README at: {readme_fpath}")
+    else:
+      missing_readme = f"expected README not found at: {readme_fpath}"
+      print(missing_readme)
+      missing_elements.append(missing_readme)
+    print("")
     print("Cet should have a cet list")
     cet_list_fname = short_name + ".md"
+    cet_list_fpath = os.path.join(full_path, cet_list_fname)
+    if os.path.exists(cet_list_fpath):
+      print(f"found Cet List (CL) at: {cet_list_fpath}")
+    else:
+      missing_cl = f"expected Cet List (CL) not found at: {cet_list_fpath}"
+      print(missing_cl)
+      missing_elements.append(missing_cl)
+    print("")
+    # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
+    # the next code line print statement to wherever 
+    # we are in the implmentation
+    print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
+    print("")
     print("checking for card carousel index")
     card_list = self.get_card_list_from(cet_list_fname)
+    print("")
     for card in card_list:
       print(f"checking card carousel components: {card}")
       print("checking for image")
       html_fname = card + ".html"
       print(f"checking for html file: {html_fname}")
+    print("")
+    print("Audit complete, missing elements: ")
+    for missing_element in missing_elements:
+      print(missing_element)
 
         
     
