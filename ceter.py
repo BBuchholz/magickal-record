@@ -1,5 +1,7 @@
 import os
 from gitio import GitIO
+from files import get_lines_from
+from myr_file import MyrFile
 
 class CetER:
   def __init__(self, git: GitIO):
@@ -40,10 +42,14 @@ class CetER:
   def get_expected_cets_list(self):
     return self._expected_cets
   
-  def get_card_list_from(self, file_name):
+  def get_card_list_from(self, file_path):
     card_list = []
-    # TODO: implement get card_list_from(file_name)
-    card_list.append("TMPLT-LMS24")
+    lines_arr = get_lines_from(file_path)
+    mf = MyrFile()
+    mf.load_from_lines_arr(lines_arr)
+    for embedded_value in mf.get_embedded_lines(True):
+      print(f"found embedded value: {embedded_value}")
+      card_list.append(embedded_value)
     return card_list
 
   def audit_repo(self, repo: dict):
@@ -92,6 +98,12 @@ class CetER:
       print(missing_readme)
       missing_elements.append(missing_readme)
     print("")
+    print("checking for card carousel index")
+    # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
+    # the next code line print statement to wherever 
+    # we are in the implmentation
+    print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
+    print("")
     print("Cet should have a cet list")
     cet_list_fname = short_name + ".md"
     cet_list_fpath = os.path.join(full_path, cet_list_fname)
@@ -101,24 +113,19 @@ class CetER:
       missing_cl = f"expected Cet List (CL) not found at: {cet_list_fpath}"
       print(missing_cl)
       missing_elements.append(missing_cl)
-    print("")
-    # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
-    # the next code line print statement to wherever 
-    # we are in the implmentation
-    print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
-    print("")
-    print("checking for card carousel index")
-    card_list = self.get_card_list_from(cet_list_fname)
-    print("")
+    card_list = self.get_card_list_from(cet_list_fpath)
     for card in card_list:
       print(f"checking card carousel components: {card}")
       print("checking for image")
       html_fname = card + ".html"
       print(f"checking for html file: {html_fname}")
     print("")
-    print("Audit complete, missing elements: ")
-    for missing_element in missing_elements:
-      print(missing_element)
+    if len(missing_elements) > 0:
+      print("Audit complete, missing elements: ")
+      for missing_element in missing_elements:
+        print(missing_element)
+    else:
+      print("Audit complete, no missing elements found")
 
         
     

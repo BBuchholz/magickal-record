@@ -44,14 +44,14 @@ class TestMyrFile(unittest.TestCase):
     self.assertEqual(main_text, MAIN_TEXT_APPLE_LTH25)
 
 
-  def test_should_get_image_lines(self):
+  def test_should_get_embedded_lines(self):
     # STAR
-    image_embeds = self.mf_star_lth25.get_image_lines()
+    image_embeds = self.mf_star_lth25.get_embedded_lines()
     images = "\n".join(image_embeds)
     self.assertEqual(images, IMAGE_EMBED_STAR_LTH25)
     
     # APPLE
-    image_embeds = self.mf_apple_lth25.get_image_lines()
+    image_embeds = self.mf_apple_lth25.get_embedded_lines()
     images = "\n".join(image_embeds)
     self.assertEqual(images, IMAGE_EMBED_APPLE_LTH25)
 

@@ -48,9 +48,13 @@ class MyrFile:
         comment_lines.append(line)
     return comment_lines
 
-  def get_image_lines(self):
-    image_lines = []
+  def get_embedded_lines(self, strip_embedding=False):
+    embedded_lines = []
     for line in self.lines:
       if line.startswith("!["):
-        image_lines.append(line)
-    return image_lines
+        if strip_embedding:
+          processed_line = line.strip("![]")
+          embedded_lines.append(processed_line)
+        else:
+          embedded_lines.append(line)
+    return embedded_lines
