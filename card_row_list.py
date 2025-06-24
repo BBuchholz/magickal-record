@@ -11,18 +11,14 @@ class CardRowList:
 
   def load_sheet_orm(self):
     self.sheet_orm = {}
-    # TODO: change these to the correct values for the column names
-    # db fields are correct, replact Card Id for each
+    # only these values will map to the sheet values
+    # everything else are db reference columns
+    # that will require special handling elsewhere
     self.sheet_orm['cardCode'] = 'Card Id'
-    self.sheet_orm['cardId'] = 'Card Id'
-    self.sheet_orm['myrkiValue'] = 'Card Id'
-    self.sheet_orm['cardText'] = 'Card Id'
-    self.sheet_orm['cetCode'] = 'Card Id'
-    self.sheet_orm['imageFile'] = 'Card Id'
-    self.sheet_orm['canvaLinkHref'] = 'Card Id'
-    self.sheet_orm['camyrkiCreditCollabIdrdCode'] = 'Card Id'
-    self.sheet_orm['textCreditCollabId'] = 'Card Id'
-    self.sheet_orm['imageCreditCollabId'] = 'Card Id'
+    self.sheet_orm['myrkiValue'] = 'MYRKI'
+    self.sheet_orm['cardText'] = 'Card Text'
+    self.sheet_orm['cetCode'] = 'Cet'
+    self.sheet_orm['canvaLinkHref'] = 'Canva Link'
 
   def get_orm_value_for_db_field(self, card, field):
     return card[self.sheet_orm[field]]
@@ -33,7 +29,6 @@ class CardRowList:
       seeking_card_code = ""
     if len(seeking_card_code) > 0:
       print(f"seeking card code: {seeking_card_code}")
-      found_card_code = False
       for card_row in self.cards:
         # TODO: check each field, if even a single one is different, return false
         # start with cardCode, if that differs can return False immediately
@@ -45,11 +40,11 @@ class CardRowList:
         if not orm_mapped_value == row_value:
           return False
         
-        # check field cardId
-        orm_mapped_value = self.get_orm_value_for_db_field(card, "cardId") 
-        row_value = card_row["cardId"]
-        if not orm_mapped_value == row_value:
-          return False
+        # don't check field cardId (DB REF COLUMN)
+        # orm_mapped_value = self.get_orm_value_for_db_field(card, "cardId") 
+        # row_value = card_row["cardId"]
+        # if not orm_mapped_value == row_value:
+        #   return False
         
         # check field myrkiValue
         orm_mapped_value = self.get_orm_value_for_db_field(card, "myrkiValue") 
@@ -69,11 +64,11 @@ class CardRowList:
         if not orm_mapped_value == row_value:
           return False
         
-        # check field imageFile
-        orm_mapped_value = self.get_orm_value_for_db_field(card, "imageFile") 
-        row_value = card_row["imageFile"]
-        if not orm_mapped_value == row_value:
-          return False
+        # don't check field imageFile (DB REF COLUMN)
+        # orm_mapped_value = self.get_orm_value_for_db_field(card, "imageFile") 
+        # row_value = card_row["imageFile"]
+        # if not orm_mapped_value == row_value:
+        #   return False
         
         # check field canvaLinkHref
         orm_mapped_value = self.get_orm_value_for_db_field(card, "canvaLinkHref") 
@@ -81,26 +76,26 @@ class CardRowList:
         if not orm_mapped_value == row_value:
           return False
         
-        # check field myrkiCreditCollabId
-        orm_mapped_value = self.get_orm_value_for_db_field(card, "myrkiCreditCollabId") 
-        row_value = card_row["myrkiCreditCollabId"]
-        if not orm_mapped_value == row_value:
-          return False
+        # don't check field myrkiCreditCollabId (DB REF COLUMN)
+        # orm_mapped_value = self.get_orm_value_for_db_field(card, "myrkiCreditCollabId") 
+        # row_value = card_row["myrkiCreditCollabId"]
+        # if not orm_mapped_value == row_value:
+        #   return False
         
-        # check field textCreditCollabId
-        orm_mapped_value = self.get_orm_value_for_db_field(card, "textCreditCollabId") 
-        row_value = card_row["textCreditCollabId"]
-        if not orm_mapped_value == row_value:
-          return False
+        # don't check field textCreditCollabId (DB REF COLUMN)
+        # orm_mapped_value = self.get_orm_value_for_db_field(card, "textCreditCollabId") 
+        # row_value = card_row["textCreditCollabId"]
+        # if not orm_mapped_value == row_value:
+        #   return False
         
-        # check field imageCreditCollabId 
-        orm_mapped_value = self.get_orm_value_for_db_field(card, "imageCreditCollabId") 
-        row_value = card_row["imageCreditCollabId"]
-        if not orm_mapped_value == row_value:
-          return False
+        # don't check field imageCreditCollabId (DB REF COLUMN)
+        # orm_mapped_value = self.get_orm_value_for_db_field(card, "imageCreditCollabId") 
+        # row_value = card_row["imageCreditCollabId"]
+        # if not orm_mapped_value == row_value:
+        #   return False
       
       # if found and no fields triggered a false return, at this point all fields match
-      return found_card_code 
+      return True 
     else:
       print(f"card has no card code set, potentially acceptable remix, allowing duplicate")
       return False

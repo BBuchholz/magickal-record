@@ -110,11 +110,26 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
             print(f"myrki queued for insertion: {myrki}")
             print(f"myrkis queued for insertion: {len(queued_myrkis)}")
         print(f"total myrkis queued for insertion: {len(queued_myrkis)}")
-        print(f"inserting myrkis: {queued_myrkis}")
-        self.sql.batch_insert_myrkis(queued_myrkis)
-        self.sql.batch_insert_cards(queued_card_insertions)
-        self.sql.batch_update_cards(queued_card_updates)
-        print(f"inserted myrkis")
+        if len(queued_myrkis) > 0:
+          print(f"inserting myrkis: {queued_myrkis}")
+          self.sql.batch_insert_myrkis(queued_myrkis)
+          print(f"inserted myrkis")
+        else:
+          print("no myrkis to insert, skipping")
+        print(f"total cards queued for insertion: {len(queued_card_insertions)}")
+        if len(queued_card_insertions) > 0:
+          print(f"inserting cards: {queued_card_insertions}")
+          self.sql.batch_insert_cards(queued_card_insertions)
+          print("inserted cards")
+        else:
+          print("no cards to insert, skipping")
+        print(f"total cards queued for update: {len(queued_card_updates)}")
+        if len(queued_card_updates) > 0:
+          print(f"updating cards: {queued_card_updates}")
+          self.sql.batch_update_cards(queued_card_updates)
+          print("updated cards")
+        else:
+          print("no cards to update, skipping")
           
 
 if __name__ == "__main__":
