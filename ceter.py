@@ -121,11 +121,11 @@ class CetER:
       print(f"checking for html file: {html_fname}")
     print("")
     if len(missing_elements) > 0:
-      print("Audit complete, missing elements: ")
+      print(f"Audit complete for repo {short_name}, missing elements: ")
       for missing_element in missing_elements:
         print(missing_element)
     else:
-      print("Audit complete, no missing elements found")
+      print(f"Audit complete, no missing elements found for repo: {short_name}")
 
         
     
