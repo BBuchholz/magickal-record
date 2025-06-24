@@ -99,10 +99,14 @@ class CetER:
       missing_elements.append(missing_readme)
     print("")
     print("checking for card carousel index")
-    # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
-    # the next code line print statement to wherever 
-    # we are in the implmentation
-    print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
+    index_fname = "index.html"
+    index_fpath = os.path.join(full_path, index_fname)
+    if os.path.exists(index_fpath):
+      print(f"found index at: {index_fpath}")
+    else:
+      missing_index = f"expected index not found at: {index_fpath}"
+      print(missing_index)
+      missing_elements.append(missing_index)
     print("")
     print("Cet should have a cet list")
     cet_list_fname = short_name + ".md"
@@ -117,8 +121,19 @@ class CetER:
     for card in card_list:
       print(f"checking card carousel components: {card}")
       print("checking for image")
+      # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
+      # the next code line print statement to wherever 
+      # we are in the implmentation
+      print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
       html_fname = card + ".html"
       print(f"checking for html file: {html_fname}")
+      html_fpath = os.path.join(full_path, html_fname)
+      if os.path.exists(html_fpath):
+        print(f"found html Card File (CF) at: {html_fpath}")
+      else:
+        missing_html = f"expected Card File (CF) not found at: {html_fpath}"
+        print(missing_html)
+        missing_elements.append(missing_html)
     print("")
     if len(missing_elements) > 0:
       print(f"Audit complete for repo {short_name}, missing elements: ")
