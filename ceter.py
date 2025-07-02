@@ -120,11 +120,17 @@ class CetER:
     card_list = self.get_card_list_from(cet_list_fpath)
     for card in card_list:
       print(f"checking card carousel components: {card}")
-      print("checking for image")
-      # TODO: BOOKMARK PRINT STATEMENT, move this comment and 
-      # the next code line print statement to wherever 
-      # we are in the implmentation
-      print(f"CetER.audit_repo(repo) IMPLEMENTATION IN PROGRESS")
+      # image file
+      image_fname = card + "_CARD.png"
+      print(f"checking for image file: {image_fname}")
+      image_fpath = os.path.join(full_path, image_fname)
+      if os.path.exists(image_fpath):
+        print(f"found Image Card File (ICF) at: {image_fpath}")
+      else:
+        missing_image = f"expected Image Card File (ICF) not found at: {image_fpath}"
+        print(missing_image)
+        missing_elements.append(missing_image)
+      # html file
       html_fname = card + ".html"
       print(f"checking for html file: {html_fname}")
       html_fpath = os.path.join(full_path, html_fname)
