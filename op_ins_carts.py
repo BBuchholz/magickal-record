@@ -98,10 +98,14 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
               print(f"previous version found of card: {myrki} -> {card_id}")
               print(f"updating from previous verison: {myrki} -> {card_id}")
               print(f"queueing new version for update: {myrki} -> {card_id}")
+              print(f"queueing card: {card}")
+              queued_card_updates.append(card)
               print("")
             else:
               print(f"new card found: {myrki} -> {card_id}")
               print(f"queuing new card for insertion: {myrki} -> {card_id}")
+              print(f"queueing card: {card}")
+              queued_card_insertions.append(card)
               print("")
           else:
             print(f"did not find myrki '{myrki}' in existing myrkis")
@@ -116,9 +120,15 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
           print(f"inserted myrkis")
         else:
           print("no myrkis to insert, skipping")
-        print(f"total cards queued for insertion: {len(queued_card_insertions)}")
-        if len(queued_card_insertions) > 0:
-          print(f"inserting cards: {queued_card_insertions}")
+        qci_total = len(queued_card_insertions)
+        print(f"total cards queued for insertion: {qci_total}")
+        if qci_total > 0:
+          print(f"inserting cards:")
+          qci_count = 0
+          for queued_card in queued_card_insertions:
+            qci_count += 1
+            print(f"queued for insertion, card {qci_count} of {qci_total}:")
+            print(queued_card)
           self.sql.batch_insert_cards(queued_card_insertions)
           print("inserted cards")
         else:
