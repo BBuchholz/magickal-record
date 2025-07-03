@@ -66,7 +66,27 @@ class SqlIO(FileManager):
         print(f"closed connection to: {file_name}")
 
   def batch_insert_cards(self, cards):
-    print("IMPLEMENT BATCH insert HERE, MIMIC MYRKIS")
+    if self.selected_db is None:
+      print("no db selected, exiting batch myrki insert")
+      return
+    else:
+      file_name = self.selected_db
+      conn = self.open_connection()
+      if conn is not None:
+        try:
+          cursor = conn.cursor()
+          for card in cards:
+            print(f"inserting card: {card}")
+            self.db.insert_card(cursor, card)
+          print(f"successfully selected file: {file_name}")
+        except Exception as e:
+          print("Error inserting card")
+          print(repr(e))
+        finally:
+          print(f"closing connection to: {file_name}")
+          conn.commit()
+          conn.close()
+          print(f"closed connection to: {file_name}")
 
   def batch_update_cards(self, cards):
     print("IMPLEMENT BATCH update HERE")
@@ -86,8 +106,8 @@ class SqlIO(FileManager):
             self.db.insert_myrki(cursor, myrki)
           print(f"successfully selected file: {file_name}")
         except Exception as e:
-          print("Error getting db metadata")
-          print("if this is a new database run etb option to ensure tables")
+          print("Error inserting myrki")
+          print(repr(e))
         finally:
           print(f"closing connection to: {file_name}")
           conn.commit()

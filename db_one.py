@@ -164,6 +164,16 @@ class DbOne:
       print("Exception inserting into db:")
       print(repr(e))
 
+  def insert_card(self, cursor: Cursor, card: dict):
+    try:
+      cursor.execute('''
+        INSERT INTO Card (cardCode, myrkiValue, cardText, cetCode, canvaLinkHref)
+        VALUES (?,?,?,?,?)
+      ''', (card['Card Id'], card['MYRKI'], card['Card Text'], card['Cet'], card['Canva Link'],))
+    except Exception as e:
+      print("Exception inserting Card into db:")
+      print(repr(e))
+
   def update_db_meta(self, cursor: Cursor, key, val):
     query = '''
       UPDATE DbMeta
