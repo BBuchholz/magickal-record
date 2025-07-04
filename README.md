@@ -35,7 +35,9 @@ how they work inside the system itself.
 (If you are viewing this inside an IDE, you
 will need Mermaid support to parse the diagram)
 
-[ERD-Cards](README_ERD-Cards.md)
+[ERD_DB-One](README_ERD_DB-One.md)
+
+UPDATE: We are rethinking our DB Model and creating DB-Two to manifest that vision, see [ERD_DB-Two](README_ERD_DB-Two.md) for details (code will be ported to fit the new db structure)
 
 # External Planning Documents
 
