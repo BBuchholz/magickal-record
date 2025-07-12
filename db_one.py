@@ -1,7 +1,7 @@
 from sqlite3 import Cursor
 from chronio import ChronIO
 from myrki_row_list import MyrkiRowList
-from card_row_list import CardRowList
+from card_row_list import MyrkiInstanceRowList
 
 class DbOne:
   # database definitions for version one
@@ -121,16 +121,16 @@ class DbOne:
     return myrkis
 
 
-  def select_cards(self, cursor: Cursor) -> CardRowList:
-    cards = CardRowList()
-    cursor.execute("SELECT * FROM Card")
+  def select_myrki_instances(self, cursor: Cursor) -> MyrkiInstanceRowList:
+    myrki_instances = MyrkiInstanceRowList()
+    cursor.execute("SELECT * FROM MyrkiInstance")
     rows = cursor.fetchall()
     if len(rows) > 0:
-      cards = self.load_cards_from(rows)
-      print(f"cards found: {len(cards)}")
+      myrki_instances = self.load_myrki_instances_from(rows)
+      print(f"myrki_instances found: {len(myrki_instances)}")
     else:
-      print("no cards found")
-    return cards
+      print("no myrki_instances found")
+    return myrki_instances
 
   def get_db_meta(self, cursor: Cursor):
     version = None
@@ -164,10 +164,10 @@ class DbOne:
       print("Exception inserting into db:")
       print(repr(e))
 
-  def insert_card(self, cursor: Cursor, card: dict):
+  def insert_myrki_instance(self, cursor: Cursor, card: dict):
     try:
       cursor.execute('''
-        INSERT INTO Card (cardCode, myrkiValue, cardText, cetCode, canvaLinkHref)
+        INSERT INTO MyrkiInstance (cardCode, myrkiValue, cardText, cetCode, canvaLinkHref)
         VALUES (?,?,?,?,?)
       ''', (card['Card Id'], card['MYRKI'], card['Card Text'], card['Cet'], card['Canva Link'],))
     except Exception as e:
@@ -204,8 +204,8 @@ class DbOne:
     return myrkis
   
 
-  def load_cards_from(self, rows) -> CardRowList:
-    cards = CardRowList()
+  def load_myrki_instances_from(self, rows) -> MyrkiInstanceRowList:
+    cards = MyrkiInstanceRowList()
     for row in rows:
       # TODO: MAKE THIS WORK (COPIED FROM MYRKI, NOT CORRECT CURRENTLY)
       # TODO: copy values from the ERD to fully populate the dict 
@@ -219,9 +219,6 @@ class DbOne:
       card['cetCode'] = row['cetCode']
       card['imageFile'] = row['imageFile']
       card['canvaLinkHref'] = row['canvaLinkHref']
-      card['myrkiCreditCollabId'] = row['myrkiCreditCollabId']
-      card['textCreditCollabId'] = row['textCreditCollabId']
-      card['imageCreditCollabId'] = row['imageCreditCollabId']
       # print(f"found card: {card}")
       cards.append(card)
     return cards

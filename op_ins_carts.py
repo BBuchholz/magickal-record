@@ -80,7 +80,7 @@ class InsertSelectedCartFileIntoCurrentDb(LineOption):
         print(f"existing myrkis found: {len(existing_myrkis)}")
         # TODO: after myrkis are working, make this work, 
         # already started just uncomment and run to see where its at
-        existing_cards = self.sql.select_cards()
+        existing_cards = self.sql.select_myrki_instances()
         print(f"existing cards found: {len(existing_cards)}")
         for card in cards_to_insert:
           myrki = card['MYRKI']

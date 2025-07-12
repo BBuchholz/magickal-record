@@ -1,4 +1,4 @@
-class CardRowList:
+class MyrkiInstanceRowList:
   def __init__(self):
     self.cards = []
     self.load_sheet_orm()

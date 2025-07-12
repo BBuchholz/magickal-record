@@ -7,7 +7,7 @@ from files import (
 )
 from db_one import DbOne
 from myrki_row_list import MyrkiRowList
-from card_row_list import CardRowList
+from card_row_list import MyrkiInstanceRowList
 
 class SqlIO(FileManager):
   def __init__(self, cfg: Config):
@@ -77,7 +77,7 @@ class SqlIO(FileManager):
           cursor = conn.cursor()
           for card in cards:
             print(f"inserting card: {card}")
-            self.db.insert_card(cursor, card)
+            self.db.insert_myrki_instance(cursor, card)
           print(f"successfully selected file: {file_name}")
         except Exception as e:
           print("Error inserting card")
@@ -133,14 +133,14 @@ class SqlIO(FileManager):
         conn.close()
         return myrkis
     
-  def select_cards(self) -> CardRowList:
+  def select_myrki_instances(self) -> MyrkiInstanceRowList:
     conn = self.open_connection()
-    cards = CardRowList()
+    cards = MyrkiInstanceRowList()
     if conn is not None:
       try:
         print(f"aquiring cursor")
         cursor = conn.cursor()
-        cards = self.db.select_cards(cursor)
+        cards = self.db.select_myrki_instances(cursor)
       except Exception as e:
         print("Error selecting cards:")
         print(repr(e))
