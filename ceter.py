@@ -8,6 +8,11 @@ def print_if_verbose(verbose, message):
     print(message)
 
 class CetER:
+  """
+  Represents a Cet Entity Regent (as do all XXXER classes)
+  Tha CetER is responsible for being in charge of all operations handling Cet Audits and ideally CetIO should handle Generations and Imports
+  It is not currently structured this way, we are dealing with cowboy coded spaghetti logic but we are noting this here as we want the ER and IO suffixes on all classes to be signifiers of function and intention so that we can refactor as we go an everything will have a proper expected place even if it takes a while to find its way there
+  """
   def __init__(self, git: GitIO):
     self._expected_cets = []
     self.load_expected_cets()
