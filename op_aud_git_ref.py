@@ -35,7 +35,7 @@ class AuditGitIOFoldersOpRefactor(LineOption):
       print(f"found {repo_count} repos:")
       self.ceter.compare_repos_to_expected(repos)
       for repo in repos:
-        self.ceter.audit_repo(repo, False)
+        cetar = self.ceter.audit_repo(repo, False)
 
 
 if __name__ == "__main__":
