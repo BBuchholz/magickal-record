@@ -154,12 +154,15 @@ class CetER:
         print_if_verbose(verbose, missing_html)
         cetar.missing_elements.append(missing_html)
     print("")
-    if len(cetar.missing_elements) > 0:
-      print(f"Audit complete for repo {short_name}, missing elements: ")
-      for missing_element in cetar.missing_elements:
-        print(missing_element)
-    else:
-      print(f"Audit complete, no missing elements found for repo: {short_name}")
+    print(f"Audit complete for repo {short_name}")
+    # TODO: replace with cetar.print_missing_elements()
+    # if len(cetar.missing_elements) > 0:
+    #   print(f"missing elements for repo: {short_name}")
+    #   for missing_element in cetar.missing_elements:
+    #     print(missing_element)
+    # else:
+    #   print(f"no missing elements found for repo: {short_name}")
+    cetar.print_missing_elements(verbose)
 
     return cetar
 
