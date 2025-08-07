@@ -3,13 +3,21 @@ TODO: IMPLEMENT TODO items below
 COPIED VERBATIM FROM op_imp_obo.py
 
 
-TODO: op_imp_obo.py should be copied to create 
+DONE: op_imp_obo.py should be copied to create 
 op_mf_imp_obo.py -> Op Multi Filtered 
 Imported Obsidian, 
 
 TODO: can create a new version 
 of method obo.get_src_md_files(self) to 
 be obo.get__mf_src_md_files(self, filters) 
+
+  FIRST TODO: SetFileNameFilterOp needs to be 
+  changed to call AddFileNameFilterOp and should 
+  add to a separate list in OBIO to avoid breaking 
+  currently working code (should have a separate 
+  list of filters internally, we can refactor later,
+  deprecating the single filter version, 
+  if the new version becomes the exclusive one)
 
 TODO: and can pass those filters to op_mf_imp_obo.py 
 during __init__, 
@@ -39,7 +47,7 @@ from menus import SubMenu
 from op_set_filter import SetFileNameFilterOp
 from op_copy_files import CopyFilesOp
 
-class ImportObsidianFilesMenu(SubMenu):
+class MultiFilterImportObsidianFilesMenu(SubMenu):
   def __init__(self, obio):
     self.obio = obio
     self.obio.file_filter = ""
@@ -75,5 +83,5 @@ if __name__ == "__main__":
   tcfg = NwdTestConfig()
   obio = ObsidIO(tcfg)
   obio.load_vaults(tcfg.test_vault_config_file())
-  main = ImportObsidianFilesMenu(obio)
+  main = MultiFilterImportObsidianFilesMenu(obio)
   main.show_menu()
