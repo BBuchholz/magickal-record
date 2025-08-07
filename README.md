@@ -1,5 +1,13 @@
 # magickal-record
 
+# IN PROGRESS
+
+We have started logging work through OUR ENTOMDT Site, 
+see notes on current code work 
+[IN PROGRESS HERE](https://sites.google.com/view/entomdt/magickal-record)
+
+# History
+
 Magickal Record was an idea I had that was heavily
 thought out in the planning stages regarding various
 things I wanted to do with a digital version of 
