@@ -1,16 +1,26 @@
 """
-TODO: COPIED VERBATIM FROM op_imp_obo.py
+TODO: IMPLEMENT TODO items below 
+COPIED VERBATIM FROM op_imp_obo.py
 
 
-op_imp_obo.py should be copied to create 
+TODO: op_imp_obo.py should be copied to create 
 op_mf_imp_obo.py -> Op Multi Filtered 
-Imported Obsidian, can create a new version 
+Imported Obsidian, 
+
+TODO: can create a new version 
 of method obo.get_src_md_files(self) to 
-be obo.get__mf_src_md_files(self, filters) and 
-can pass those filters to op_mf_imp_obo.py 
-during __init__, those filters will be all 
+be obo.get__mf_src_md_files(self, filters) 
+
+TODO: and can pass those filters to op_mf_imp_obo.py 
+during __init__, 
+
+TODO: those filters will be all 
 the file names from the audit report, 
-in this way, the working directory, obsidio, 
+
+
+TODO: convert this part into reasoning 
+for documentation -> in this way, the 
+working directory, obsidio, 
 will have all the current copies of those 
 files to work from and that's what we can 
 copy into the Cet folders without altering 
