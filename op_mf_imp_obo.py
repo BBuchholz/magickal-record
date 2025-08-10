@@ -50,7 +50,7 @@ from op_copy_files import CopyFilesOp
 class MultiFilterImportObsidianFilesMenu(SubMenu):
   def __init__(self, obio: ObsidIO):
     self.obio = obio
-    self.obio.file_filter = ""
+    self.obio.file_filters = []
 
   def key(self):
     return "imp"
@@ -64,7 +64,7 @@ class MultiFilterImportObsidianFilesMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(SetFileNameFilterOp(self.obio))
-    if len(self.obio.file_filter) > 2 :
+    if len(self.obio.file_filters) > 0 :
       filtered = self.obio.get_src_md_files() 
       if len(filtered) < 100:
         print("the following files will be copied ")

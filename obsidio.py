@@ -13,11 +13,19 @@ from os import path
 from cfg import Config
 
 class ObsidIO():
+  """
+  A class to handle Obsidian Input and Output
+
+  Attributes:
+    file_filter (str): used for single filter selections
+    file_filters (list): used for Multi Filter selections
+  """
   def __init__(self, cfg: Config):
     self._cfg = cfg
     self._loaded_vaults = []
     self._last_loaded_vault = None
     self.file_filter = ""
+    self.file_filters = []
 
   @property
   def last_loaded_vault(self):
