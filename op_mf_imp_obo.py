@@ -7,11 +7,11 @@ DONE: op_imp_obo.py should be copied to create
 op_mf_imp_obo.py -> Op Multi Filtered 
 Imported Obsidian, 
 
-TODO: can create a new version 
+DONE: can create a new version 
 of method obo.get_src_md_files(self) to 
-be obo.get__mf_src_md_files(self, filters) 
+be obo.get_mf_src_md_files(self) 
 
-  FIRST TODO: SetFileNameFilterOp needs to be 
+  FIRST DONE: SetFileNameFilterOp needs to be 
   changed to call AddFileNameFilterOp and should 
   add to a separate list in OBIO to avoid breaking 
   currently working code (should have a separate 
@@ -20,7 +20,7 @@ be obo.get__mf_src_md_files(self, filters)
   if the new version becomes the exclusive one)
 
 TODO: and can pass those filters to op_mf_imp_obo.py 
-during __init__, 
+using a new method op_mf_imp_obo.add_filters(filters), 
 
 TODO: those filters will be all 
 the file names from the audit report, 
@@ -45,6 +45,7 @@ from obsidio import ObsidIO
 from cfg import NwdTestConfig
 from menus import SubMenu
 from op_set_filter import SetFileNameFilterOp
+from op_add_filter import AddFileNameFilterOp
 from op_copy_files import CopyFilesOp
 
 class MultiFilterImportObsidianFilesMenu(SubMenu):
@@ -63,15 +64,18 @@ class MultiFilterImportObsidianFilesMenu(SubMenu):
 
   def get_ops(self):
     ops = []
-    ops.append(SetFileNameFilterOp(self.obio))
+    ops.append(AddFileNameFilterOp(self.obio))
     if len(self.obio.file_filters) > 0 :
-      filtered = self.obio.get_src_md_files() 
-      if len(filtered) < 100:
+      filtered = self.obio.get_mf_src_md_files() 
+      total = len(filtered)
+      count = 0
+      if total < 100:
         print("the following files will be copied ")
         print("from the vault to the obsidio folder ")
         print("if you execute the copy command")
         for file in filtered:
-          print(f"File: {file}")
+          count += 1
+          print(f"File {count} of {total}: {file}")
         ops.append(CopyFilesOp(self.obio, filtered))
       else:
         print("too many files selected, limit is 99")

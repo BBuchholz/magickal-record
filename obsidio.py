@@ -88,6 +88,13 @@ class ObsidIO():
       md_files = get_filtered_md_files(folder, self.file_filter)
     return md_files
   
+  def get_mf_src_md_files(self):
+    folder = self._last_loaded_vault
+    md_files = []
+    if path.exists(folder):
+      md_files = get_multi_filter_md_files(folder, self.file_filters)
+    return md_files
+  
   def get_src_md_file_path(self, fname_without_suffix):
     fldr = ""
     if not self.last_loaded_vault:
