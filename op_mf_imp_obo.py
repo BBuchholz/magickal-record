@@ -19,6 +19,9 @@ be obo.get_mf_src_md_files(self)
   deprecating the single filter version, 
   if the new version becomes the exclusive one)
 
+TODO: should have option to clear working directory
+called ClearWorkingDirectoryOp
+
 TODO: and can pass those filters to op_mf_imp_obo.py 
 using a new method op_mf_imp_obo.add_filters(filters), 
 
@@ -47,6 +50,7 @@ from menus import SubMenu
 from op_set_filter import SetFileNameFilterOp
 from op_add_filter import AddFileNameFilterOp
 from op_copy_files import CopyFilesOp
+from op_clear_wd import ClearWorkingDirectoryOp
 
 class MultiFilterImportObsidianFilesMenu(SubMenu):
   def __init__(self, obio: ObsidIO):
@@ -65,6 +69,7 @@ class MultiFilterImportObsidianFilesMenu(SubMenu):
   def get_ops(self):
     ops = []
     ops.append(AddFileNameFilterOp(self.obio))
+    ops.append(ClearWorkingDirectoryOp(self.obio))
     if len(self.obio.file_filters) > 0 :
       filtered = self.obio.get_mf_src_md_files() 
       total = len(filtered)
