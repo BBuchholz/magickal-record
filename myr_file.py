@@ -47,6 +47,11 @@ class MyrFile:
       if line.startswith("- "):
         comment_lines.append(line)
     return comment_lines
+  
+  def get_wikilinks(self):
+    wikilinks = []
+    # TODO: implement
+    return wikilinks
 
   def get_embedded_lines(self, strip_embedding=False):
     embedded_lines = []

@@ -52,6 +52,7 @@ from op_add_filter import AddFileNameFilterOp
 from op_copy_files import CopyFilesOp
 from op_clear_wd import ClearWorkingDirectoryOp
 from op_clear_ff import ClearFileFilters
+from op_gather_sl import GatherSeedLinks
 
 class MultiFilterImportObsidianFilesMenu(SubMenu):
   def __init__(self, obio: ObsidIO):
@@ -71,6 +72,7 @@ class MultiFilterImportObsidianFilesMenu(SubMenu):
     ops = []
     ops.append(AddFileNameFilterOp(self.obio))
     ops.append(ClearWorkingDirectoryOp(self.obio))
+    ops.append(GatherSeedLinks(self.obio))
     ops.append(ClearFileFilters(self.obio))
     if len(self.obio.file_filters) > 0 :
       filtered = self.obio.get_mf_src_md_files() 

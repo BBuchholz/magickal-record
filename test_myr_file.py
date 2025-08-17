@@ -43,6 +43,10 @@ class TestMyrFile(unittest.TestCase):
     main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_APPLE_LTH25)
 
+  def test_should_get_wikilinks(self):
+    # TODO: STAR AND APPLE BOTH HAVE SOME, IMPLEMENT
+    implemented = False
+    self.assertTrue(implemented)
 
   def test_should_get_embedded_lines(self):
     # STAR
