@@ -1,3 +1,5 @@
+import re
+
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
 # much like MyrKis are more than "mere keys"
@@ -48,9 +50,45 @@ class MyrFile:
         comment_lines.append(line)
     return comment_lines
   
+  def get_wikilink_matches(self, wikitext):
+    
+    # Regex to find wikilinks. It captures the entire link within the double brackets.
+    # It handles cases with and without custom link text (e.g., [[Page|link text]] and [[Page]]).
+    # Explanation:
+    # \[\[          - Matches the opening double brackets
+    # (             - Start capturing group for the link target and optional text
+    #   [^\[\]\|]+  - Matches one or more characters that are not [ , ], or | (this is the page name)
+    #   (?:\|([^\[\]]+))? - Optionally matches a pipe and then captures the link text
+    # )             - End capturing group
+    # \]\]          - Matches the closing double brackets
+    pattern = r"\[\[([^\[\]\|]+)(?:\|([^\[\]]+))?\]\]" 
+
+    # Use re.findall() to get all matches
+    wikilinks = re.findall(pattern, wikitext)
+    sorted_links = []
+    # Print the extracted links
+    for link in wikilinks:
+        page_name = link[0]
+        link_text = link[1] if link[1] else page_name # If no link text, use the page name
+
+        # print(f"Page Name: {page_name}, Link Text: {link_text}") 
+        sorted_links.append(page_name)
+    return sorted_links
+
+
   def get_wikilinks(self):
     wikilinks = []
-    # TODO: implement
+    #TODO: implement and test (IN PROGRESS)
+    # this was copied from AI and is not working yet, test and modify, 
+    # maybe wikilink_rx.sub above is not the right thing to use
+    
+    ##### TESTING ####
+    # print(f"lines: {self.lines}")
+    for line in self.lines:
+      all_matches = self.get_wikilink_matches(line)
+      for each_match in all_matches:
+        # print(f"Match: {each_match}")
+        wikilinks.append(each_match)
     return wikilinks
 
   def get_embedded_lines(self, strip_embedding=False):

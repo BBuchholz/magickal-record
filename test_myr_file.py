@@ -43,7 +43,7 @@ class TestMyrFile(unittest.TestCase):
     main_text = "\n".join(main_text_lines)
     self.assertEqual(main_text, MAIN_TEXT_APPLE_LTH25)
 
-  def test_for_link(self, expected_link, wikilinks):
+  def check_for_link(self, expected_link: str, wikilinks: list):
     self.assertIn(
       expected_link, 
       wikilinks, 
@@ -53,17 +53,19 @@ class TestMyrFile(unittest.TestCase):
   def test_should_get_wikilinks(self):
     # TODO: STAR AND APPLE BOTH HAVE SOME LINK, test for each
     # STAR
+
     wikilinks = self.mf_star_lth25.get_wikilinks()
-    self.test_for_link("tha Silver Star", wikilinks)
-    self.test_for_link("Star", wikilinks)
-    self.test_for_link("Mirror", wikilinks)
-    self.test_for_link("LTH25", wikilinks)
+    # print(f"wikilinks: {wikilinks}")
+    self.check_for_link("tha Silver Star", wikilinks)
+    self.check_for_link("Star", wikilinks)
+    self.check_for_link("Mirror", wikilinks)
+    self.check_for_link("LTH25", wikilinks)
 
     # APPLE
     wikilinks = self.mf_apple_lth25.get_wikilinks()
-    self.test_for_link("tha Golden Apple", wikilinks)
-    self.test_for_link("Wheel Cycle Release Cet", wikilinks)
-    self.test_for_link("LTH25", wikilinks)
+    self.check_for_link("tha Golden Apple", wikilinks)
+    self.check_for_link("Wheel Cycle Release Cet", wikilinks)
+    self.check_for_link("LTH25", wikilinks)
 
   def test_should_get_embedded_lines(self):
     # STAR
