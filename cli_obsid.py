@@ -8,6 +8,7 @@ from op_create_aud_links import CreateAuditLinkagesFile
 from op_create_myr_aud import CreateMyrkisAuditFile
 from op_launch_vault_gui import LaunchVaultBrowserGUI
 from op_str_ver_vlt import StoreLastLoadedVaultAsDefault
+from op_lst_obsidio import ListObsidIOFilesOp
 
 class ObsidMenu(SubMenu):
   def __init__(self, obio: ObsidIO):
@@ -24,6 +25,7 @@ class ObsidMenu(SubMenu):
     ops.append(DisplayVaultsOp(self.obio))
     ops.append(LoadVaultsMenu(self.obio))
     ops.append(ImportObsidianFilesMenu(self.obio))
+    ops.append(ListObsidIOFilesOp(self.obio))
     ops.append(CreateAuditLinkagesFile(self.obio))
     ops.append(CreateMyrkisAuditFile(self.obio))
     ops.append(LaunchVaultBrowserGUI(self.obio))

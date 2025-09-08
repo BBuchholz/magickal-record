@@ -80,11 +80,18 @@ class ObsidIO():
     folder = self._cfg.config_folder()
     cfg_files = get_md_files(folder, "Config")
     return cfg_files
+  
+  def list_obsidio_files(self):
+    files_in_obsidio_fldr = []
+    # TODO: implement
+    return files_in_obsidio_fldr
 
   def get_src_md_files(self):
     folder = self._last_loaded_vault
     md_files = []
-    if path.exists(folder):
+    if folder is None:
+      print("Obsidio._last_loaded_vault not set, please load a vault and try again")
+    elif path.exists(folder):
       md_files = get_filtered_md_files(folder, self.file_filter)
     return md_files
   

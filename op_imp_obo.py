@@ -5,7 +5,7 @@ from op_set_filter import SetFileNameFilterOp
 from op_copy_files import CopyFilesOp
 
 class ImportObsidianFilesMenu(SubMenu):
-  def __init__(self, obio):
+  def __init__(self, obio: ObsidIO):
     self.obio = obio
     self.obio.file_filter = ""
 
