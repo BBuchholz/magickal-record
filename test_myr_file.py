@@ -51,7 +51,7 @@ class TestMyrFile(unittest.TestCase):
 
 
   def test_should_get_wikilinks(self):
-    # TODO: STAR AND APPLE BOTH HAVE SOME LINK, test for each
+    # DONE: STAR AND APPLE BOTH HAVE SOME LINK, test for each
     # STAR
 
     wikilinks = self.mf_star_lth25.get_wikilinks()

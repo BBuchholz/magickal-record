@@ -20,7 +20,6 @@ class AuditGitIOFoldersOpRefactor(LineOption):
     print("it will be used to add in assessment criteria for the deciding of if autogeneration of CRSL files is appropriate")
     print("this is so we can feed it existing cets and have entire sites generated automagically (currently we are hand crafting the sites and it is repetively time consuming, a perfect candidate for refactoring)")
     print(f"checking cet folder for existing cets")
-    #TODO: SECOND CHANGE,
     # prompt user to allow them to decide if they want
     # verbose output or not (y for verbose, anything else for no) 
     expand_user = False

@@ -19,11 +19,10 @@ be obo.get_mf_src_md_files(self)
   deprecating the single filter version, 
   if the new version becomes the exclusive one)
 
-TODO: should have option to clear working directory
+DONE: should have option to clear working directory
 called ClearWorkingDirectoryOp
 
-TODO: and can pass those filters to op_mf_imp_obo.py 
-using a new method op_mf_imp_obo.add_filters(filters), 
+DONE: and can pass those filters to op_mf_imp_obo.py 
 
 TODO: those filters will be all 
 the file names from the audit report, 
