@@ -41,7 +41,7 @@ class GatherSeedLinks(LineOption):
               if len(wikilinks) > 0:
                 for wikilink in mf.get_wikilinks():
                   print(f"Found wikilink: {wikilink}")
-                  #TODO: add wikilink to file filters here
+                  self.obio.file_filters.append(wikilink)
               else:
                 print(f"no wikilinks found at: {file_path}")
 

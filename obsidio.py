@@ -1,5 +1,6 @@
 from files import (
   get_md_files,
+  get_files,
   get_lines_from,
   get_filtered_md_files,
   get_multi_filter_md_files,
@@ -83,7 +84,7 @@ class ObsidIO():
   
   def list_obsidio_files(self):
     files_in_obsidio_fldr = []
-    # TODO: implement
+    files_in_obsidio_fldr = get_files(self._cfg.obsidio_folder())
     return files_in_obsidio_fldr
 
   def get_src_md_files(self):

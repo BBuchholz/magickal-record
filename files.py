@@ -66,6 +66,21 @@ def get_files_by_ext(folder_path, extension, prefix="", filter=""):
   
   return file_list
 
+def get_files(folder_path):
+  # expand user if needed
+  folder_path = os.path.expanduser(folder_path)
+  file_list = []
+  if not folder_exists(folder_path):
+    print(f"folder path not found: {folder_path}")
+    return file_list
+  
+  for file_name in os.listdir(folder_path):
+    file_path = os.path.join(folder_path, file_name)
+    if os.path.isfile(file_path):
+      file_list.append(file_name)
+  
+  return file_list
+  
 
 
 def get_path(file_name):
