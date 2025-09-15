@@ -1,12 +1,14 @@
 from menus import LineOption
 from gitio import GitIO
 from ceter import CetER
+from obsidio import ObsidIO
 from cfg import NwdTestConfig
 
 class AuditGitIOFoldersOpRefactor(LineOption):
-  def __init__(self, git: GitIO):
+  def __init__(self, git: GitIO, obio: ObsidIO):
     self.git = git
     self.ceter = CetER(self.git)
+    self.obio = obio
 
   def key(self):
     return "ref"
@@ -40,10 +42,13 @@ class AuditGitIOFoldersOpRefactor(LineOption):
       self.ceter.compare_repos_to_expected(repos)
       for repo in repos:
         cetar = self.ceter.audit_repo(repo, verbose)
+        self.obio.create_cetar_file(cetar)
+
 
 
 if __name__ == "__main__":
   tcfg = NwdTestConfig()
   git = GitIO(tcfg)
-  main = AuditGitIOFoldersOpRefactor(git)
+  obio = ObsidIO(tcfg)
+  main = AuditGitIOFoldersOpRefactor(git, obio)
   main.run()

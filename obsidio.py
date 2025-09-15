@@ -8,10 +8,13 @@ from files import (
   ensure_folder,
   write_lines,
   get_path_in_folder,
+  path_exists,
 )
 from myr_file import MyrFile
 from os import path
+from cetar import CetAR
 from cfg import Config
+from chronio import ChronIO
 
 class ObsidIO():
   """
@@ -113,6 +116,9 @@ class ObsidIO():
     f_path = path.join(fldr, fname)
     return f_path
   
+  def get_obsidio_file_path(self, file_name):
+    return self._cfg.get_obsidio_file(file_name)
+  
   def get_src_md_fnames_containing(self, myrkis):
     folder = self._last_loaded_vault
     md_files = []
@@ -141,6 +147,23 @@ class ObsidIO():
     write_lines(file_path, mf.lines, True)
     print(f"file written: {file_path}")
     return file_path
+  
+  def create_cetar_file(self, cetar: CetAR):
+    # mimic method: create_vault_config_file(vault_name, vault_path)
+    mf = MyrFile()
+    mf.lines.append("NOT IMPLEMENTED YET")
+    chronio = ChronIO()
+    timestamp = chronio.get_suffix()
+    file_name = "CetAR_" + cetar.short_name + "_" + timestamp + ".md"
+    file_path = self.get_obsidio_file_path(file_name)
+    while path_exists(file_path):
+      timestamp = chronio.get_suffix(timestamp)
+      file_name = "CetAR_" + cetar.short_name + "_" + timestamp + ".md"
+      file_path = self.get_obsidio_file_path(file_name)
+    write_lines(file_path, mf.lines, True)
+    print(f"file written: {file_path}")
+    raise Exception(f"Not Implemented: write to file {file_path}")
+    
 
   def ensure_folder(self, folder_path):
     ensure_folder(folder_path)
