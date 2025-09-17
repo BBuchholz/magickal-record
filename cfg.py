@@ -115,7 +115,12 @@ class NwdTestConfig(Config):
       return os.path.expanduser(self._nwd_folder)
     else:
       return self._nwd_folder
-  
+
+
+  def folder_cets_lms24(self, expand_user=True):
+    cets_fldr = self.cets_folder(expand_user)
+    return os.path.join(cets_fldr, "LMS24")
+
   def status(self):
     return "TEST MODE"
   
