@@ -1,4 +1,5 @@
 import re
+from wxrd_type import WxrdType
 
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
@@ -17,6 +18,10 @@ class MyrFile:
         return False
     return True
 
+  def get_wxrd_type(self) -> WxrdType:
+    wt = WxrdType()
+    return wt
+
   def get_lines(self):
     return self.lines
 
@@ -24,6 +29,9 @@ class MyrFile:
     self.lines = [] # clear existing lines
     for line in lines:
       self.lines.append(line)
+
+  def load_from_string_path(self, str_path):
+    pass
 
   def get_main_text_lines(self):
     # NB: main text can be multiple lines, 
