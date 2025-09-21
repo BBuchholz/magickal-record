@@ -10,11 +10,11 @@ class Profiler:
     mf = MyrFile()
     self.wxrd_types.append(mf.get_wxrd_type())
 
-  def profile(self, string_path) -> list[WxrdType]:
+  def profile(self, string_path) -> list[str]:
     wxrd_types = []
     mf = MyrFile()
     mf.load_from_string_path(string_path)
     for some_wt in self.wxrd_types:
       if some_wt.trues_with(mf):
-        wxrd_types.append(some_wt)
+        wxrd_types.append(some_wt.name())
     return wxrd_types

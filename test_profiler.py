@@ -7,7 +7,6 @@ class TestProfiler(unittest.TestCase):
   def test_should_profile_md_file(self):
     prof = Profiler()
     exams = ProfileExample()
-    mf = MyrFile()
     md_file = exams.example_md_file()
     result = prof.profile(md_file)
-    self.assertIn(mf.get_wxrd_type(), result)
+    self.assertIn("MyrFile", result)

@@ -1,6 +1,9 @@
 import re
 from wxrd_type import WxrdType
 
+class WxrdTypeMyrFile:
+  pass
+
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
 # much like MyrKis are more than "mere keys"
@@ -19,8 +22,8 @@ class MyrFile:
     return True
 
   def get_wxrd_type(self) -> WxrdType:
-    wt = WxrdType()
-    return wt
+    wtmf = WxrdTypeMyrFile()
+    return wtmf
 
   def get_lines(self):
     return self.lines
