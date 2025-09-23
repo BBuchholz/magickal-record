@@ -6,4 +6,4 @@ class WxrdType:
     return self.wxrd_type_name
   
   def trues_with(self, wt):
-    return False
+    return True

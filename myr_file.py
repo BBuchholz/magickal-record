@@ -1,8 +1,10 @@
 import re
 from wxrd_type import WxrdType
 
-class WxrdTypeMyrFile:
-  pass
+class WxrdTypeMyrFile(WxrdType):
+  def __init__(self):
+    super().__init__()
+    self.wxrd_type_name = "MyrFile"
 
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
