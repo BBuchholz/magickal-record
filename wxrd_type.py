@@ -5,5 +5,5 @@ class WxrdType:
   def name(self) -> str:
     return self.wxrd_type_name
   
-  def trues_with(self, wt):
+  def is_true(self, wt):
     return True

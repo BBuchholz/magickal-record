@@ -1,5 +1,6 @@
 import re
 from wxrd_type import WxrdType
+from wxrd import Wxrd
 
 class WxrdTypeMyrFile(WxrdType):
   def __init__(self):

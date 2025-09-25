@@ -10,3 +10,11 @@ class TestProfiler(unittest.TestCase):
     md_file = exams.example_md_file()
     result = prof.profile(md_file)
     self.assertIn("MyrFile", result)
+
+  def test_should_profile_folder(self):
+    prof = Profiler()
+    exams = ProfileExample()
+    fldr = exams.example_folder()
+    result = prof.profile(fldr)
+    self.assertIn("Folder", result)
+    self.assertNotIn("MyrFile", result)
