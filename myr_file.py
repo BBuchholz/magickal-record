@@ -1,6 +1,6 @@
 import re
 from wxrd_type import WxrdType
-from wxrd import Wxrd
+# from wxrd import Wxrd
 
 class WxrdTypeMyrFile(WxrdType):
   def __init__(self):
@@ -10,7 +10,7 @@ class WxrdTypeMyrFile(WxrdType):
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
 # much like MyrKis are more than "mere keys"
-class MyrFile:
+class MyrFile():
   def __init__(self):
     self.lines = []
 

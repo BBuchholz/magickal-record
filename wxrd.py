@@ -7,3 +7,4 @@ class Wxrd:
   def get_wxrd_type(self) -> WxrdType:
     wtw = WxrdTypeWxrd()
     return wtw
+  

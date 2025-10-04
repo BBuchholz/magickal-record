@@ -44,3 +44,8 @@ class TestGarDinEr(unittest.TestCase):
     full_report = self.gard.report()
     places_header = "# Places"
     self.assertIn(places_header, full_report)
+
+  def test_full_report_should_include_vhales(self):
+    full_report = self.gard.report()
+    vhales_header = "# Vhales"
+    self.assertIn(vhales_header, full_report)

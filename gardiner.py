@@ -68,6 +68,13 @@ class GarDinEr:
       "go_here"
     ]
     return place_lines
+  
+  def get_vhale_lines(self):
+    vhale_lines = [
+      "vhales go here",
+      "more vhales go here"
+    ]
+    return vhale_lines
 
   def report(self):
     report_lines = []
@@ -93,5 +100,9 @@ class GarDinEr:
     # Places
     report_lines.append("# Places")
     for line in self.get_place_lines():
+      report_lines.append(line)
+    # Vhales
+    report_lines.append("# Vhales")
+    for line in self.get_vhale_lines():
       report_lines.append(line)
     return report_lines
