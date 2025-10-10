@@ -11,6 +11,14 @@ class TestProfiler(unittest.TestCase):
     result = prof.profile(md_file)
     self.assertIn("MyrFile", result)
 
+  def test_should_profile_myrki_instance(self):
+    prof = Profiler()
+    exams = ProfileExample()
+    mi_file = exams.example_myrki_instance_file()
+    result = prof.profile(mi_file)
+    self.assertIn("MyrFile", result)
+    self.assertIn("MyrkiInstance", result)
+
   def test_should_profile_folder(self):
     prof = Profiler()
     exams = ProfileExample()

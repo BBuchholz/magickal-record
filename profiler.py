@@ -21,19 +21,28 @@ class Profiler:
     
   def profile(self, string_path) -> list[str]:
     wxrd_types = []
+    string_path = os.path.expanduser(string_path)
+    print(f"profiling path: {string_path}")
     if os.path.isdir(string_path):
       for some_folder_type in self.folder_types:
         if some_folder_type.matches(string_path):
           wxrd_types.append(some_folder_type.name())
+    else:
+      print(f"path is not a directory")
     if os.path.isfile(string_path):
       mf = MyrFile()
       mf.load_from_string_path(string_path)
+      count = len(self.file_types)
+      print(f"testing {count} file types against path {string_path}")
       for some_file_type in self.file_types:
+        print(f"testing file type: {some_file_type}")
         if some_file_type.matches(mf):
           wxrd_types.append(some_file_type.name())
+    else:
+      print(f"path is not a file")
     return wxrd_types
   
 
-  def is_wxrd_type(self, wxrd: Wxrd, wt: WxrdType):
-    # TODO: implement
-    return True;
+  # def is_wxrd_type(self, wxrd: Wxrd, wt: WxrdType):
+  #   # TODO: implement
+  #   return True;
