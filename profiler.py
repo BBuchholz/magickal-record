@@ -37,7 +37,10 @@ class Profiler:
       for some_file_type in self.file_types:
         print(f"testing file type: {some_file_type}")
         if some_file_type.matches(mf):
+          print(f"{mf.file_name} is type {some_file_type}")
           wxrd_types.append(some_file_type.name())
+        else:
+          print(f"{mf.file_name} is not type {some_file_type}")
     else:
       print(f"path is not a file")
     return wxrd_types

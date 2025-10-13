@@ -1,11 +1,12 @@
 import re
+import os
 from wxrd_type import WxrdType
 # from wxrd import Wxrd
 
 class WxrdTypeMyrFile(WxrdType):
   def __init__(self):
-    super().__init__()
-    self.wxrd_type_name = "MyrFile"
+    super().__init__("MyrFile")
+    # self.wxrd_type_name = "MyrFile"
 
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
@@ -37,7 +38,7 @@ class MyrFile():
       self.lines.append(line)
 
   def load_from_string_path(self, str_path):
-    pass
+    self.file_name = os.path.basename(str_path)
 
   def get_main_text_lines(self):
     # NB: main text can be multiple lines, 
