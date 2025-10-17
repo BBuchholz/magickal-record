@@ -1,7 +1,7 @@
 import unittest
 from profiler import Profiler
 from profile_examples import ProfileExample
-from myr_file import MyrFile
+# from myr_file import MyrFile
 
 class TestProfiler(unittest.TestCase):
   def test_should_profile_md_file(self):

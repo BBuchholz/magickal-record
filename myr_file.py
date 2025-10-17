@@ -1,12 +1,12 @@
 import re
 import os
-from wxrd_type import WxrdType
+# from wxrd_type import WxrdType
 # from wxrd import Wxrd
 
-class WxrdTypeMyrFile(WxrdType):
-  def __init__(self):
-    super().__init__("MyrFile")
-    # self.wxrd_type_name = "MyrFile"
+# class WxrdTypeMyrFile(WxrdType):
+#   def __init__(self):
+#     super().__init__("MyrFile")
+#     # self.wxrd_type_name = "MyrFile"
 
 # Myriad Files are more than "mere files" :)
 # the class name is a play on words
@@ -25,9 +25,9 @@ class MyrFile():
         return False
     return True
 
-  def get_wxrd_type(self) -> WxrdType:
-    wtmf = WxrdTypeMyrFile()
-    return wtmf
+  # def get_wxrd_type(self) -> WxrdType:
+  #   wtmf = WxrdTypeMyrFile()
+  #   return wtmf
 
   def get_lines(self):
     return self.lines

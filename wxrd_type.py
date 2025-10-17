@@ -1,4 +1,4 @@
-# from myr_file import MyrFile # can't do this, circular import
+from myr_file import MyrFile # can't do this, circular import
 
 class WxrdType:
   def __init__(self, type_name="Wxrd"):
@@ -13,5 +13,5 @@ class WxrdType:
   def is_true(self, wt):
     return True
   
-  def matches(self, myr_file):
+  def matches(self, myr_file: MyrFile):
     return True
