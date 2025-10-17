@@ -2,6 +2,7 @@ from wxrd_type import WxrdType
 from wxrd import Wxrd
 from myr_file import MyrFile
 from folder_wxrd import FolderWxrd
+from wt_myrki_instance import WxrdTypeMyrkiInstance
 import os
 
 class Profiler:
@@ -16,6 +17,8 @@ class Profiler:
     self.file_types.append(wrd.get_wxrd_type())
     mf = MyrFile()
     self.file_types.append(mf.get_wxrd_type())
+    wtmi = WxrdTypeMyrkiInstance()
+    self.file_types.append(wtmi)
     fldr = FolderWxrd()
     self.folder_types.append(fldr.get_wxrd_type())
     
