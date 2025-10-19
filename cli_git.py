@@ -1,4 +1,5 @@
 from gitio import GitIO
+from obsidio import ObsidIO
 from menus import SubMenu
 from cfg import Config, NwdTestConfig
 from op_lst_git import ListGitIOFoldersOp
@@ -10,6 +11,7 @@ class GitIOMenu(SubMenu):
     print(f"loading GitIO configuration: {cfg.status()}")
     self.cfg = cfg
     self.git = GitIO(cfg)
+    self.obio = ObsidIO(cfg)
 
   def key(self):
     return "git"
@@ -21,7 +23,7 @@ class GitIOMenu(SubMenu):
     ops = []
     ops.append(ListGitIOFoldersOp(self.git))
     ops.append(AuditGitIOFoldersOp(self.git))
-    ops.append(AuditGitIOFoldersOpRefactor(self.git))
+    ops.append(AuditGitIOFoldersOpRefactor(self.git, self.obio))
     return ops
   
 if __name__ == "__main__":
