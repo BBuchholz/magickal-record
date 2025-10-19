@@ -58,6 +58,12 @@ class ObsidIO():
         wikilinks.append(link)
     return wikilinks
 
+  def get_crsl_file_names(self):
+    lst = []
+    lst.append("testing")
+    lst.append("more testing")
+    return lst
+
   def process_line(self, line):
     if line.lower().startswith("vault: "):
       vault_address = line[7:]

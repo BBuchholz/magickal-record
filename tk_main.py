@@ -1,5 +1,6 @@
 import tkinter as tk
 from tk_mdio import MdIOWindow
+from tk_crsl import CRSLWindow
 from tk_obio import ObsidIOWindow
 from tk_cartio import CartIOWindow
 from tk_gitio import GitIOWindow
@@ -16,6 +17,13 @@ class MainWindow:
        text="Master Control Window"
        )
     self.label.pack(padx=20, pady=20)
+
+    self.btn_crsl = tk.Button(
+        master, 
+        text="CRSL", 
+        command=self.open_crsl
+        )
+    self.btn_crsl.pack(padx=20, pady=20)
 
     self.btn_mdio = tk.Button(
         master, 
@@ -48,6 +56,10 @@ class MainWindow:
   def open_mdio(self):
     self.new_window = tk.Toplevel(self.master)
     MdIOWindow(self.new_window, self.cfg)
+
+  def open_crsl(self):
+    self.new_window = tk.Toplevel(self.master)
+    CRSLWindow(self.new_window, self.cfg)
 
   def open_obio(self):
     self.new_window = tk.Toplevel(self.master)
