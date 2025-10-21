@@ -27,7 +27,7 @@ class TestGarDinEr(unittest.TestCase):
 
   def test_full_report_should_include_config(self):
     full_report = self.gard.report()
-    config_header = "# Configuration"
+    config_header = "# GarDinPlot"
     self.assertIn(config_header, full_report)
 
   def test_full_report_should_include_cet_list(self):
@@ -37,15 +37,16 @@ class TestGarDinEr(unittest.TestCase):
 
   def test_full_report_should_include_practices(self):
     full_report = self.gard.report()
-    practices_header = "# Practices"
+    practices_header = "# Activities"
     self.assertIn(practices_header, full_report)
 
   def test_full_report_should_include_places(self):
     full_report = self.gard.report()
-    places_header = "# Places"
+    places_header = "# Zhones"
     self.assertIn(places_header, full_report)
 
-  def test_full_report_should_include_vhales(self):
+  def test_full_report_should_not_include_vhales_as_seperate_section(self):
+    # we want them listed in parenthesis next to the activities as links
     full_report = self.gard.report()
     vhales_header = "# Vhales"
-    self.assertIn(vhales_header, full_report)
+    self.assertNotIn(vhales_header, full_report)
