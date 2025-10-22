@@ -10,6 +10,7 @@ class TestProfiler(unittest.TestCase):
     md_file = exams.example_md_file()
     result = prof.profile(md_file)
     self.assertIn("MyrFile", result)
+    self.assertNotIn("MyrkiInstance", result)
 
   def test_should_profile_myrki_instance(self):
     prof = Profiler()
