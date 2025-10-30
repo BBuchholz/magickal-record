@@ -14,6 +14,10 @@ class Config(ABC):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, md_file)
 
+  def eg_folder(self, expand_user=True):
+    nwd_fldr = self.nwd_folder(expand_user)
+    return os.path.join(nwd_fldr, "eg")
+  
   def obsidio_folder(self, expand_user=True):
     nwd_fldr = self.nwd_folder(expand_user)
     return os.path.join(nwd_fldr, "obsidio")
@@ -45,6 +49,10 @@ class Config(ABC):
   def gardiner_report_file(self):
     c_flder = self.config_folder()
     return os.path.join(c_flder, "GarDinEr_RepOrT.md")
+  
+  def eg_ufu_md_file(self):
+    eg_flder = self.eg_folder()
+    return os.path.join(eg_flder, "UFU - EG.md")
   
   def verified_cart_file(self, expand_user=True):
     c_flder = self.config_folder(expand_user)

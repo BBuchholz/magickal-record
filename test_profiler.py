@@ -41,8 +41,8 @@ class TestProfiler(unittest.TestCase):
     ar_match_count = analysis_report["match_count"]
     ar_total_count = analysis_report["total_count"]
     self.assertEqual("MyrFile", ar_wxrd_type)
-    self.assertEqual(1, ar_match_count)
-    self.assertEqual(1, ar_total_count)
+    self.assertEqual(0, ar_match_count)
+    self.assertEqual(2, ar_total_count)
 
     # UFU FILE
     md_file = exams.example_ufu_md_file()

@@ -28,11 +28,21 @@ class Profiler:
     analysis_report = {
       "wxrd_type": "MyrFile",
       "match_count": 0,
-      "total_count": 2,
+      "total_count": 0,
     }
+    
     # TODO: implement
+
     # for line in lines if contains [[UFU]] then match and add 1 to match count
+    analysis_report["total_count"] += 1
+    for line in mf.get_lines():
+      if "[[UFU]]" in line:
+        analysis_report["match_count"] += 1
+
     # for file name if contains UFU then match and add 1 to match count
+    analysis_report["total_count"] += 1
+    if str(mf.file_name).startswith("UFU - "):
+        analysis_report["match_count"] += 1
     return analysis_report
 
   def profile(self, string_path) -> list[str]:

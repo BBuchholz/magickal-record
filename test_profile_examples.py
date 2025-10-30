@@ -26,6 +26,10 @@ class TestProfileExamples(unittest.TestCase):
     example_md_file = self.profs.example_md_file()
     self.assertTrue(path_exists(example_md_file))
 
+  def test_should_have_example_ufu_md_file(self):
+    example_ufu_md_file = self.profs.example_ufu_md_file()
+    self.assertTrue(path_exists(example_ufu_md_file))
+
   def test_should_have_example_myrki_instance_file(self):
     example_myrki_instance_file = self.profs.example_myrki_instance_file()
     self.assertTrue(path_exists(example_myrki_instance_file))

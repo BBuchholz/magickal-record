@@ -13,6 +13,9 @@ class ProfileExample:
   def example_md_file(self):
     return self.cfg.gardiner_report_file()
   
+  def example_ufu_md_file(self):
+    return self.cfg.eg_ufu_md_file()
+  
   def example_git_folder(self):
     return self.cfg.folder_cets_lms24()
   
