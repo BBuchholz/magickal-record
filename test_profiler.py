@@ -1,7 +1,7 @@
 import unittest
 from profiler import Profiler
 from profile_examples import ProfileExample
-# from myr_file import MyrFile
+from myr_file import MyrFile
 
 class TestProfiler(unittest.TestCase):
   def test_should_profile_md_file(self):
@@ -27,3 +27,31 @@ class TestProfiler(unittest.TestCase):
     result = prof.profile(fldr)
     self.assertIn("Folder", result)
     self.assertNotIn("MyrFile", result)
+
+  def test_should_parse_ufu(self):
+    prof = Profiler()
+    exams = ProfileExample()
+
+    # NON UFU FILE
+    md_file = exams.example_md_file()
+    mf = MyrFile()
+    mf.load_from_string_path(md_file)
+    analysis_report = prof.parse_ufu(mf)
+    ar_wxrd_type = analysis_report["wxrd_type"]
+    ar_match_count = analysis_report["match_count"]
+    ar_total_count = analysis_report["total_count"]
+    self.assertEqual("MyrFile", ar_wxrd_type)
+    self.assertEqual(1, ar_match_count)
+    self.assertEqual(1, ar_total_count)
+
+    # UFU FILE
+    md_file = exams.example_ufu_md_file()
+    mf = MyrFile()
+    mf.load_from_string_path(md_file)
+    analysis_report = prof.parse_ufu(mf)
+    ar_wxrd_type = analysis_report["wxrd_type"]
+    ar_match_count = analysis_report["match_count"]
+    ar_total_count = analysis_report["total_count"]
+    self.assertEqual("UfuMyrFile", ar_wxrd_type)
+    self.assertEqual(1, ar_match_count)
+    self.assertEqual(1, ar_total_count)

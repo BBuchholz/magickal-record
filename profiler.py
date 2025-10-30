@@ -24,6 +24,17 @@ class Profiler:
     # fldr = FolderWxrd()
     # self.folder_types.append(fldr.get_wxrd_type())
     
+  def parse_ufu(self, mf: MyrFile):
+    analysis_report = {
+      "wxrd_type": "MyrFile",
+      "match_count": 0,
+      "total_count": 2,
+    }
+    # TODO: implement
+    # for line in lines if contains [[UFU]] then match and add 1 to match count
+    # for file name if contains UFU then match and add 1 to match count
+    return analysis_report
+
   def profile(self, string_path) -> list[str]:
     wxrd_types = []
     string_path = os.path.expanduser(string_path)
