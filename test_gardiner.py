@@ -35,10 +35,10 @@ class TestGarDinEr(unittest.TestCase):
     cet_list_header = "# Cets"
     self.assertIn(cet_list_header, full_report)
 
-  def test_full_report_should_include_practices(self):
+  def test_full_report_should_include_activities(self):
     full_report = self.gard.report()
-    practices_header = "# Activities"
-    self.assertIn(practices_header, full_report)
+    activities_header = "# Activities"
+    self.assertIn(activities_header, full_report)
 
   def test_full_report_should_include_places(self):
     full_report = self.gard.report()

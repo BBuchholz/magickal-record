@@ -85,16 +85,16 @@ class GarDinEr:
     report_lines.append("# TimeStamp")
     for line in self.get_timestamp_lines():
       report_lines.append(line)
-    # Configuration
-    report_lines.append("# Configuration")
+    # GarDinPlot (formerly: Configuration)
+    report_lines.append("# GarDinPlot")
     for line in self.get_config_lines():
       report_lines.append(line)
     # Cets
     report_lines.append("# Cets")
     for line in self.get_cet_lines():
       report_lines.append(line)
-    # Practices
-    report_lines.append("# Practices")
+    # Activities (formerly: Practices)
+    report_lines.append("# Activities")
     for line in self.get_practice_lines():
       report_lines.append(line)
     # Places
