@@ -11,6 +11,67 @@ class TestMyrFrag(unittest.TestCase):
     mf = MyrFrag()
     self.assertEqual(len(mf.get_lines()), 0)
     mf.load_from_lines_arr(lines)
-    self.assertEqual(len(mf.get_lines()), 5)
+    self.assertEqual(len(mf.get_lines()), 2)
     
-# TODO: adapt all appropriate tests from test_myr_file.py
+  def test_should_get_main_text_lines(self):
+    # TODO: adapt from test_myr_file.py
+    pass
+
+  def check_for_link(self, expected_link: str, wikilinks: list):
+    # TODO: adapt from test_myr_file.py
+    pass
+
+  def test_should_get_wikilinks(self):
+    # TODO: adapt from test_myr_file.py
+    pass
+
+  def test_should_get_embedded_lines(self):
+    # TODO: adapt from test_myr_file.py
+    pass
+
+  def test_should_get_comment_lines(self):
+    mf = MyrFrag()
+    lines = [
+      "testing",
+      "lines"
+    ]
+    mf.load_from_lines_arr(lines)
+    comment_lines = mf.get_comment_lines()
+    expected_comments = [
+      "testing unequal",
+      "lines should fail"
+    ]
+    comments_join = "\n".join(comment_lines)
+    expected_join = "\n".join(expected_comments)
+    self.assertEqual(comments_join, expected_join)
+
+  def test_should_be_equal_if_lines_are_equal(self):
+    lines_one = [
+      "line 1",
+      "",
+      "line 3",
+      "",
+      "line 5"
+    ]
+    lines_two = [
+      "line 1",
+      "",
+      "line 3",
+      "",
+      "line 5"
+    ]
+    mf_one = MyrFrag()
+    mf_one.load_from_lines_arr(lines_one)
+    mf_two = MyrFrag()
+    mf_two.load_from_lines_arr(lines_two)
+    # should be equal
+    self.assertEqual(mf_one, mf_two)
+    # change lines and test again
+    lines_three = [
+      "line 1"
+    ]
+    mf_two.load_from_lines_arr(lines_three)
+    # should not be equal anymore
+    self.assertNotEqual(mf_one, mf_two)
+
+
