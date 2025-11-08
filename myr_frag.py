@@ -29,3 +29,14 @@ class MyrFrag():
       if line.startswith("- "):
         comment_lines.append(line)
     return comment_lines
+  
+  def get_embedded_lines(self, strip_embedding=False):
+    embedded_lines = []
+    for line in self.lines:
+      if line.startswith("!["):
+        if strip_embedding:
+          processed_line = line.strip("![]")
+          embedded_lines.append(processed_line)
+        else:
+          embedded_lines.append(line)
+    return embedded_lines
