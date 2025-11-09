@@ -1,5 +1,6 @@
 import re
 import os
+from myr_frag import MyrFrag
 # from wxrd_type import WxrdType
 # from wxrd import Wxrd
 
@@ -13,7 +14,8 @@ import os
 # much like MyrKis are more than "mere keys"
 class MyrFile():
   def __init__(self):
-    self.lines = []
+    # self.lines = []
+    self.main_fragment = MyrFrag()
 
   def __eq__(self, value):
     my_lines = self.get_lines()
@@ -30,40 +32,44 @@ class MyrFile():
   #   return wtmf
 
   def get_lines(self):
-    return self.lines
+    # return self.lines
+    return self.main_fragment.get_lines()
 
   def load_from_lines_arr(self, lines):
-    self.lines = [] # clear existing lines
-    for line in lines:
-      self.lines.append(line)
+    # self.lines = [] # clear existing lines
+    # for line in lines:
+    #   self.lines.append(line)
+    self.main_fragment.load_from_lines_arr(lines)
 
   def load_from_string_path(self, str_path):
     self.file_name = os.path.basename(str_path)
 
   def get_main_text_lines(self):
-    # NB: main text can be multiple lines, 
-    # should be the first text, so starts 
-    # with the first line, but can be broken 
-    # up with commentary, which will start 
-    # with a hyphen, thus it should be all 
-    # lines, in order, that do not have a 
-    # hyphen (comments) or an exclamation 
-    # point (embedded images/sub files) at 
-    # the beginning
-    main_text_lines = []
-    for line in self.lines:
-      if not line.startswith("- "):
-        if not line.startswith("!["):
-          if not len(line.strip()) == 0:
-            main_text_lines.append(line)
-    return main_text_lines
+    # # NB: main text can be multiple lines, 
+    # # should be the first text, so starts 
+    # # with the first line, but can be broken 
+    # # up with commentary, which will start 
+    # # with a hyphen, thus it should be all 
+    # # lines, in order, that do not have a 
+    # # hyphen (comments) or an exclamation 
+    # # point (embedded images/sub files) at 
+    # # the beginning
+    # main_text_lines = []
+    # for line in self.lines:
+    #   if not line.startswith("- "):
+    #     if not line.startswith("!["):
+    #       if not len(line.strip()) == 0:
+    #         main_text_lines.append(line)
+    # return main_text_lines
+    return self.main_fragment.get_main_text_lines()
   
   def get_comment_lines(self):
-    comment_lines = []
-    for line in self.lines:
-      if line.startswith("- "):
-        comment_lines.append(line)
-    return comment_lines
+    # comment_lines = []
+    # for line in self.lines:
+    #   if line.startswith("- "):
+    #     comment_lines.append(line)
+    # return comment_lines
+    return self.main_fragment.get_comment_lines()
   
   def get_wikilink_matches(self, wikitext):
     
@@ -92,27 +98,29 @@ class MyrFile():
 
 
   def get_wikilinks(self):
-    wikilinks = []
-    #TODO: implement and test (IN PROGRESS)
-    # this was copied from AI and is not working yet, test and modify, 
-    # maybe wikilink_rx.sub above is not the right thing to use
+    # wikilinks = []
+    # #TODO: implement and test (IN PROGRESS)
+    # # this was copied from AI and is not working yet, test and modify, 
+    # # maybe wikilink_rx.sub above is not the right thing to use
     
-    ##### TESTING ####
-    # print(f"lines: {self.lines}")
-    for line in self.lines:
-      all_matches = self.get_wikilink_matches(line)
-      for each_match in all_matches:
-        # print(f"Match: {each_match}")
-        wikilinks.append(each_match)
-    return wikilinks
+    # ##### TESTING ####
+    # # print(f"lines: {self.lines}")
+    # for line in self.lines:
+    #   all_matches = self.get_wikilink_matches(line)
+    #   for each_match in all_matches:
+    #     # print(f"Match: {each_match}")
+    #     wikilinks.append(each_match)
+    # return wikilinks
+    return self.main_fragment.get_wikilinks()
 
   def get_embedded_lines(self, strip_embedding=False):
-    embedded_lines = []
-    for line in self.lines:
-      if line.startswith("!["):
-        if strip_embedding:
-          processed_line = line.strip("![]")
-          embedded_lines.append(processed_line)
-        else:
-          embedded_lines.append(line)
-    return embedded_lines
+    # embedded_lines = []
+    # for line in self.lines:
+    #   if line.startswith("!["):
+    #     if strip_embedding:
+    #       processed_line = line.strip("![]")
+    #       embedded_lines.append(processed_line)
+    #     else:
+    #       embedded_lines.append(line)
+    # return embedded_lines
+    return self.main_fragment.get_embedded_lines()
