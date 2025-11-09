@@ -1,3 +1,5 @@
+import re
+
 # Myriad Fragments are more than "Mere Frags"
 # the class name is a play on words much like
 # MyrFiles and MyrKis
@@ -23,6 +25,24 @@ class MyrFrag():
     for line in lines:
       self.lines.append(line)
 
+  def get_main_text_lines(self):
+    # NB: main text can be multiple lines, 
+    # should be the first text, so starts 
+    # with the first line, but can be broken 
+    # up with commentary, which will start 
+    # with a hyphen, thus it should be all 
+    # lines, in order, that do not have a 
+    # hyphen (comments) or an exclamation 
+    # point (embedded images/sub files) at 
+    # the beginning
+    main_text_lines = []
+    for line in self.lines:
+      if not line.startswith("- "):
+        if not line.startswith("!["):
+          if not len(line.strip()) == 0:
+            main_text_lines.append(line)
+    return main_text_lines
+
   def get_comment_lines(self):
     comment_lines = []
     for line in self.lines:
@@ -40,3 +60,39 @@ class MyrFrag():
         else:
           embedded_lines.append(line)
     return embedded_lines
+    
+  def get_wikilink_matches(self, wikitext):
+    
+    # Regex to find wikilinks. It captures the entire link within the double brackets.
+    # It handles cases with and without custom link text (e.g., [[Page|link text]] and [[Page]]).
+    # Explanation:
+    # \[\[          - Matches the opening double brackets
+    # (             - Start capturing group for the link target and optional text
+    #   [^\[\]\|]+  - Matches one or more characters that are not [ , ], or | (this is the page name)
+    #   (?:\|([^\[\]]+))? - Optionally matches a pipe and then captures the link text
+    # )             - End capturing group
+    # \]\]          - Matches the closing double brackets
+    pattern = r"\[\[([^\[\]\|]+)(?:\|([^\[\]]+))?\]\]" 
+
+    # Use re.findall() to get all matches
+    wikilinks = re.findall(pattern, wikitext)
+    sorted_links = []
+    # Print the extracted links
+    for link in wikilinks:
+        page_name = link[0]
+        link_text = link[1] if link[1] else page_name # If no link text, use the page name
+
+        # print(f"Page Name: {page_name}, Link Text: {link_text}") 
+        sorted_links.append(page_name)
+    return sorted_links
+
+  def get_wikilinks(self):
+    wikilinks = []
+    ##### TESTING ####
+    # print(f"lines: {self.lines}")
+    for line in self.lines:
+      all_matches = self.get_wikilink_matches(line)
+      for each_match in all_matches:
+        # print(f"Match: {each_match}")
+        wikilinks.append(each_match)
+    return wikilinks

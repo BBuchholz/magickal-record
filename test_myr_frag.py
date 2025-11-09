@@ -14,16 +14,43 @@ class TestMyrFrag(unittest.TestCase):
     self.assertEqual(len(mf.get_lines()), 2)
     
   def test_should_get_main_text_lines(self):
-    # TODO: adapt from test_myr_file.py
-    pass
+    mf = MyrFrag()
+    lines = [
+      "some lines",
+      "with [[Some Link]] in them",
+      "testing lines like this that ARE NOT comment lines",
+      "- and lines like this that ARE comment lines",
+      "![[IMAGE_EXAMPLE.png]]",
+      "with other lines that are not",
+    ]
+    mf.load_from_lines_arr(lines)
+    expected_lines = [
+      "some lines",
+      "with [[Some Link]] in them",
+      "testing lines like this that ARE NOT comment lines",
+      "with other lines that are not",
+    ]
+    expected_main_text = "\n".join(expected_lines)
+    main_text_lines = mf.get_main_text_lines()
+    main_text = "\n".join(main_text_lines)
+    self.assertEqual(main_text, expected_main_text)
 
   def check_for_link(self, expected_link: str, wikilinks: list):
-    # TODO: adapt from test_myr_file.py
-    pass
+    self.assertIn(
+      expected_link, 
+      wikilinks, 
+      f"Could not find expected link: {expected_link} in list: {wikilinks} ")
 
   def test_should_get_wikilinks(self):
     # TODO: adapt from test_myr_file.py
-    pass
+    mf = MyrFrag()
+    lines = [
+      "some lines",
+      "with [[Some Link]] in them",
+    ]
+    mf.load_from_lines_arr(lines)
+    wikilinks = mf.get_wikilinks()
+    self.check_for_link("Some Link", wikilinks)
 
   def test_should_get_embedded_lines(self):
     mf = MyrFrag()
