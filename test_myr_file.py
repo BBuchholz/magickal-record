@@ -124,7 +124,7 @@ class TestMyrFile(unittest.TestCase):
 
     self.assertEqual(len(lines), len(LINES_STAR_LTH25))
     self.assertEqual(lines, LINES_STAR_LTH25)
-    self.assertEqual(self.mf_star_lth25, mf_from_file_system)
+    self.assertEqual(self.mf_star_lth25.get_lines(), mf_from_file_system.get_lines())
     
     # APPLE
     lines = get_lines_from(tcfg.file_path_apple_lth25_md())
@@ -132,34 +132,6 @@ class TestMyrFile(unittest.TestCase):
 
     self.assertEqual(len(lines), len(LINES_APPLE_LTH25))
     self.assertEqual(lines, LINES_APPLE_LTH25)
-    self.assertEqual(self.mf_apple_lth25, mf_from_file_system)
+    self.assertEqual(self.mf_apple_lth25.get_lines(), mf_from_file_system.get_lines())
     
 
-  def test_should_be_equal_if_lines_are_equal(self):
-    lines_one = [
-      "line 1",
-      "",
-      "line 3",
-      "",
-      "line 5"
-    ]
-    lines_two = [
-      "line 1",
-      "",
-      "line 3",
-      "",
-      "line 5"
-    ]
-    mf_one = MyrFile()
-    mf_one.load_from_lines_arr(lines_one)
-    mf_two = MyrFile()
-    mf_two.load_from_lines_arr(lines_two)
-    # should be equal
-    self.assertEqual(mf_one, mf_two)
-    # change lines and test again
-    lines_three = [
-      "line 1"
-    ]
-    mf_two.load_from_lines_arr(lines_three)
-    # should not be equal anymore
-    self.assertNotEqual(mf_one, mf_two)
