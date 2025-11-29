@@ -7,7 +7,7 @@ from files import (
   get_prefixed_md_files,
   ensure_folder,
   write_lines,
-  get_path_in_folder,
+  remove_file_in_folder,
   path_exists,
 )
 from myr_file import MyrFile
@@ -176,3 +176,7 @@ class ObsidIO():
 
   def ensure_folder(self, folder_path):
     ensure_folder(folder_path)
+
+  def remove_file(self, file_name):
+    folder_path = self._cfg.obsidio_folder()
+    remove_file_in_folder(folder_path, file_name)

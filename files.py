@@ -97,7 +97,15 @@ def get_path(file_name):
 def get_path_in_folder(folder_path, file_name):
   dir_path = os.path.expanduser(folder_path)
   return os.path.join(dir_path, file_name)
-  
+
+def remove_file_in_folder(folder_path, file_name):
+  full_path = get_path_in_folder(folder_path, file_name)
+  if os.path.exists(full_path):
+    os.remove(full_path)
+    print(f"File '{full_path}' removed")
+  else:
+    print(f"File '{full_path}' does not exist, cannot remove")
+
 def get_lines_array(file_name):
   """
   gets the arrary of lines from the specified 
