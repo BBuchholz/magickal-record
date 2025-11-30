@@ -1,6 +1,7 @@
 from menus import LineOption
 from obsidio import ObsidIO
 from cfg import NwdTestConfig
+from files import get_lc_basename_from_path
 
 class IsolateObsidIOFileOp(LineOption):
   def __init__(self, obsid: ObsidIO):
@@ -20,11 +21,22 @@ class IsolateObsidIOFileOp(LineOption):
     print(f"FileName normalized to: {lc_fname}")
     
     print("checking if file exists...")
+    found_path = ""
 
     for file in self.obsid.list_obsidio_files():
       print(f"checking {file}")
+      lc_to_check = get_lc_basename_from_path(file)
+      if lc_to_check == lc_fname:
+        print(f"Found: {lc_fname}")
+        found_path = file
+
+    if found_path != "":
+      print("not fully implemented")
+      print(f"Found path to isolate: {found_path}")
+    else:
+      print(f"Could not find file name: {lc_fname}")
     
-    print("not fully implemented")
+    
     
 
 if __name__ == "__main__":

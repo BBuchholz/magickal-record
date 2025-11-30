@@ -98,6 +98,9 @@ def get_path_in_folder(folder_path, file_name):
   dir_path = os.path.expanduser(folder_path)
   return os.path.join(dir_path, file_name)
 
+def get_lc_basename_from_path(path):
+  return str(os.path.basename(path)).lower()
+
 def remove_file_in_folder(folder_path, file_name):
   full_path = get_path_in_folder(folder_path, file_name)
   if os.path.exists(full_path):
