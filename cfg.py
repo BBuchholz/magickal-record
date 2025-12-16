@@ -13,6 +13,10 @@ class Config(ABC):
   def get_obsidio_file(self, md_file):
     o_fldr = self.obsidio_folder()
     return os.path.join(o_fldr, md_file)
+  
+  def get_eg_file_path(self, md_fname):
+    eg_fldr = self.eg_folder(True)
+    return os.path.join(eg_fldr, md_fname)
 
   def eg_folder(self, expand_user=True):
     nwd_fldr = self.nwd_folder(expand_user)
