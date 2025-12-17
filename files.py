@@ -133,7 +133,8 @@ def write_lines(file_path, lines, add_newlines):
   if add_newlines:
     new_lines = []
     for line in lines:
-      new_lines.append(line + "\n")
+      if line is not None:
+        new_lines.append(line + "\n")
     lines = new_lines
   file_path = os.path.expanduser(file_path)
   f = open(file_path, "w")

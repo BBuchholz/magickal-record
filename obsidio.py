@@ -157,10 +157,10 @@ class ObsidIO():
   def create_cetar_file(self, cetar: CetAR):
     # mimic method: create_vault_config_file(vault_name, vault_path)
     mf = MyrFile()
-    status = "IMPLEMENTATION IN PROGRESS"
-    mf.lines.append(status)
-    if status == "IMPLEMENTATION IN PROGRESS":
-      raise Exception(f"Not Implemented: write to file {file_path}")
+    # status = "IMPLEMENTATION IN PROGRESS"
+    mf.main_fragment.lines.append(cetar.to_lines())
+    # if status == "IMPLEMENTATION IN PROGRESS":
+    #   raise Exception(f"Not Implemented: write to file for Cet: {cetar.short_name}")
     chronio = ChronIO()
     timestamp = chronio.get_suffix()
     file_name = "CetAR_" + cetar.short_name + "_" + timestamp + ".md"
@@ -169,7 +169,7 @@ class ObsidIO():
       timestamp = chronio.get_suffix(timestamp)
       file_name = "CetAR_" + cetar.short_name + "_" + timestamp + ".md"
       file_path = self.get_obsidio_file_path(file_name)
-    write_lines(file_path, mf.lines, True)
+    write_lines(file_path, mf.main_fragment.lines, True)
     print(f"file written: {file_path}")
     return file_path
     

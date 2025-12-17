@@ -9,6 +9,12 @@ class CetAR:
     self.short_name = short_name
     self.full_path = os.path.expanduser(rel_address)
 
+  def to_lines(self):
+    lines = []
+    lines.append(self.short_name)
+    lines.append("# Missing Elements")
+    lines.append(self.missing_elements)
+
   def print_missing_elements(self, verbose=False):
     count = len(self.missing_elements)
     print(f"{count} missing elements for repo: {self.short_name}")
