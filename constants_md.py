@@ -25,3 +25,12 @@ LINES_APPLE_LTH25 = [
   "",
   IMAGE_EMBED_APPLE_LTH25
 ]
+
+LINES_SECTION_EXAMPLE = [
+  "# Section One",
+  "- Section One Comment Line One",
+  "- Section One Comment Line Two",
+  "# Section Two",
+  "- Section Two Comment Line One",
+  "- Section Two Comment Line Two"
+]

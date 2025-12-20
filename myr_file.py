@@ -11,6 +11,9 @@ class MyrFile():
 
   def get_lines(self):
     return self.main_fragment.get_lines()
+  
+  def get_section(self, section_header) -> MyrFrag:
+    return MyrFrag()
 
   def load_from_lines_arr(self, lines):
     self.main_fragment.load_from_lines_arr(lines)

@@ -1,6 +1,7 @@
 import unittest
 from cfg import NwdTestConfig
 from myr_file import MyrFile
+from myr_frag import MyrFrag
 from constants_md import (
   LINES_STAR_LTH25,
   MAIN_TEXT_STAR_LTH25,
@@ -12,6 +13,7 @@ from constants_md import (
   COMMENT_ONE_APPLE_LTH25,
   COMMENT_TWO_APPLE_LTH25,
   IMAGE_EMBED_APPLE_LTH25,
+  LINES_SECTION_EXAMPLE,
 )
 from files import (
   get_lines_from,
@@ -31,6 +33,13 @@ class TestMyrFile(unittest.TestCase):
     self.assertEqual(len(mf.get_lines()), 0)
     mf.load_from_lines_arr(lines)
     self.assertEqual(len(mf.get_lines()), 5)
+
+  def test_should_get_section(self):
+    mf = MyrFile()
+    mf.load_from_lines_arr(LINES_SECTION_EXAMPLE)
+    section_one = mf.get_section("Section One")
+    self.assertIsInstance(section_one, MyrFrag)
+    self.assertEqual(1, len(section_one.get_comment_lines()))
 
   def test_should_get_main_text_lines(self):
     # STAR
