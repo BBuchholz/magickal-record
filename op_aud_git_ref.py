@@ -1,7 +1,8 @@
 from menus import LineOption
 from gitio import GitIO
 from ceter import CetER
-from cetar import CetAR
+from gdp import GarDinPlot
+from gdpar import GarDinPlotAR
 from obsidio import ObsidIO
 from cfg import NwdTestConfig
 
@@ -34,17 +35,17 @@ class AuditGitIOFoldersOpRefactor(LineOption):
       print("verbose mode confirmed, proceeding...")
     cet_folder = self.git.cfg.cets_folder(expand_user)
     print(f"checking cet folder: {cet_folder}")
-    ar = {
-      'repos': []
-    }
-    ar['repos'] = self.git.list_repos()
-    repo_count = len(ar['repos'])
+    
+    gdp = GarDinPlot(self.obio._cfg)
+    gdpar = GarDinPlotAR(gdp)
+    gdpar.add_repos(self.git.list_repos())
+    repo_count = len(gdpar.get_repos())
     if repo_count < 1:
       print("no repos found")
     else:
       print(f"found {repo_count} repos:")
-      self.ceter.compare_repos_to_expected(ar['repos'])
-      for repo in ar['repos']:
+      self.ceter.compare_repos_to_expected(gdpar.get_repos())
+      for repo in gdpar.get_repos():
         cetar = self.ceter.audit_repo(repo, verbose)
         self.obio.create_cetar_file(cetar)
 
