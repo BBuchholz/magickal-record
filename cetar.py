@@ -14,6 +14,7 @@ class CetAR:
     lines.append(self.short_name)
     lines.append("# Missing Elements")
     lines.append(self.missing_elements)
+    return lines
 
   def print_missing_elements(self, verbose=False):
     count = len(self.missing_elements)

@@ -1,6 +1,7 @@
 import os
 from gitio import GitIO
 from cetar import CetAR
+from gdpar import GarDinPlotAR
 from files import get_lines_from
 from myr_file import MyrFile
 
@@ -18,6 +19,37 @@ class CetER:
     self._expected_cets = []
     self.load_expected_cets()
     self.git = git
+
+  def audit_repos(self, gdpar: GarDinPlotAR):
+    for repo in gdpar.get_repos():
+      short_name = repo['short_name']
+      cetar = self.audit_repo(repo, False)
+      gdpar.add_audit_report(short_name, cetar)
+      # self.obio.create_cetar_file(cetar)
+
+
+  def audit_expected_repos(self, gdpar: GarDinPlotAR):
+    expected_cets = self.get_expected_cets_list()
+    expected_count = len(expected_cets)
+    gdpar.add_report_line(f"expected cets: {expected_count}")
+    for expected_cet in expected_cets:
+      gdpar.add_report_line(f"expected cet: {expected_cet}")
+    gdpar.add_report_line("")
+    gdpar.add_report_line(f"comparing found cets to expected cets")
+    found_expected_repos = []
+    for repo in gdpar.get_repos():
+      short_name = repo['short_name']
+      if short_name in expected_cets:
+        gdpar.add_report_line(f"expected repo found: {short_name}")
+        found_expected_repos.append(short_name)
+      else:
+        gdpar.add_report_line(f"unexpected repo found: {short_name}")
+    for cet in expected_cets:
+      if cet not in found_expected_repos:
+        gdpar.add_report_line(f"could not find cet: {cet}")
+    gdpar.add_report_line("")
+    
+
 
   def compare_repos_to_expected(self, repos: list):
     expected_cets = self.get_expected_cets_list()

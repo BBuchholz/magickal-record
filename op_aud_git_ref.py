@@ -44,10 +44,11 @@ class AuditGitIOFoldersOpRefactor(LineOption):
       print("no repos found")
     else:
       print(f"found {repo_count} repos:")
-      self.ceter.compare_repos_to_expected(gdpar.get_repos())
-      for repo in gdpar.get_repos():
-        cetar = self.ceter.audit_repo(repo, verbose)
-        self.obio.create_cetar_file(cetar)
+      self.ceter.audit_expected_repos(gdpar)
+      self.ceter.audit_repos(gdpar)
+      # for repo in gdpar.get_repos():
+      #   cetar = self.ceter.audit_repo(repo, verbose)
+      #   self.obio.create_cetar_file(cetar)
 
 
 
