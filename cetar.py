@@ -13,7 +13,8 @@ class CetAR:
     lines = []
     lines.append(self.short_name)
     lines.append("# Missing Elements")
-    lines.append(self.missing_elements)
+    for missing_element in self.missing_elements:
+      lines.append(missing_element)
     return lines
 
   def print_missing_elements(self, verbose=False):

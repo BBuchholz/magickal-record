@@ -1,4 +1,5 @@
 from gdp import GarDinPlot
+from cetar import CetAR
 
 class GarDinPlotAR:
   """
@@ -28,7 +29,7 @@ class GarDinPlotAR:
     self.add_report_line("# " + heading)
     self.add_report_line("")
 
-  def add_audit_report(self, short_name, ar):
+  def add_audit_report(self, short_name, ar: CetAR):
     self.append_heading(short_name)
     for line in ar.to_lines():
       self.add_report_line(line)

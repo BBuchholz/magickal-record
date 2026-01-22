@@ -49,6 +49,11 @@ class AuditGitIOFoldersOpRefactor(LineOption):
       # for repo in gdpar.get_repos():
       #   cetar = self.ceter.audit_repo(repo, verbose)
       #   self.obio.create_cetar_file(cetar)
+      if verbose:
+        lines = gdpar.get_report_lines()
+        print(f"Verbose mode selected. Report contains {len(lines)} lines:")
+        for line in lines:
+          print(line)
 
 
 
