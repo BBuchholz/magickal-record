@@ -55,6 +55,20 @@ class AuditGitIOFoldersOpRefactor(LineOption):
         for line in lines:
           print(line)
 
+      # offer to store a copy of the report to obsidio folder as a timestamped report file
+      print("")
+      print("GarDinPlot Audit Report (GDPAR) successfully generated.")
+      response = input("would you like to store a timestamped copy? (y to affirm, anything else to skip)")
+      if response == 'y':
+        print("")
+        print("storing a copy")
+        gdpar_fname = self.obio.create_gdpar_file(gdpar)
+        print(f"file stored as {gdpar_fname}")
+      else:
+        print("")
+        print("reporting finished, no file was stored.")
+      
+
 
 
 if __name__ == "__main__":

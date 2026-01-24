@@ -9,6 +9,7 @@ class GarDinPlotAR:
     self.gdp = gdp
     self.repos = []
     self.lines = []
+    self.short_name = "UNNAMED"
 
   def add_repos(self, lst: list):
     for repo in lst:

@@ -13,6 +13,7 @@ from files import (
 from myr_file import MyrFile
 from os import path
 from cetar import CetAR
+from gdpar import GarDinPlotAR
 from cfg import Config
 from chronio import ChronIO
 
@@ -173,6 +174,22 @@ class ObsidIO():
     print(f"file written: {file_path}")
     return file_path
     
+   
+  def create_gdpar_file(self, gdpar: GarDinPlotAR):
+    mf = MyrFile()
+    for rep_line in gdpar.get_report_lines():
+      mf.main_fragment.lines.append(rep_line)
+    chronio = ChronIO()
+    timestamp = chronio.get_suffix()
+    file_name = "GarDinPlotAR_" + gdpar.short_name + "_" + timestamp + ".md"
+    file_path = self.get_obsidio_file_path(file_name)
+    while path_exists(file_path):
+      timestamp = chronio.get_suffix(timestamp)
+      file_name = "GarDinPlotAR_" + gdpar.short_name + "_" + timestamp + ".md"
+      file_path = self.get_obsidio_file_path(file_name)
+    write_lines(file_path, mf.main_fragment.lines, True)
+    print(f"file written: {file_path}")
+    return file_path 
 
   def ensure_folder(self, folder_path):
     ensure_folder(folder_path)
