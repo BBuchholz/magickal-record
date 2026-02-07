@@ -101,13 +101,21 @@ def get_path_in_folder(folder_path, file_name):
 def get_lc_basename_from_path(path):
   return str(os.path.basename(path)).lower()
 
+def remove_file_path(file_path):
+  if os.path.exists(file_path):
+    os.remove(file_path)
+    print(f"File '{file_path}' removed")
+  else:
+    print(f"File '{file_path}' does not exist, cannot remove")
+
 def remove_file_in_folder(folder_path, file_name):
   full_path = get_path_in_folder(folder_path, file_name)
-  if os.path.exists(full_path):
-    os.remove(full_path)
-    print(f"File '{full_path}' removed")
-  else:
-    print(f"File '{full_path}' does not exist, cannot remove")
+  remove_file_path(full_path)
+  # if os.path.exists(full_path):
+  #   os.remove(full_path)
+  #   print(f"File '{full_path}' removed")
+  # else:
+  #   print(f"File '{full_path}' does not exist, cannot remove")
 
 def get_lines_array(file_name):
   """
